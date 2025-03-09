@@ -143,6 +143,47 @@
     magic-string "^0.30.15"
     vitefu "^1.0.4"
 
+"@tailwindcss/node@4.0.12":
+  version "4.0.12"
+  resolved "https://registry.npmjs.org/@tailwindcss/node/-/node-4.0.12.tgz"
+  integrity sha512-a6J11K1Ztdln9OrGfoM75/hChYPcHYGNYimqciMrvKXRmmPaS8XZTHhdvb5a3glz4Kd4ZxE1MnuFE2c0fGGmtg==
+  dependencies:
+    enhanced-resolve "^5.18.1"
+    jiti "^2.4.2"
+    tailwindcss "4.0.12"
+
+"@tailwindcss/oxide-darwin-arm64@4.0.12":
+  version "4.0.12"
+  resolved "https://registry.npmjs.org/@tailwindcss/oxide-darwin-arm64/-/oxide-darwin-arm64-4.0.12.tgz"
+  integrity sha512-vPNI+TpJQ7sizselDXIJdYkx9Cu6JBdtmRWujw9pVIxW8uz3O2PjgGGzL/7A0sXI8XDjSyRChrUnEW9rQygmJQ==
+
+"@tailwindcss/oxide@4.0.12":
+  version "4.0.12"
+  resolved "https://registry.npmjs.org/@tailwindcss/oxide/-/oxide-4.0.12.tgz"
+  integrity sha512-DWb+myvJB9xJwelwT9GHaMc1qJj6MDXRDR0CS+T8IdkejAtu8ctJAgV4r1drQJLPeS7mNwq2UHW2GWrudTf63A==
+  optionalDependencies:
+    "@tailwindcss/oxide-android-arm64" "4.0.12"
+    "@tailwindcss/oxide-darwin-arm64" "4.0.12"
+    "@tailwindcss/oxide-darwin-x64" "4.0.12"
+    "@tailwindcss/oxide-freebsd-x64" "4.0.12"
+    "@tailwindcss/oxide-linux-arm-gnueabihf" "4.0.12"
+    "@tailwindcss/oxide-linux-arm64-gnu" "4.0.12"
+    "@tailwindcss/oxide-linux-arm64-musl" "4.0.12"
+    "@tailwindcss/oxide-linux-x64-gnu" "4.0.12"
+    "@tailwindcss/oxide-linux-x64-musl" "4.0.12"
+    "@tailwindcss/oxide-win32-arm64-msvc" "4.0.12"
+    "@tailwindcss/oxide-win32-x64-msvc" "4.0.12"
+
+"@tailwindcss/vite@^4.0.12":
+  version "4.0.12"
+  resolved "https://registry.npmjs.org/@tailwindcss/vite/-/vite-4.0.12.tgz"
+  integrity sha512-JM3gp601UJiryIZ9R2bSqalzcOy15RCybQ1Q+BJqDEwVyo4LkWKeqQAcrpHapWXY31OJFTuOUVBFDWMhzHm2Bg==
+  dependencies:
+    "@tailwindcss/node" "4.0.12"
+    "@tailwindcss/oxide" "4.0.12"
+    lightningcss "^1.29.1"
+    tailwindcss "4.0.12"
+
 "@types/cookie@^0.6.0":
   version "0.6.0"
   resolved "https://registry.npmjs.org/@types/cookie/-/cookie-0.6.0.tgz"
@@ -356,6 +397,11 @@ deepmerge@^4.3.1:
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz"
   integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
 
+detect-libc@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/detect-libc/-/detect-libc-2.0.3.tgz"
+  integrity sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==
+
 devalue@^5.1.0:
   version "5.1.1"
   resolved "https://registry.npmjs.org/devalue/-/devalue-5.1.1.tgz"
@@ -390,6 +436,14 @@ emoji-regex@^9.2.2:
   version "9.2.2"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
+
+enhanced-resolve@^5.18.1:
+  version "5.18.1"
+  resolved "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-5.18.1.tgz"
+  integrity sha512-ZSW3ma5GkcQBIpwZTSRAI8N71Uuwgs93IezB7mf7R60tC8ZbJideoDNKjHn2O9KIlx6rkGTTEk1xUCK2E1Y2Yg==
+  dependencies:
+    graceful-fs "^4.2.4"
+    tapable "^2.2.0"
 
 esbuild@^0.24.2:
   version "0.24.2"
@@ -525,6 +579,11 @@ glob@^10.3.10:
     package-json-from-dist "^1.0.0"
     path-scurry "^1.11.1"
 
+graceful-fs@^4.2.4:
+  version "4.2.11"
+  resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz"
+  integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
+
 hasown@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz"
@@ -599,6 +658,11 @@ jiti@^1.21.6:
   resolved "https://registry.npmjs.org/jiti/-/jiti-1.21.7.tgz"
   integrity sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==
 
+jiti@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.npmjs.org/jiti/-/jiti-2.4.2.tgz"
+  integrity sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==
+
 kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz"
@@ -608,6 +672,29 @@ leaflet@^1.9.4:
   version "1.9.4"
   resolved "https://registry.npmjs.org/leaflet/-/leaflet-1.9.4.tgz"
   integrity sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==
+
+lightningcss-darwin-arm64@1.29.2:
+  version "1.29.2"
+  resolved "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.29.2.tgz"
+  integrity sha512-cK/eMabSViKn/PG8U/a7aCorpeKLMlK0bQeNHmdb7qUnBkNPnL+oV5DjJUo0kqWsJUapZsM4jCfYItbqBDvlcA==
+
+lightningcss@^1.29.1:
+  version "1.29.2"
+  resolved "https://registry.npmjs.org/lightningcss/-/lightningcss-1.29.2.tgz"
+  integrity sha512-6b6gd/RUXKaw5keVdSEtqFVdzWnU5jMxTUjA2bVcMNPLwSQ08Sv/UodBVtETLCn7k4S1Ibxwh7k68IwLZPgKaA==
+  dependencies:
+    detect-libc "^2.0.3"
+  optionalDependencies:
+    lightningcss-darwin-arm64 "1.29.2"
+    lightningcss-darwin-x64 "1.29.2"
+    lightningcss-freebsd-x64 "1.29.2"
+    lightningcss-linux-arm-gnueabihf "1.29.2"
+    lightningcss-linux-arm64-gnu "1.29.2"
+    lightningcss-linux-arm64-musl "1.29.2"
+    lightningcss-linux-x64-gnu "1.29.2"
+    lightningcss-linux-x64-musl "1.29.2"
+    lightningcss-win32-arm64-msvc "1.29.2"
+    lightningcss-win32-x64-msvc "1.29.2"
 
 lilconfig@^3.0.0, lilconfig@^3.1.3:
   version "3.1.3"
@@ -1061,6 +1148,16 @@ tailwindcss@^3.4.9:
     postcss-selector-parser "^6.1.2"
     resolve "^1.22.8"
     sucrase "^3.35.0"
+
+tailwindcss@4.0.12:
+  version "4.0.12"
+  resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.0.12.tgz"
+  integrity sha512-bT0hJo91FtncsAMSsMzUkoo/iEU0Xs5xgFgVC9XmdM9bw5MhZuQFjPNl6wxAE0SiQF/YTZJa+PndGWYSDtuxAg==
+
+tapable@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
+  integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
 thenify-all@^1.0.0:
   version "1.6.0"
