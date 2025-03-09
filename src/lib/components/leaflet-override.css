@@ -1,12 +1,22 @@
 @import "../../app.css";
 
 .leaflet-container {
-	background: black !important;
-	outline: 0;
+  background: black !important;
+  outline: 0;
 }
 .leaflet-popup-content-wrapper {
-  background: rgba(0,0,0,0.5) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255);
+  border: 1px solid rgba(255, 255, 255);
   color: white;
+}
+
+.leaflet-tooltip {
+  color: white !important;
+  font-size: 1.5rem;
+  text-align: center;
+  box-shadow: none;
+  /* position: fixed !important; */
+  border: transparent;
+  background-color: transparent !important;
 }

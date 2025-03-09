@@ -12,7 +12,7 @@
   $selectedFactions
 
 </script>
-<div class="flex items-center gap-4 p-4">
+<div class="flex items-center gap-4 h-min py-0 px-2 m-2 rounded-full border-1 border-black/30 backdrop-blur-sm">
   <button onclick={()=>selectedFactions.update(sf=> {
     if (sf.length ===4) {
       return [GA.Order]
@@ -24,7 +24,7 @@
     })}>
     <img 
       class={
-        $selectedFactions.length < 4 && $selectedFactions.includes(GA.Order) 
+          $selectedFactions.includes(GA.Order) 
           ? "bg-order-color hover:!opacity-75 active" 
           : "inactive hover:!opacity-75"
       } 
@@ -42,7 +42,7 @@
     })}>
     <img 
       class={
-        $selectedFactions.length < 4 && $selectedFactions.includes(GA.Chaos) 
+          $selectedFactions.includes(GA.Chaos) 
           ? "bg-chaos-color hover:!opacity-75 active" 
           : "inactive hover:!opacity-75"
       } 
@@ -60,7 +60,7 @@
     })}>
     <img 
       class={
-        $selectedFactions.length < 4 && $selectedFactions.includes(GA.Death) 
+          $selectedFactions.includes(GA.Death) 
           ? "bg-death-color hover:!opacity-75 active" 
           : "inactive hover:!opacity-75"
       } 
@@ -78,20 +78,21 @@
     })}>
     <img 
       class={
-        $selectedFactions.length < 4 && $selectedFactions.includes(GA.Destruction) 
+          $selectedFactions.includes(GA.Destruction) 
           ? "bg-destruction-color hover:!opacity-75 active" 
           : "inactive hover:!opacity-75"
       } 
       alt={"destruction"} 
       src={destruction} />
   </button>
+  <div class="h-full w-1 -mr-2 border-r-1 border-r-black/30 text-transparent">-</div>
   <button onclick={()=>selectedFactions.update(sf=> {
       if (sf.length === 4) {
         return []
       }
       return [GA.Order, GA.Chaos, GA.Death, GA.Destruction]
     })}>
-    <img id="all-factions" class={$selectedFactions.length === 4 ? "hover:!opacity-75 active" : "inactive hover:!opacity-75"} alt={"all"} src={all} />
+    <img id="all-factions" class={`-my-2 ${$selectedFactions.length === 4 ? "hover:!opacity-75 active" : "inactive hover:!opacity-75"}`} alt={"all"} src={all} />
   </button>
 </div>
 

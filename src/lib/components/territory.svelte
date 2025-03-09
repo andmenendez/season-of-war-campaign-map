@@ -39,14 +39,12 @@
       currentOwner = territory.owner[$selectedWeek];
     }
   })
+  const polygonTerritories =document.getElementsByClassName("tooltip-class-123")
+  for (let core of polygonTerritories) {
+    console.log(core)
+  }
 </script> 
 
-<style>
-  /* @import "../../app.css"; */
-  /* @tailwind base;
-  @tailwind components;
-  @tailwind utilities; */
-</style>
 
 <Polygon
   latLngs={points} 
@@ -55,13 +53,14 @@
   fillOpacity={$selectedFactions.includes(currentOwner) ? .3 : .2}
   color={`${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "#121711"}`} 
   fillColor={`${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
-  options={{noClip: true }}
-  >
-  <Tooltip><div>{territory.name}</div></Tooltip>  
-  <Popup options={{keepInView: false}}>
+  options={{noClip: true, className: ".polygon-class-123" }}
+
+>
+  <Tooltip options={{className: ".tooltip-class-123"}}><div class="">{territory.name}</div></Tooltip>  
+  <Popup options={{keepInView: false, autoPanPadding: [0, 100]}}>
     <div class="flex flex-col gap-2 max-w-[80vw] pb-8">
       <div class="flex w-full justify-between items-center">
-        <div class="text-3xl font-semibold">{territory.name}</div>
+        <div class="text-xl font-semibold">{territory.name}</div>
           <GrandAllianceCrest ga={currentOwner}/>
       </div>
         <div class="px-1 text-base">{territory.description}</div>
