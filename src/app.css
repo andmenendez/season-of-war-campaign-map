@@ -13,6 +13,7 @@
   --chaos-color: #A72E30;
   --death-color: #3B1D3E;
   --destruction-color: #1E5533;
+  --none-color: #4F4E4E;
 }
 html, body {
   background-color: black;
@@ -33,4 +34,7 @@ html, body {
 }
 .bg-destruction-color {
   background-color: var(--destruction-color);
+}
+.bg-none-color {
+  background-color: var(--none-color);
 }

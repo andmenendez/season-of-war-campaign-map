@@ -11,7 +11,10 @@
   color: white;
 }
 
-.leaflet-tooltip {
+.attacker.leaflet-tooltip::before {
+  display: none;
+}
+.attacker.leaflet-tooltip {
   color: white !important;
   font-size: 1.5rem;
   text-align: center;
@@ -19,4 +22,6 @@
   /* position: fixed !important; */
   border: transparent;
   background-color: transparent !important;
+  min-width: 48px;
+  min-height: 48px;
 }

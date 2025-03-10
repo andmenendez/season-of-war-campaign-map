@@ -1101,6 +1101,11 @@ svelte-leafletjs@^2.0.0:
   resolved "https://registry.npmjs.org/svelte-leafletjs/-/svelte-leafletjs-2.0.0.tgz"
   integrity sha512-Xw/Mwq+vc+loEfRTCLDqmNwE2g98+mIfaQGfm0clB3OJWIENqWz+IJy+4nQjbBdJUzCDv7/fRCpb+3YtBIQ2xA==
 
+svelte-youtube-lite@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/svelte-youtube-lite/-/svelte-youtube-lite-1.2.1.tgz"
+  integrity sha512-MNLjbblVLhUR/Zo0n+jVaWXC0mbWIrOgOETiCQ6WlZp9A4nCXENaHOYkg7EXIWaNPOBD2fODUr64+7na1xRQ7g==
+
 svelte@^5.0.0:
   version "5.19.2"
   resolved "https://registry.npmjs.org/svelte/-/svelte-5.19.2.tgz"

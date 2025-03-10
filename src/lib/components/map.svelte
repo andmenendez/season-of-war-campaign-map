@@ -17,11 +17,12 @@
   import Territory from "./territory.svelte";
   import { TERRITORIES } from "$lib/territories";
   import { MAX_H, MAX_W } from "$lib/constants";
+  import { debugUI } from "$lib/store";
 
   const mapOptions: MapOptions = {
     center: [0, 0],
-    // zoom: .01,
-    // minZoom: .005,
+    zoom: .001,
+    minZoom: .0001,
     maxZoom: 1,
     inertia: false,
     easeLinearity: 0,
@@ -43,7 +44,7 @@
       const map = leafletMap.getMap();
       if (map) {
         map.fitBounds(bounds);
-        new ImageOverlay(fadedMapImage, bounds).addTo(map);
+        new ImageOverlay($debugUI ? numberedMapImage : fadedMapImage, bounds).addTo(map);
       }
     }
   });
