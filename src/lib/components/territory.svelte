@@ -93,13 +93,13 @@
         <div class="text-2xl font-semibold">{territory.name}</div>
         <div class="flex items-center gap-2">
           <GrandAllianceCrest ga={currentOwner}/>
-          {#if currentAttacker}
-          <img 
-          class="w-6 h-6 animate-pulse"
-          src={combat} 
-          alt="Conflict"
-          />
-          <GrandAllianceCrest ga={currentAttacker}/>
+          {#if currentAttacker !== GA.None}
+            <img 
+            class="w-6 h-6 animate-pulse"
+            src={combat} 
+            alt="Conflict"
+            />
+            <GrandAllianceCrest ga={currentAttacker}/>
           {/if}
         </div>
       </div>
