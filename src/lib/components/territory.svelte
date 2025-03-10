@@ -105,7 +105,7 @@
       </div>
         <div class="px-1 text-base">{territory.description}</div>
         {#if currentAttacker !== GA.None}
-        <a target="_blank" class="group relative w-full h-40 overflow-hidden" href={`https://www.youtube.com/watch?v=${"wvXhMHYSup0"}`}>
+        <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${"wvXhMHYSup0"}`}>
           <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl":""}`} src={"https://img.youtube.com/vi/wvXhMHYSup0/0.jpg"}>
           <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
         </a>
