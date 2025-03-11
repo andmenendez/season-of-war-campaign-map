@@ -58,7 +58,7 @@
   weight={2} 
   opacity={1}
   fillOpacity={$hideUI ? 0 : $selectedFactions.includes(currentOwner) ? .3 : .2}
-  color={`${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "#121711"}`} 
+  color={$hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "#121711"}`} 
   fillColor={`${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
   options={{noClip: true, className: "polygon-class-123" }}
   events={{
@@ -76,8 +76,8 @@
         properties: []
       })
     },
-    popupopen: (e)=> hideUI.set(true),
-    popupclose: (e)=> hideUI.set(defaultHideUIState),
+    popupopen: (e)=> {if (window.innerWidth < 640) hideUI.set(true)},
+    popupclose: (e)=> {if (window.innerWidth < 640) hideUI.set(defaultHideUIState)},
   }}
 >
     
@@ -92,7 +92,7 @@
 
   <Popup events={{
 
-  }} options={{keepInView: false, autoPanPadding: [0, 100]}}>
+  }} options={{keepInView: false, autoPanPadding: [0, 100], closeOnEscapeKey: true}}>
     <div class="flex flex-col gap-2 max-w-[80vw] pb-8">
       
         {#if !$hideConflict}

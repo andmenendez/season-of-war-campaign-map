@@ -29,3 +29,29 @@
 .leaflet-bottom.leaflet-right {
   display: none !important;
 }
+
+.leaflet-popup-close-button {
+  z-index: -1;
+  display: fixed;
+  font-size: 32px !important;
+  height: 200vh !important;
+  width: 200vw !important;
+  padding-top: 20px;
+  right: unset !important;
+  left: -100vw !important;
+  top: -100vh !important;
+  background-color: rgba(0,0,0,.01) !important;
+  user-select: none !important;
+
+  /* If you want to implement it in very old browser-versions */
+  -webkit-user-select: none; /* Chrome/Safari */ 
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* The rule below is not implemented in browsers yet */
+  -o-user-select: none;
+}
+.leaflet-popup-close-button span {
+  display: none;
+  user-select: none !important;
+}

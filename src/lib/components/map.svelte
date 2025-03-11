@@ -17,12 +17,11 @@
   import Territory from "./territory.svelte";
   import { TERRITORIES } from "$lib/territories";
   import { MAX_H, MAX_W } from "$lib/constants";
-  import { hideUI } from "$lib/store";
 
   const mapOptions: MapOptions = {
     center: [0, 0],
-    zoom: .001,
-    minZoom: .0001,
+    zoom: 1,
+    minZoom: -1,
     maxZoom: 1,
     inertia: false,
     easeLinearity: 0,
@@ -30,6 +29,10 @@
     preferCanvas: true,
     zoomAnimation: true,
     zoomControl: false,
+    maxBounds: [
+      [-1*MAX_H, -1*MAX_W],
+      [2*MAX_H, 2*MAX_W],
+    ]
   };
 
   let leafletMap: LeafletMap;
