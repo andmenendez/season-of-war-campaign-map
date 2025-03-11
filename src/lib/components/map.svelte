@@ -36,6 +36,7 @@
 
   const bounds = [
     [MAX_H, MAX_W],
+    [0, 0],
   ] as LatLngBoundsExpression;
 
   onMount(() => {
