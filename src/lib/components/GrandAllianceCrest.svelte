@@ -5,8 +5,9 @@
   import destruction from "$lib/assets/destruction.png";
   import none from "$lib/assets/none.png";
   import { hideSpoilers } from "$lib/store";
+  import type { GAType } from "$lib/territories";
 
-  let { ga } = $props();
+  let { ga, className } : {ga: string; className?: string;} = $props();
 
   let wrapperStyle = $state("ga-image-wrapper");
 
@@ -30,7 +31,7 @@
 
 
 </script>
-<div class={$hideSpoilers ? "blur-this" : ""}>
+<div class={`${className} ${$hideSpoilers ? "blur-this" : ""}`}>
   <div class={wrapperStyle}>
     {#if $hideSpoilers}
       <img alt={ga} src={none} />

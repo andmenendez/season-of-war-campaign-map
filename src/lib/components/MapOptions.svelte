@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { hideSpoilers, hideConflict, debugUI } from "$lib/store";
+  import { hideSpoilers, hideConflict, hideUI } from "$lib/store";
 
 
 </script>
-<div class="flex flex-col gap-1 shrink-0 my-2">
+<div class="flex flex-col gap-0 shrink-0 my-1 text-sm">
   <button 
     class="flex items-center gap-2 whitespace-nowrap w-fit" 
     onclick={ ()=> hideSpoilers.update(b => !b)}
   >
     {#if $hideSpoilers}
-    <div class="w-4 h-4 border-1 rounded-sm border-white bg-white"></div>
+    <div class="box border-1 rounded-sm border-white bg-white"></div>
     {:else}
-    <div class="w-4 h-4 border-1 rounded-sm border-white"></div>
+    <div class="box border-1 rounded-sm border-white"></div>
     {/if}
     <span class="whitespace-nowrap h-5">Hide Spoilers</span>
   </button>
@@ -20,21 +20,35 @@
     onclick={ ()=> hideConflict.update(b => !b)}
   >
     {#if $hideConflict}
-    <div class="w-4 h-4 border-1 rounded-sm border-white bg-white"></div>
+    <div class="box border-1 rounded-sm border-white bg-white"></div>
     {:else}
-    <div class="w-4 h-4 border-1 rounded-sm border-white"></div>
+    <div class="box border-1 rounded-sm border-white"></div>
     {/if}
     <span class="whitespace-nowrap h-5">Hide Conflicts</span>
   </button>
   <button 
     class="flex items-center gap-2 whitespace-nowrap w-fit" 
-    onclick={ ()=> debugUI.update(b => !b)}
+    onclick={ ()=> hideUI.update(b => !b)}
   >
-    {#if $debugUI}
-    <div class="w-4 h-4 border-1 rounded-sm border-white bg-white"></div>
+    {#if $hideUI}
+    <div class="box border-1 rounded-sm border-white bg-white"></div>
     {:else}
-    <div class="w-4 h-4 border-1 rounded-sm border-white"></div>
+    <div class="box border-1 rounded-sm border-white"></div>
     {/if}
-    <span class="whitespace-nowrap h-5">Debug UI</span>
+    <span class="whitespace-nowrap h-5">Hide UI</span>
   </button>
 </div>
+
+<style>
+  .box {
+    width: 12px;
+    height: 12px;
+  }
+
+  @media only screen and (min-width: 640px) {
+    .box {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>

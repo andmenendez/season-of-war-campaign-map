@@ -1,5 +1,5 @@
 <script lang="ts">;
-	import { contextBanner, hideConflict, hideSpoilers, selectedFactions } from './../store';
+	import { contextBanner, hideConflict, hideSpoilers, hideUI, selectedFactions } from './../store';
 	import { GAColor, GABorderColor, GA, type GAType } from './../territories';
   import { onMount } from 'svelte';
   import 'leaflet/dist/leaflet.css';
@@ -21,6 +21,7 @@
   
   const offset_x = territory.offset.x;
   const offset_y =  territory.offset.y;
+  const defaultHideUIState = $hideUI;
 
   let currentOwner : GAType = $state(territory.owner[territory.owner.length-1]);
   let currentAttacker : GAType = $state(territory.attacker[territory.attacker.length-1]);
@@ -56,7 +57,7 @@
   latLngs={points} 
   weight={2} 
   opacity={1}
-  fillOpacity={$selectedFactions.includes(currentOwner) ? .3 : .2}
+  fillOpacity={$hideUI ? 0 : $selectedFactions.includes(currentOwner) ? .3 : .2}
   color={`${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "#121711"}`} 
   fillColor={`${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
   options={{noClip: true, className: "polygon-class-123" }}
@@ -74,7 +75,9 @@
         owner: "-",
         properties: []
       })
-    }
+    },
+    popupopen: (e)=> hideUI.set(true),
+    popupclose: (e)=> hideUI.set(defaultHideUIState),
   }}
 >
     
@@ -87,28 +90,40 @@
   </Tooltip>
 
 
-  <Popup options={{keepInView: false, autoPanPadding: [0, 100]}}>
+  <Popup events={{
+
+  }} options={{keepInView: false, autoPanPadding: [0, 100]}}>
     <div class="flex flex-col gap-2 max-w-[80vw] pb-8">
-      <div class={`flex w-full justify-between items-center ${currentAttacker !== GA.None ? "flex-col gap-2" : "flex-row"}`}>
-        <div class="text-2xl font-semibold">{territory.name}</div>
-        <div class="flex items-center gap-2">
-          <GrandAllianceCrest ga={currentOwner}/>
-          {#if currentAttacker !== GA.None}
-            <img 
-            class="w-6 h-6 animate-pulse"
-            src={combat} 
-            alt="Conflict"
-            />
-            <GrandAllianceCrest ga={currentAttacker}/>
-          {/if}
-        </div>
-      </div>
+      
+        {#if !$hideConflict}
+          <div class={`flex w-full justify-between items-center ${currentAttacker !== GA.None ? "flex-col gap-2" : "flex-row"}`}>
+            <div class="text-2xl font-semibold">{territory.name}</div>
+            <div class="flex items-center gap-2">
+              <GrandAllianceCrest ga={currentOwner}/>
+              {#if currentAttacker !== GA.None}
+                <img 
+                class="w-6 h-6 animate-pulse"
+                src={combat} 
+                alt="Conflict"
+                />
+                <GrandAllianceCrest ga={currentAttacker}/>
+              {/if}
+            </div>
+          </div>
+        {:else}
+          <div class={`flex w-full justify-between items-center flex-row`}>
+            <div class="text-2xl font-semibold">{territory.name}</div>
+            <div class="flex items-center gap-2">
+              <GrandAllianceCrest ga={currentOwner}/>
+            </div>
+          </div>
+        {/if}
         <div class="px-1 text-base">{territory.description}</div>
-        {#if currentAttacker !== GA.None}
-        <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${"wvXhMHYSup0"}`}>
-          <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl":""}`} src={"https://img.youtube.com/vi/wvXhMHYSup0/0.jpg"}>
-          <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
-        </a>
+          {#if !$hideConflict && currentAttacker !== GA.None}
+          <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${"wvXhMHYSup0"}`}>
+            <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl":""}`} src={"https://img.youtube.com/vi/wvXhMHYSup0/0.jpg"}>
+            <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
+          </a>
         {/if}
         <div class="flex flex-col">
           <div class="py-1 px-2 bg-slate-500 rounded-sm">{territory.bonuses[0].ability}</div>

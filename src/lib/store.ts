@@ -10,6 +10,6 @@ export const contextBanner = writable<ContextBannerType>(
   { territory: "", owner: "-", properties: []}
 
 );
-export const debugUI = writable<boolean>(false);
+export const hideUI = writable<boolean>(false);
 export const hideConflict = writable<boolean>(false);
 export const hideSpoilers = writable<boolean>(false);

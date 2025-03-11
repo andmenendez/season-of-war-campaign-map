@@ -17,7 +17,7 @@
   import Territory from "./territory.svelte";
   import { TERRITORIES } from "$lib/territories";
   import { MAX_H, MAX_W } from "$lib/constants";
-  import { debugUI } from "$lib/store";
+  import { hideUI } from "$lib/store";
 
   const mapOptions: MapOptions = {
     center: [0, 0],
@@ -36,7 +36,6 @@
 
   const bounds = [
     [MAX_H, MAX_W],
-    [0, 0],
   ] as LatLngBoundsExpression;
 
   onMount(() => {
@@ -44,7 +43,7 @@
       const map = leafletMap.getMap();
       if (map) {
         map.fitBounds(bounds);
-        new ImageOverlay($debugUI ? numberedMapImage : fadedMapImage, bounds).addTo(map);
+        new ImageOverlay(fadedMapImage, bounds).addTo(map);
       }
     }
   });

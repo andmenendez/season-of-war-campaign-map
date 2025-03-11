@@ -12,7 +12,7 @@
   $selectedFactions
 
 </script>
-<div class="flex items-center gap-4 h-min py-0 px-2 m-2 rounded-full border-1 border-black/30 backdrop-blur-sm">
+<div class="ga-selector-wrapper flex items-center gap-4 h-min md:py-1 px-1 py-2 m-2 rounded-full border-1 bg-white/10 border-black/30 backdrop-blur-sm">
   <button onclick={()=>selectedFactions.update(sf=> {
     if (sf.length ===4) {
       return [GA.Order]
@@ -97,6 +97,15 @@
 </div>
 
 <style>
+  .ga-selector-wrapper {
+    margin: 8px auto;
+  }
+  
+  @media only screen and (min-width: 640px) {
+    .ga-selector-wrapper {
+    margin: unset;
+    }
+  }
   .active {
     opacity: 1;
     border: 1px solid rgba(255,255,255,0.3)
@@ -108,7 +117,10 @@
     border-radius: 100%;
     padding: 2px;
     width: 48px;
+    max-width: 48px;
     height: 48px;
+    max-height: 48px;
+    flex-shrink: 0;
   }
   #all-factions {
     width: 82px;

@@ -8,6 +8,7 @@ import { onMount } from "svelte";
 
 let loading = true;
 let Map: any;
+
 onMount(async () => {
   await sleep(1000); // simulate network delay
   // if (window) {
@@ -22,7 +23,7 @@ onMount(async () => {
 </style>
 
 <div class="text-sm bg-red flex flex-col w-full">
-  {#if Map && true}
+  {#if Map && !loading}
     <div in:fade>
       <svelte:component this={Map}></svelte:component>
     </div>
