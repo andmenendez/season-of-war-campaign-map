@@ -25,19 +25,23 @@ onMount(async () => {
 
 <div class="z-10 fixed top-0 left-0 w-full flex-col-to-row flex-col justify-between items-start">
 
-  {#if !loading.valueOf()}
-    <div in:fade out:fade class="z-10 flex items-start w-fit shrink-0 gap-4 mx-4">
-      <div class="flex flex-col">
-        <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
-        <a href="/leaderboard" class="text-sm opacity-50 hover:opacity-100 py-1 mx-auto">Rules and Leaderboard</a>
-        <div class="hide-on-mobile flex flex-row justify-center items-center py-[1px] gap-2">
+  <div in:fade out:fade class="z-10 flex items-start w-fit shrink-0 gap-4 mx-4">
+    <div class="flex flex-col">
+      <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
+        {#if !loading.valueOf()}
+        <a in:fade out:fade href="/leaderboard" class="text-sm opacity-50 hover:opacity-100 py-1 mx-auto">Rules and Leaderboard</a>
+        <div in:fade out:fade class="hide-on-mobile flex flex-row justify-center items-center py-[1px] gap-2">
           <a class="opacity-50 hover:opacity-100 text-[.5rem] flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="discord" src={discord}/>Community</a>
           <a class="opacity-50 hover:opacity-100 text-[.5rem] flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="youtube" src={youtube}/>More Battle Reports</a>
         </div>
+        {/if}
       </div>
-      <MapOptions />
+      {#if !loading.valueOf()}
+      <div in:fade out:fade >
+        <MapOptions />
+      </div>
+      {/if}
     </div>
-  {/if}
 
   {#if !$hideUI && !loading}
     <div in:fade out:fade class="translate-y-1 flex justify-end items-center w-full">
@@ -81,5 +85,10 @@ onMount(async () => {
   }
   .hide-on-mobile {
     display: none;
+  }
+  @media only screen and (min-width: 640px) {
+    .hide-on-mobile {
+      display: flex;
+    }
   }
 </style>

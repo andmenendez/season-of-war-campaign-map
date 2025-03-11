@@ -35,16 +35,16 @@ import discord from "$lib/assets/socials/discord.png";
   })
 </script>
 
-<div class="grid grid-cols-12 gap-4 p-8 h-full place-items-stretch max-h-screen overflow-hidden">
+<div class="flexcol-to-grid hide-overflow-on-desktop grid grid-cols-12 gap-4 p-8 h-full min-h-[700px] place-items-stretch max-h-screen">
   <div class="inset-0 flex flex-col col-span-8 gap-4">
 
-    <div class="w-full flex justify-between items-center py-2">
+    <div class="flexcol-to-row flex flex-row w-full justify-between items-center py-2">
       <div in:fade out:fade class="z-10 flex items-center w-fit shrink-0 gap-4">
-        <div class="flex brightness-110 contrast-125 flex-col rounded-md overflow-hidden -my-8">
+        <div class="flex brightness-110 contrast-125 flex-col rounded-md overflow-hidden title">
           <a href="https://www.youtube.com/seasonofwar" class="shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 102px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         </div>
       </div>
-      <div class="flex flex-col justify-center items-end  gap-2">
+      <div class="subtitle">
         <a class="opacity-100 hover:opacity-100 flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-5" alt="discord" src={discord}/>Community</a>
         <a class="opacity-100 hover:opacity-100 flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-5" alt="youtube" src={youtube}/>More Battle Reports</a>
       </div>
@@ -92,11 +92,11 @@ import discord from "$lib/assets/socials/discord.png";
 
 
 
-  <div class="col-span-4 flex flex-col gap-4">
+  <div class="col-span-4 flex column-2 gap-4">
     <div class="section flex flex-col h-full grow w-full overflow-hidden">
       <h3>Leaderboard</h3>
       <div class="relative h-full flex flex-col max-h-full overflow-scroll">
-        <div class="absolute h-full w-full overflow-scroll">
+        <div class="absolute-on-desktop h-full w-full overflow-scroll">
           {#each scores.sort(
             (p1,p2)=>
             p1.scores.reduce((agg, curr)=>agg+curr, 0) > p2.scores.reduce((agg, curr)=>agg+curr, 0) ? -1 : 1
@@ -138,8 +138,8 @@ import discord from "$lib/assets/socials/discord.png";
   .podium {
     display: flex;
     gap: 2px;
-    align-items: center;
-    justify-content: start;
+    align-items: start;
+    justify-content: center;
   }
   .score-plate {
     border-radius: 4px;
@@ -149,12 +149,66 @@ import discord from "$lib/assets/socials/discord.png";
   .score-plate:last-child {
     padding-bottom: 4px;
   }
-  @media only screen and (min-width: 640px) {
-    .podium-wrapper {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+
+  .hide-overflow-on-desktop {
+    overflow: visible;
   }
+  .flexcol-to-grid {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .flexcol-to-row {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .absolute-on-desktop {
+    position: block;
+  }
+  .column-2 {
+    flex-direction: column-reverse;
+  }
+
+  .title {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+  .subtitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5 rem;
+  }
+  @media only screen and (min-width: 640px) {
+  .title {
+    margin-top: -2rem /* -32px */;
+    margin-bottom: -1rem /* -32px */;
+  }
+  .subtitle {
+    align-items: end;
+  }
+  .column-2 {
+    flex-direction: column;
+  }
+  .absolute-on-desktop {
+    position: absolute;
+  }
+  .flexcol-to-grid {
+    display: grid !important;
+  }
+  .flexcol-to-row {
+    display: flex;
+    flex-direction: row;
+  }
+  .hide-overflow-on-desktop {
+    overflow: hidden;
+  }
+  .podium-wrapper {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
   .section {
+    z-index: 5;
     background-color: rgba(255,255,255,0.1);
     border-radius: 8px;
     padding: 24px 32px;
