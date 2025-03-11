@@ -25,7 +25,7 @@ onMount(async () => {
 
 <div class="z-10 fixed top-0 left-0 w-full flex-col-to-row flex-col justify-between items-start">
 
-  <div in:fade out:fade class="z-10 flex items-start w-fit shrink-0 gap-4 mx-4">
+  <div in:fade class="z-10 flex items-start w-fit shrink-0 gap-4 mx-4">
     <div class="flex flex-col">
       <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         {#if !loading.valueOf()}

@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import sowTitle from "$lib/assets/sow-loading.png";
-import youtube from "$lib/assets/socials/youtube.png";
-import discord from "$lib/assets/socials/discord.png";
+  import chevronLeft from "$lib/assets/triangle-left.svg";
+  import youtube from "$lib/assets/socials/youtube.png";
+  import discord from "$lib/assets/socials/discord.png";
   import scores from "./scores";
   import { fade } from "svelte/transition";
   let podium: {username: string; scores: number[]}[] = $state([])
@@ -35,12 +36,17 @@ import discord from "$lib/assets/socials/discord.png";
   })
 </script>
 
-<div class="flexcol-to-grid hide-overflow-on-desktop grid grid-cols-12 gap-4 p-8 h-full min-h-[700px] place-items-stretch max-h-screen">
+
+<a href="/" class="z-50 flex gap-2 items-center top-0 left-8 p-1 text-xs mx-2 mt-2 uppercase hover:brightness-125">
+  <img src={chevronLeft} class="w-3 h-3 pb-[2px]" alt="Chevron Left"/>
+  Return to Map
+</a>
+<div in:fade={{delay:250}} class="z-0 flexcol-to-grid hide-overflow-on-desktop grid grid-cols-12 gap-4 px-4 pb-4 h-full min-h-[700px] place-items-stretch max-h-screen">
   <div class="inset-0 flex flex-col col-span-8 gap-4">
 
     <div class="flexcol-to-row flex flex-row w-full justify-between items-center py-2">
       <div in:fade out:fade class="z-10 flex items-center w-fit shrink-0 gap-4">
-        <div class="flex brightness-110 contrast-125 flex-col rounded-md overflow-hidden title">
+        <div class="flex brightness-110 contrast-125 flex-col rounded-md overflow-hidden title -ml-5">
           <a href="https://www.youtube.com/seasonofwar" class="shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 102px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         </div>
       </div>
@@ -67,7 +73,7 @@ import discord from "$lib/assets/socials/discord.png";
     </div>
     <div class="section w-full h-fit shrink-0">
       <h3>Weekly Podium</h3>
-        <div class="grid podium-wrapper place-items-center min-h-12">
+        <div class="grid podium-wrapper py-2 min-h-12">
           {#if podium.length >= 1}
             <div in:fade class="podium first">
               <div class="score-plate grid grid-cols-1 place-items-center bg-orange-300">1</div>
@@ -137,14 +143,15 @@ import discord from "$lib/assets/socials/discord.png";
   }
   .podium {
     display: flex;
-    gap: 2px;
-    align-items: start;
-    justify-content: center;
+    gap: 4px;
+    align-items: center;
+    justify-content: start;
   }
   .score-plate {
     border-radius: 4px;
     width: 24px;
     height: 24px;
+    transform: translateY(-2px);
   }
   .score-plate:last-child {
     padding-bottom: 4px;
@@ -181,8 +188,8 @@ import discord from "$lib/assets/socials/discord.png";
   }
   @media only screen and (min-width: 640px) {
   .title {
-    margin-top: -2rem /* -32px */;
-    margin-bottom: -1rem /* -32px */;
+    margin-top: -1.5rem;
+    margin-bottom: -1.5rem;
   }
   .subtitle {
     align-items: end;
