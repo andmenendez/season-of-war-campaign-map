@@ -44,7 +44,7 @@ import discord from "$lib/assets/socials/discord.png";
           <a href="https://www.youtube.com/seasonofwar" class="shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 102px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         </div>
       </div>
-      <div class="flex flex-col justify-center items-end  gap-2">
+      <div class="hide-on-mobile flex flex-col justify-center items-end  gap-2">
         <a class="opacity-100 hover:opacity-100 flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-5" alt="discord" src={discord}/>Community</a>
         <a class="opacity-100 hover:opacity-100 flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-5" alt="youtube" src={youtube}/>More Battle Reports</a>
       </div>
@@ -159,5 +159,8 @@ import discord from "$lib/assets/socials/discord.png";
     border-radius: 8px;
     padding: 24px 32px;
     border: 1px solid rgba(255,255,255,0.3);
+  }
+  .hide-on-mobile {
+    display: none;
   }
 </style>
