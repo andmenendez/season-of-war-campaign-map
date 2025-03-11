@@ -46,9 +46,5 @@
   }
 
   @media only screen and (min-width: 640px) {
-    .box {
-      width: 20px;
-      height: 20px;
-    }
   }
 </style>
