@@ -21,14 +21,15 @@
   const mapOptions: MapOptions = {
     center: [0, 0],
     zoom: 1,
-    minZoom: -1,
-    maxZoom: 1,
+    minZoom: 0,
+    maxZoom: 1.5,
     inertia: false,
     easeLinearity: 0,
     crs: CRS.Simple,
     preferCanvas: true,
     zoomAnimation: true,
     zoomControl: false,
+    maxBoundsViscosity: 1,
     maxBounds: [
       [-1*MAX_H, -1*MAX_W],
       [2*MAX_H, 2*MAX_W],
