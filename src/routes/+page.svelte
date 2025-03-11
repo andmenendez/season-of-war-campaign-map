@@ -30,7 +30,7 @@ onMount(async () => {
       <div class="flex flex-col">
         <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         <a href="/leaderboard" class="text-sm opacity-50 hover:opacity-100 py-1 mx-auto">Rules and Leaderboard</a>
-        <div class="flex flex-row justify-center items-center py-[1px] gap-2">
+        <div class="hide-on-mobile flex flex-row justify-center items-center py-[1px] gap-2">
           <a class="opacity-50 hover:opacity-100 text-[.5rem] flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="discord" src={discord}/>Community</a>
           <a class="opacity-50 hover:opacity-100 text-[.5rem] flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="youtube" src={youtube}/>More Battle Reports</a>
         </div>
@@ -78,5 +78,8 @@ onMount(async () => {
       display: flex;
       flex-direction: row;
     }
+  }
+  .hide-on-mobile {
+    display: none;
   }
 </style>
