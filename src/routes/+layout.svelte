@@ -12,8 +12,8 @@
   <meta property="og:title" content={"Season of War ~ 2025 Narrative Campaign"} />
   <meta property="og:description" content={"Season of War 2025 Narrative Campaign Series"} />
   <meta property="og:image" content={preview} />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="627" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="418" />
   <meta property="og:image:alt" content={"Season of War "} />
   <meta property="og:image:type"content=".png" />
 

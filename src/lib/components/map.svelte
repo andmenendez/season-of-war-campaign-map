@@ -17,42 +17,68 @@
   import Territory from "./territory.svelte";
   import { TERRITORIES } from "$lib/territories";
   import { MAX_H, MAX_W } from "$lib/constants";
-
-  const mapOptions: MapOptions = {
-    center: [0, 0],
-    zoom: 1,
-    minZoom: 0,
-    maxZoom: 1.5,
-    inertia: false,
-    easeLinearity: 0,
-    crs: CRS.Simple,
-    preferCanvas: true,
-    zoomAnimation: true,
-    zoomControl: false,
-    maxBoundsViscosity: 1,
-    maxBounds: [
-      [-1*MAX_H, -1*MAX_W],
-      [2*MAX_H, 2*MAX_W],
-    ]
-  };
-
+  
+  let screenWidth: number;
   let leafletMap: LeafletMap;
+  const mapOptions: MapOptions = {
+      center: [0, 0],
+      zoom: 1,
+      minZoom: 0,
+      maxZoom: 1.5,
+      inertia: false,
+      easeLinearity: 0,
+      crs: CRS.Simple,
+      preferCanvas: true,
+      zoomAnimation: true,
+      zoomControl: false,
+      maxBoundsViscosity: 1,
+      maxBounds: [
+        [-1*MAX_H, -1*MAX_W],
+        [2*MAX_H, 2*MAX_W],
+      ]
+    };
+
+  const mobileMapOptions: MapOptions = {
+    ...mapOptions,
+    minZoom: -1,
+  }
 
   const bounds = [
     [MAX_H, MAX_W],
     [0, 0],
   ] as LatLngBoundsExpression;
 
-  onMount(() => {
+  onMount(() => {    
     if (leafletMap) {
       const map = leafletMap.getMap();
       if (map) {
+        console.log(window.innerWidth)
+        if (window.innerWidth <= 640) {
+          map.setMinZoom(-1)
+          map.setMaxZoom(1)
+        }
+        else if (window.innerWidth <= 1024) {
+          map.setMinZoom(-0.75)
+        }
         map.fitBounds(bounds);
         new ImageOverlay(fadedMapImage, bounds).addTo(map);
       }
     }
   });
+
+  $effect(()=> {
+    console.log(screenWidth)
+  })
+  // $effect(()=> {
+  //   const map = leafletMap.getMap();
+  //   if (window.innerWidth < 640 && map) {
+  //     console.log("here")
+  //     map.setMinZoom(-1)
+  //   }
+  // })
 </script>
+
+<svelte:window bind:innerWidth={screenWidth} />
 
 <div class="fixed left-0 top-0 w-screen h-full">
   <div class="relative w-full h-full">
