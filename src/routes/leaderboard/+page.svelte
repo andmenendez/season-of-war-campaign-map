@@ -12,7 +12,6 @@
   let layoutProps = $props();
   const {response, data}: PageData = layoutProps.data;
   let selectedWeek = $state(data.week);
-  console.log(data);
   const podium: any[] = [];
 </script>
 

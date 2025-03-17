@@ -18,7 +18,6 @@ function isValidDate(dateString: string) {
   return date && date.toString() !== "Invalid Date";
 }
 
-
 export const load = async () => {
   let week = 0;
   let userVoteData: { [name: string]: {[week: string]: number } } = {}
@@ -46,11 +45,8 @@ export const load = async () => {
       } else if (new Date() < new Date(start)) {
         continueParsing = false
       } else {
-        console.log(`Viewing Week ${i}`)
         week = i;
         linksDataResponse.data.values.forEach((formSubmission: string[], j: number)=> {
-            console.log(formSubmission)
-
             const [date, username, show, guess1, guess2, ] = formSubmission;
             if (j > 1 && date !== "Timestamp" && isValidDate(date) && show !== "No") {
                 if (!Object.keys(userVoteData).includes(username)) {
@@ -69,7 +65,6 @@ export const load = async () => {
   } catch (e) {
     console.log(e)
   }
-  console.log(userVoteData)
   return { 
     response : 200,
     data:  {week: week, scores: userVoteData},

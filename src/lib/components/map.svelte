@@ -66,18 +66,6 @@
     }
   });
 
-  $effect(()=> {
-    // console.log(screenWidth)
-  })
-  // $effect(()=> {
-  //   const map = leafletMap.getMap();
-  //   if (window.innerWidth < 640 && map) {
-  //     console.log("here")
-  //     map.setMinZoom(-1)
-  //   }
-  // })
-</script>
-
 <svelte:window bind:innerWidth={screenWidth} />
 
 <div class="fixed left-0 top-0 w-screen h-full">

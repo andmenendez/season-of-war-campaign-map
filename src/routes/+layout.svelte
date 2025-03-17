@@ -15,7 +15,6 @@
     if (response === 200)
     if (data.week) {
       currentWeek.set(data.week);
-      console.log("currentWeek set!")
     }
     try {
       data.territories.forEach((territory)=> {
