@@ -1,5 +1,6 @@
 <script lang="ts">
 import sowTitle from "$lib/assets/sow-title.png";
+import sowTitleLoading from "$lib/assets/sow-loading.png";
 import youtube from "$lib/assets/socials/youtube.png";
 import discord from "$lib/assets/socials/discord.png";
 import GASelector from './../lib/components/GASelector.svelte';
@@ -7,7 +8,7 @@ import Timeline from '$lib/components/timeline.svelte';
 import ContextBanner from '$lib/components/ContextBanner.svelte';
 import MapOptions from '$lib/components/MapOptions.svelte';
 import { hideUI, loadingData } from '$lib/store';
-import { fade } from 'svelte/transition';
+import { crossfade, fade, fly, slide } from 'svelte/transition';
 import "../app.css"
 import { sleep } from "$lib/utlils";
 import { onMount } from "svelte";
@@ -58,14 +59,11 @@ onMount(async () => {
       <svelte:component this={Map}></svelte:component>
     </div>
   {:else}
-    <div out:fade class="text-white text-xl fixed top-1/2 left-0 justify-center w-full -translate-y-1/2 flex flex-col items-center gap-2">
-      <div class="border-white rounded-full border-2 !border-b-0 animate-spin min-w-12 min-h-12 w-12 h-12 grid"></div>
-      Loading
-    </div>
-    {/if}
-  {#if $loadingData}
-    <div out:fade class="text-white text-xs fixed top-1/2 left-0 justify-center w-full -translate-y-1/2 flex flex-col items-center gap-2">
-      <div class="translate-y-[50px]">Loading data</div>
+    <div in:slide={{axis: "y"}} out:slide={{axis: "y"}} 
+    class="text-white text-xl fixed top-1/2 left-0 justify-center w-full -translate-y-1/2 flex flex-col items-center gap-2">
+    <img alt="Season of War - Loading" src={sowTitleLoading} class="h-20 mt-10" />
+    <div class="border-white rounded-full border-2 !border-b-0 animate-spin min-w-12 min-h-12 w-12 h-12 grid"></div>
+    <div class="h-20 mt-7">Loading Map</div>
     </div>
     {/if}
 </div>

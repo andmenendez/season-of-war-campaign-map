@@ -54,7 +54,11 @@
         -
       {/if}
     {:else}
-      {(ga as string).slice(0,6)}
+      {#if `${ga}`.length > 5}
+        {`${(ga as string)}`.slice(0,6)}
+      {:else}
+        {ga}
+      {/if}
     {/if}
   </div>
 </div>
