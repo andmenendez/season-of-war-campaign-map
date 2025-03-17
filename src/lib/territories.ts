@@ -20,9 +20,9 @@ import { MAX_W } from "./constants";
 
 export const GA = {
   Order: "order",
+  Chaos: "chaos",
   Death: "death",
   Destruction: "destruction",
-  Chaos: "chaos",
   None: "none",
 } as const;
 
@@ -34,339 +34,407 @@ export const GAColor = {
   [GA.Death]: "#3B1D3E",
   [GA.Destruction]: "#1E5533",
   [GA.None]: "#4F4E4E",
-}
+};
 export const GABorderColor = {
   [GA.Order]: "#3660DE",
   [GA.Chaos]: "#DA0000",
   [GA.Death]: "#C129D0",
   [GA.Destruction]: "#0B9C43",
   [GA.None]: "#221F1F",
-}
+};
 
 export type TerritoryType = {
+  id: number;
   src: typeof territory_1;
   name: string;
   path: string;
+  owner: GAType[];
+  attacker: GAType[];
+  videoLinks: string[];
   properties: string[];
   description: string;
-  bonuses: {ability:string, declare?: string; effect?:string}[];
+  bonuses: { ability: string; declare?: string; effect?: string }[];
   offset: {
     x: number;
     y: number;
   };
-  owner: GAType[];
-  attacker: GAType[];
 };
 
 export const XOFFSET = 0;
 export const YOFFSET = 0;
-export const TERRITORIES: TerritoryType[] = [
+export const INIT_TERRITORIES: TerritoryType[] = [
   {
+    id: 1,
     src: territory_1,
     path: "M161.5 573.5L160 585H148.5L139.5 579L135 590L123 597.5L107.5 585V579L77 553L90.5 539.5L98 515L105.5 508V494.5L99.5 487H90.5L82 489.5L92 480.5V471L98 476L110.5 479L114 471V457L107.5 450L105.5 445L110.5 431.5L118.5 426H132L139.5 419L154.5 406.5L160 397H167L173 391L179.5 384.5V378.5L173 370L161.5 364L154.5 370L142.5 381.5H132L123 384.5H114L118.5 397L105.5 400.5L102 421.5H92L86.5 416.5V400.5L90.5 391L98 378.5L85 368.5H70.5L62 374L40 357L37 345V326.5L21 322L4.5 313.5L1.5 301.5L21 292L37 274L44.5 256L52.5 244.5L77 232.5L90.5 210L102 171.5L96.5 166.5L85.5 138.5L79.5 126.5L83 120L85.5 110.5L99.5 99.5L105.5 90.5L131.5 89V84.5L134.5 78L145 61.5L151 48.5L154.5 39.5L159.5 33.5H166.5L175 28L182.5 24.5L186 20.5L191.5 12L198 2L206 6.5V13.5L207 19.5L209 24.5L211.5 20.5L218 33.5L216.5 44L213.5 51.5L218 60L223.5 68L229 73L236 70.5L241.5 73L249.5 81.5H254.5L259.5 89L264.5 92V101.5V108L268.5 113.5L270.5 117.5L276 119.5H282.5L293 122.5L304.5 129.5L309 140.5V148L315.5 152.5H321L326.5 165V173.5L339 181L344 190.5L349 202.5L358 209.5L370.5 223L389 234.5L398.5 239L405.5 234.5L413 233L423 227L428.5 223L434.5 229.5L443.5 233L455.5 242L465.5 245.5L476.5 250L479 254.5L484 264L486 267.5L491.5 270.5L497 277L492.5 283.5L483.5 289L473.5 299.5L457 306.5V318H447L444.5 313.5L441 323.5L428 325.5L408 321L391.5 317.5L370 325.5H360L353 330V344.5V350L338 352H326L305 353.5L308 365V380.5L291 401.5L279.5 406.5H268L259 421.5L245 434.5L235.5 454.5L224 467.5L228 483.5L242 491L255.5 493.5V524.5L245 526L240 531.5L224 534L216.5 543.5L207.5 545.5L195 547.5L173 556L161.5 573.5Z",
     name: "The Maelstrom Nexus",
-    owner: [GA.Destruction, GA.Destruction, GA.Destruction, GA.Destruction],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Visible among the high peaks of the Grimwall Mountains, the Maelstrom Nexus is a volatile confluence of arcane power. Swirling above shattered ruins of an ancient city of sorcerers, this unstable rift pulses with raw, uncontrollable magic. Those who dare to claim the Nexus find their magic surging with unimaginable potency, empowering their spells far beyond what their natural limits would allow.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "Visible among the high peaks of the Grimwall Mountains, the Maelstrom Nexus is a volatile confluence of arcane power. Swirling above shattered ruins of an ancient city of sorcerers, this unstable rift pulses with raw, uncontrollable magic. Those who dare to claim the Nexus find their magic surging with unimaginable potency, empowering their spells far beyond what their natural limits would allow.",
     bonuses: [
       {
-        ability:"Reaction: Once Per Battle, You declared a SPELL ability", 
-        effect:"Add 4 to the casting roll for this spell."
-      }
+        ability: "Reaction: Once Per Battle, You declared a SPELL ability",
+        effect: "Add 4 to the casting roll for this spell.",
+      },
     ],
     offset: {
       x: 388.5,
       y: 125,
     },
-    properties:["mountainous","snow"]
+    properties: ["mountainous", "snow"],
   },
-  { 
+  {
+    id: 2,
     src: territory_2,
     name: "The Shardstone Highlands",
     path: "M422.5 486L399 553L388.5 570L370.5 590L357.5 588.5L350.5 581.5L343.5 570L340 580L329.5 592.5L309 584.5L301 581.5V574.5L303 558.5L285.5 517.5L263 507L239.5 504.5L228 500V488.5V475.5L220 468.5L204 467V463L186 465.5L181 477L166 479.5L159 493L131 504.5L107.5 485.5L104 465.5L102 455L89.5 440L95 425L82 409V400.5L68 377L72 368L70 358L54.5 356L33 351L20.5 339.5L8 319.5L10.5 287.5L18 278L20.5 265.5L10.5 257.5V247.5L15.5 229L28 221.5L33 211.5L26.5 192L30.5 181L41 160.5L28 146L22.5 137L19.5 129L16.5 118.5L26.5 106V84L31 75.5L24.5 56.5H16.5V43.5L1 32V19L14 17.5L19.5 5.5L26.5 8.5L31 5.5L46 1.5L58.5 24L75.5 27.5L88 19L118.5 45V51L134 63.5L146 56L150.5 45L159.5 51H171L181 54.5L184 60.5L220 103.5H227.5L241 114.5L245.5 129L253 126.5L263 118L268.5 126.5H285L290 132.5V139L298 172L292 195L294.5 220.5L314.5 245.5L306.5 260L327.5 294.5L329.5 300.5L323 310L333 336L337.5 353L343.5 355L349.5 377.5L362.5 394.5L390 398.5L407.5 409.5L422.5 412L430.5 457.5L422.5 486Z",
-    owner: [GA.Destruction, GA.Destruction, GA.Destruction, GA.Destruction],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Jagged cliffs and windswept plateaus define the Shardstone Highlands, a region where the land itself seems honed to a razor’s edge. The mountains are rich with an unusual crystalline mineral that, when refined, sharpens the senses and heightens reflexes. Warriors who breathe in its essence find their strikes unnervingly precise, as if guided by an unseen hand.",
-    bonuses: [{
-      ability:"Reaction: Once Per Battle, You declared an ATTACK ability", 
-      effect:"Add 1 to hit rolls for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability."}],
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "Jagged cliffs and windswept plateaus define the Shardstone Highlands, a region where the land itself seems honed to a razor’s edge. The mountains are rich with an unusual crystalline mineral that, when refined, sharpens the senses and heightens reflexes. Warriors who breathe in its essence find their strikes unnervingly precise, as if guided by an unseen hand.",
+    bonuses: [
+      {
+        ability: "Reaction: Once Per Battle, You declared an ATTACK ability",
+        effect:
+          "Add 1 to hit rolls for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability.",
+      },
+    ],
     offset: {
       x: 377,
       y: 658.5,
     },
-    properties: ["mountainous","barren","gems"]
+    properties: ["mountainous", "barren", "gems"],
   },
   {
+    id: 3,
     src: territory_3,
     name: "The Stormcradle Peaks",
     path: "M238.5 627.5L253.5 630L256.5 622L268 618.5L274 609L291.5 600.5L312.5 598L325.5 580L349.5 554L356.5 557.5L361.5 552.5L373.5 557.5L393 554L397.5 556L413 551L424.5 546L434.5 537V531.5L442 525H455L463.5 510.5L478.5 508L489 499H497.5L505 484.5L502.5 473L520 467L527 454L537.5 449L542 433L564 420.5H578L582.5 416.5L587.5 419H595L607.5 406.5H619.5L638.5 396.5H646L643.5 379.5L649 368L654.5 346.5L659 318L654.5 307L648 310L627.5 335L610.5 349L594.5 351L586.5 349L577 346.5H564.5L551 337.5L542 335L527.5 331.5H522.5L520 326.5L513 324L506 318L501.5 315L492.5 309.5L483 295.5L468 301L462 297.5L450.5 295.5L438 279.5L422.5 274L407 259.5L397 252L393 239.5L387.5 224.5L380.5 213.5L373 207.5L365.5 198L367.5 183V172.5L362 168L348 161L327.5 151.5V146V140L339 124L344 109.5L350.5 100.5L367.5 85V69.5L355 67.5L348 62L344 54.5L334.5 43.5V41L327.5 43.5H319.5L308 34H302.5L295 28.5L286.5 24L283 7.5L270 9.5L250 5L233.5 1.5L212 9.5H202L195 14V28.5V34L180 36H168L147 37.5L150 49V64.5L133 85.5L121.5 90.5H110L101 105.5L87 118.5L77.5 138.5L66 151.5L70 167.5L84 175L97.5 177.5V208.5L87 210L82 215.5L66 218L58.5 227.5L49.5 229.5L37 231.5L15 240L3.5 257.5L2 269L12 272.5L15 278.5L51 321.5H58.5L72 332.5L76.5 347L84 344.5L94 336L99.5 344.5H116L121 350.5V357L129 390L123 413L125.5 438.5L145.5 463.5L137.5 478L158.5 512.5L160.5 518.5L154 528L164 554L168.5 571L174.5 573L180.5 595.5L193.5 612.5L221 616.5L238.5 627.5Z",
-    owner: [GA.Chaos, GA.Chaos, GA.Destruction, GA.Destruction],
-    attacker: [GA.None, GA.Destruction, GA.None, GA.None],
-    description: "A towering mountain range wreathed in perpetual storm, the Stormcradle Peaks are a nexus of volatile atmospheric energy. The jagged spires act as natural lightning rods, drawing crackling bolts from the sky in an endless display of raw power. Those who traverse these peaks risk the wrath of the storm, but those who master its fury can wield the heavens as a weapon against their foes.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "A towering mountain range wreathed in perpetual storm, the Stormcradle Peaks are a nexus of volatile atmospheric energy. The jagged spires act as natural lightning rods, drawing crackling bolts from the sky in an endless display of raw power. Those who traverse these peaks risk the wrath of the storm, but those who master its fury can wield the heavens as a weapon against their foes.",
     bonuses: [
       {
-        ability:"Once Per Battle, Any Hero Phase", 
-        declare:"Pick up to 3 different enemy units on the battlefield to be the target.", 
-        effect:"Effect: Inflict D3 mortal damage on each target."
-      }
+        ability: "Once Per Battle, Any Hero Phase",
+        declare:
+          "Pick up to 3 different enemy units on the battlefield to be the target.",
+        effect: "Effect: Inflict D3 mortal damage on each target.",
+      },
     ],
     offset: {
       x: 547,
       y: 440.5,
     },
-    properties: ["mountainous", "forested"]
+    properties: ["mountainous", "forested"],
   },
   {
+    id: 4,
     src: territory_4,
     name: "The Whispering Steppes",
     path: "M5.5 194L2 177.5L5.5 167.5L8 172H18V160.5L34.5 153.5L44.5 143L53.5 137.5L58 131H74.5L80 135.5H84.5L106 129L114 121.5L134.5 108.5L148 99.5L153 90.5L159 71.5V58.5L172 51L179 41L193.5 33.5L200 18.5V11L213.5 1.5H228.5L237.5 7.5L253 18.5L266 20.5H285.5L298.5 12.5L305 31.5L306.5 41L312.5 51L320 48L326 52.5L330.5 62H345.5L355 55L358.5 44.5L376 31.5L394.5 23.5V37V57L398 85.5V103.5L411.5 119.5L424 140.5L416 147.5V151V160L406.5 169L410 177.5L405 184V195.5L410 204.5V215.5L402.5 229.5L406.5 244L393.5 262H385.5V275.5L383.5 278.5L374.5 293H367V314.5V325.5V334H374.5L383.5 337H395.5L406.5 345L418.5 352.5L422.5 356.5L416 361L409 370.5L416 375H421V384L418.5 393V401.5L409 408.5L398 411L388 417L383.5 428.5L377.5 438.5L371 450L367 453.5V461V464L383.5 470L373.5 477L367 480L346.5 505L329.5 519L313.5 521L305.5 519L296 516.5H283.5L270 507.5L261 505L246.5 501.5H241.5L239 496.5L232 494L225 488L220.5 485L211.5 479.5L202 465.5L187 471L181 467.5L169.5 465.5L157 449.5L141.5 444L126 429.5L116 422L112 409.5L106.5 394.5L99.5 383.5L92 377.5L84.5 368L86.5 353V342.5L81 338L67 331L46.5 321.5V316V310L58 294L63 279.5L69.5 270.5L86.5 255V239.5L74 237.5L67 232L63 224.5L53.5 213.5V211L46.5 213.5H38.5L27 204H21.5L14 198.5L5.5 194Z",
-    owner: [GA.Chaos, GA.Chaos, GA.Chaos, GA.Chaos],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "An expanse of rolling grasslands and hidden ravines, the Whispering Steppes are shaped by ever-changing winds that carve shifting paths through the terrain. Travelers who learn to read the subtle signs of the land can move with uncanny swiftness, anticipating enemy maneuvers before battle is even joined. Those who master the Steppes gain an advantage, allowing them to move into a favorable position before their foes can even react.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "An expanse of rolling grasslands and hidden ravines, the Whispering Steppes are shaped by ever-changing winds that carve shifting paths through the terrain. Travelers who learn to read the subtle signs of the land can move with uncanny swiftness, anticipating enemy maneuvers before battle is even joined. Those who master the Steppes gain an advantage, allowing them to move into a favorable position before their foes can even react.",
     bonuses: [
       {
-        ability:"Deployment Phase", 
-        declare:"Pick a friendly unit on the battlefield to be the target.", 
-        effect:"This unit can use the ‘Normal Move’ ability as if it were your movement phase."
-      }
+        ability: "Deployment Phase",
+        declare: "Pick a friendly unit on the battlefield to be the target.",
+        effect:
+          "This unit can use the ‘Normal Move’ ability as if it were your movement phase.",
+      },
     ],
     offset: {
       x: 828,
       y: 270.5,
     },
-    properties: ["grassy", "rocky"]
+    properties: ["grassy", "rocky"],
   },
   {
+    id: 5,
     src: territory_5,
     name: "The Ashen Thicket",
     path: "M26.5 309L3 376L1.5 382.5L5 397L17.5 408.5H30.5L39.5 417.5L44 427L45.5 443.5L42 458.5L35 464.5L30.5 472.5L35 490.5L39.5 504.5L49 514.5H66.5H79.5L93 530.5L104 543.5H110.5H126L139.5 547.5L126 530.5L124.5 522.5L130 502.5L124.5 486.5L127.5 471L116 464.5V458.5L124.5 448L137 453L147 461.5V441L135 422.5L143.5 421L147 408.5L171.5 402.5L180 397L184.5 388.5H192.5H210.5L221.5 385.5L226.5 382.5L230 386L231 392L227.5 400.5L218 408.5L223 413.5L213 419V427L217 435L227.5 445.5V453L220 461.5L213 472.5L212 477.5L221 466.5L230 458.5L233 438L223 422.5L230 417.5L238 415L248.5 405.5L255 422.5L265 435L248.5 432L238 439.5L233 450.5V464.5V490.5L238 493L248.5 507.5L255 530.5V551L262 559.5L282.5 576H312L319 569L331 559.5L349.5 556.5L364 530.5L376.5 517L379.5 507.5L376.5 490.5L374.5 479.5L385 468L379.5 459.5L385 447L393.5 432L401.5 419L396.5 376.5L403.5 380.5L408 370L417 367.5L420 356L425 349L417 342L413.5 320.5L408 310H403.5L398.5 290.5H390L382.5 283.5L390 277H393.5L398.5 264.5V255.5L408 246.5V229.5L403.5 215L423.5 196.5V176.5L439.5 156.5L443.5 133.5L455 104L459.5 91.5L462 78L464 72L459.5 62L466 49L457.5 46.5L451 54L437.5 56.5V54V40L429.5 35L417.5 30.5L411.5 1.5L392.5 11.5H380.5L368 24H360.5L355.5 21.5L351 25.5H337L315 38L310.5 54L300 59L293 72L275.5 78L278 89.5L270.5 104H262L251.5 113L236.5 115.5L228 130H215L207.5 136.5V142L197.5 151L186 156L170.5 161L166 159L146.5 162.5L134.5 157.5L129.5 162.5L122.5 159L98.5 185L85.5 203L64.5 205.5L47 214L41 223.5L29.5 227L26.5 235L34.5 280.5L26.5 309Z M26.5 309L3 376L1.5 382.5L5 397L17.5 408.5H30.5L39.5 417.5L44 427L45.5 443.5L42 458.5L35 464.5L30.5 472.5L35 490.5L39.5 504.5L49 514.5H66.5H79.5L93 530.5L104 543.5H110.5H126L139.5 547.5L126 530.5L124.5 522.5L130 502.5L124.5 486.5L127.5 471L116 464.5V458.5L124.5 448L137 453L147 461.5V441L135 422.5L143.5 421L147 408.5L171.5 402.5L180 397L184.5 388.5H192.5H210.5L221.5 385.5L226.5 382.5L230 386L231 392L227.5 400.5L218 408.5L223 413.5L213 419V427L217 435L227.5 445.5V453L220 461.5L213 472.5L212 477.5L221 466.5L230 458.5L233 438L223 422.5L230 417.5L238 415L248.5 405.5L255 422.5L265 435L248.5 432L238 439.5L233 450.5V464.5V490.5L238 493L248.5 507.5L255 530.5V551L262 559.5L282.5 576H312L319 569L331 559.5L349.5 556.5L364 530.5L376.5 517L379.5 507.5L376.5 490.5L374.5 479.5L385 468L379.5 459.5L385 447L393.5 432L401.5 419L396.5 376.5L403.5 380.5L408 370L417 367.5L420 356L425 349L417 342L413.5 320.5L408 310H403.5L398.5 290.5H390L382.5 283.5L390 277H393.5L398.5 264.5V255.5L408 246.5V229.5L403.5 215L423.5 196.5V176.5L439.5 156.5L443.5 133.5L455 104L459.5 91.5L462 78L464 72L459.5 62L466 49L457.5 46.5L451 54L437.5 56.5V54V40L429.5 35L417.5 30.5L411.5 1.5L392.5 11.5H380.5L368 24H360.5L355.5 21.5L351 25.5H337L315 38L310.5 54L300 59L293 72L275.5 78L278 89.5L270.5 104H262L251.5 113L236.5 115.5L228 130H215L207.5 136.5V142L197.5 151L186 156L170.5 161L166 159L146.5 162.5L134.5 157.5L129.5 162.5L122.5 159L98.5 185L85.5 203L64.5 205.5L47 214L41 223.5L29.5 227L26.5 235L34.5 280.5L26.5 309Z",
-    owner: [GA.Chaos, GA.Chaos, GA.Destruction, GA.Destruction],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Once a thriving woodland, the Ashen Thicket now stands as a skeletal forest of petrified trees and charred remnants. Fierce winds whistle down from the hollow vale to the North, whipping through the barren trunks in a mournful howl. Within this lifeless expanse, arrows and projectiles fly truer and farther, carried by the relentless winds that sweep through the dead wood.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "Once a thriving woodland, the Ashen Thicket now stands as a skeletal forest of petrified trees and charred remnants. Fierce winds whistle down from the hollow vale to the North, whipping through the barren trunks in a mournful howl. Within this lifeless expanse, arrows and projectiles fly truer and farther, carried by the relentless winds that sweep through the dead wood.",
     bonuses: [
       {
-        ability:"Once Per Battle, Your Shoot Phase", 
-        effect:"For the rest of the turn, add 6” to the Range characteristic of this unit’s attacks."
-      }
+        ability: "Once Per Battle, Your Shoot Phase",
+        effect:
+          "For the rest of the turn, add 6” to the Range characteristic of this unit’s attacks.",
+      },
     ],
     offset: {
       x: 773.5,
       y: 835.5,
     },
-    properties: ["ashen", "charred", "burned", "woodland"]
+    properties: ["ashen", "charred", "burned", "woodland"],
   },
   {
+    id: 6,
     src: territory_6,
     name: "Emberwash Isle",
     path: "M1.5 76L17 34L47.5 24.5L80.5 26L104.5 41.5V55H111.5L118 47.5L113 20.5V6.5L129.5 1.5L150.5 11L159.5 28.5L173.5 31.5H189.5L199.5 41.5L196.5 64L177 77L162 99L172 108.5L189.5 112L203 99H209.5L221 114.5L232.5 118L235 105.5L260.5 94H271L284 104V114.5L263 124.5L256 139L260.5 146L252.5 169.5L244.5 189L225 202L215 193L203 177.5L182 180L172 202V229.5L159.5 246.5L182 260.5L161.5 280.5L151.5 303L136.5 306.5L119 291L110 277L100 266.5L106.5 249.5L100 236.5L93.5 219.5H85.5V207L93.5 189L80.5 177.5V164.5L74.5 152.5V162.5L70.5 167.5L69.5 173.5V186L65.5 189L50.5 180L38.5 166.5V155L26 152.5L17 149.5L19.5 140V135.5V111L5.5 99.5L7.5 88L1.5 76Z",
-    owner: [GA.Chaos, GA.Chaos, GA.Chaos, GA.Destruction],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "A volcanic island wreathed in shimmering heat and sulfurous mists, the Emberwash Isle is steeped in ancient, untamed power. The air is thick with embers and the residue of countless eruptions, disrupting the flow of magic and clouding the minds of spellcasters. Those who endure the isles’ harsh conditions find their senses sharpened against sorcery, allowing them to unbind enemy spells with instinctive precision.",
-    bonuses:[
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "A volcanic island wreathed in shimmering heat and sulfurous mists, the Emberwash Isle is steeped in ancient, untamed power. The air is thick with embers and the residue of countless eruptions, disrupting the flow of magic and clouding the minds of spellcasters. Those who endure the isles’ harsh conditions find their senses sharpened against sorcery, allowing them to unbind enemy spells with instinctive precision.",
+    bonuses: [
       {
-        ability:"Once Per Battle, Reaction: Opponent declared a SPELL ability for a WIZARD unit", 
-        effect:"That spell is unbound."
-      }
+        ability:
+          "Once Per Battle, Reaction: Opponent declared a SPELL ability for a WIZARD unit",
+        effect: "That spell is unbound.",
+      },
     ],
     offset: {
       x: 518.5,
       y: 1248.5,
     },
-    properties: ["volcanic", "rocky"]
+    properties: ["volcanic", "rocky"],
   },
   {
+    id: 7,
     src: territory_7,
     name: "The BloodMarsh Fen",
     path: "M28.5 62V48.5L45.5 38.5L50 31L58 22H72L78.5 27H95.5L99.5 38.5H115L124.5 43L139.5 48.5H153L158.5 52.5L164.5 48.5H178.5L183 38.5L204 34L207.5 31L229 36L234.5 50.5L241.5 57.5L247.5 59.5V65H259.5L271 63L279.5 52.5L283.5 36L279.5 29L298.5 20.5L308 9.5L345.5 2L352.5 20.5L363.5 29L387 31L393.5 26.5H403L412.5 20.5L425 24.5L440 38.5H447.5L454 43L488 46V52.5L494.5 63L502.5 70L508 84L502.5 99L512.5 107.5V113.5L516 130L500.5 138.5V149.5H495.5L488 154.5L485.5 162.5L482.5 168L468.5 178.5V191.5L458.5 208.5V218.5L456.5 221.5V241.5L466.5 249L460 268L449.5 272L440 265.5H426L414.5 279.5L404.5 296.5L393.5 314V321.5L389 331.5V340L378.5 343.5L372 353.5L368.5 374L366 392.5V404.5L362.5 415.5L355 424.5L344 433.5H335.5L311.5 443.5L296.5 426.5L292 433.5V443.5L281 453.5L275.5 460.5L249 472L225.5 488L210 483.5L196.5 488H188.5L178.5 491.5H165.5V481.5L154 483.5L151.5 491.5L140.5 495.5L131 493.5L127 495.5L112.5 488L106 491.5L101 486L88 493.5L82 491.5V483.5L73.5 472L52.5 469.5L43 457L45.5 443.5L43 433.5L52.5 426.5V418L55 409V400H50L43 395.5L50 386L56.5 381.5L52.5 377.5L40.5 370L29.5 362H17.5L8.5 359H1V350.5V339.5V318H8.5L17.5 303.5L19.5 300.5V287H27.5L40.5 269L36.5 254.5L44 240.5V229.5L39 220.5V209L44 202.5L40.5 194L50 185V176V172.5L58 165.5L45.5 144.5L32 128.5V110.5L28.5 82V62Z",
-    owner: [GA.Chaos, GA.Chaos, GA.Chaos, GA.Chaos],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "A vast mire of stagnant pools and clinging reeds, the Bloodmarsh Fen is a land steeped in the echoes of countless battles. Weapons lost to the bog rust into nothing, and the remains of fallen warriors sink beneath the surface, their unquiet spirits lingering in the mist. Those who wade into the fen find themselves gripped by an unnatural fury, their strikes landing with ruthless precision as if guided by the will of those who perished before them.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "A vast mire of stagnant pools and clinging reeds, the Bloodmarsh Fen is a land steeped in the echoes of countless battles. Weapons lost to the bog rust into nothing, and the remains of fallen warriors sink beneath the surface, their unquiet spirits lingering in the mist. Those who wade into the fen find themselves gripped by an unnatural fury, their strikes landing with ruthless precision as if guided by the will of those who perished before them.",
     bonuses: [
       {
-        ability:"Reaction: Once Per Battle, You declared an ATTACK ability", 
-        effect:"Add 1 to wound rolls for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability."
-      }
+        ability: "Reaction: Once Per Battle, You declared an ATTACK ability",
+        effect:
+          "Add 1 to wound rolls for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability.",
+      },
     ],
     offset: {
       x: 1193,
       y: 246,
     },
-    properties: ["Marsh", "Badlands"]
+    properties: ["Marsh", "Badlands"],
   },
   {
+    id: 8,
     src: territory_8,
     name: "Drakeshadow Gorge",
     path: "M10.5 218.5L4.50002 189.5H12L9.50002 172.5L15 161L20.5 139.5L25 111L20.5 100L30.5 93L14 87V84V76.5L18 73L24.5 61.5L30.5 51.5L35 40L45 34L56 31.5L58.5 41.5L56 55L65.5 67.5L86.5 70L95 81.5V89.5L101 91.5L114 84L119 89.5L125.5 86L140 93.5L144 91.5L153.5 93.5L164.5 89.5L167 81.5L178.5 79.5V89.5H191.5L201.5 86H209.5L223 81.5L238.5 86L262 70L288.5 58.5L294 51.5L305 41.5V31.5L309.5 24.5L324.5 41.5L348.5 31.5H357L368 22.5L375.5 13.5L379 2.5L387 13L397.5 14.5H402V11L408 9L413 11L414.5 5.5H426L430.5 6.5H442.5L450 5.5L459 6.5L473 19.5L470.5 36.5L473 46L476 54.5L482 60.5L487.5 73L494 83L500 90L498.5 98.5L500 117V129L503.5 135V145L500 152L503.5 165L513 172V179.5L512 185L513 192.5L518 200H527H536L547.5 208L564.5 220L574.5 221.5L583 220L588.5 214L594.5 215.5L603.5 221.5L612 230.5L617 232L618.5 238L625.5 247.5V257.5L627 266L625.5 274L624 280.5L618.5 287V299.5L617.5 306L612 311L603 318L596.5 322L587.5 308.5L577 316L572 315L566 309L554 315L546 314L538.5 312L530 322L525.5 325.5L517.5 319.5L510 325L502 331L496 332L490 322.5H487L480.5 316L476.5 312.5L464.5 322.5L458.5 328.5L451 329.5L441 331L431.5 333.5L427 339L417.5 343V348L412.5 351.5V356L413 369L412 380.5L413.5 393L405 402.5L407 409L404 414.5L397.5 416L389.5 420.5L387.5 426L378.5 428.5L373 429L369 432.5L365 434L358.5 431L357 438.5L353 434L349.5 433L344.5 426L338.5 428.5L323 436.5L311.5 431.5L304 432L298.5 439L299 445L300.5 451H297L298 457L299 465L298.5 473.5L306.5 478.5L312 483L320.5 487L321 489.5L312.5 490L310.5 492.5L298 494L286 491L277.5 486.5L272.5 482L266.5 482.5L260 478.5L260.5 469.5L260 462.5L253.5 448L248 446L244 444L238 432.5L234.5 425.5L230.5 413.5L228 402.5L227.5 390.5L226 385.5L220 382.5L212.5 369.5L202.5 377.5L193.5 370H187.5L185 362L176.5 363L163.5 346.5L155 351L150 355L146 351L139 350L132.5 353.5L126.5 363L117.5 370.5H107L100.5 374L94.5 377.5L86.5 381.5L86 388L79.5 379L73 373.5L63.5 378.5L55 381.5L48.5 387.5L42.5 388L36 396.5L28.5 393.5L22.5 394L19 397.5L2.98651 397L16.5 384.5V364.5L32.5 344.5L36.5 321.5L48 292L52.5 279.5L55 266L57 260L52.5 250L59 237L50.5 234.5L44 242L30.5 244.5V242V228L22.5 223L10.5 218.5Z",
-    owner: [GA.None, GA.None, GA.Order, GA.Chaos],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "A labyrinth of sheer cliffs, jagged ridges, and winding ravines, the Drakeshadow Gorge was once home to a particularly vicious breed of Drakespawn. Hunted to extinction, their restless spirits now haunt the mist-choked chasms, craving the carnage they were long denied. The gorge’s treacherous paths and towering walls leave enemies with nowhere to flee, while those who charge through its depths swear they see ghostly drakes racing alongside them, driving them forward with unnatural swiftness toward the kill.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "A labyrinth of sheer cliffs, jagged ridges, and winding ravines, the Drakeshadow Gorge was once home to a particularly vicious breed of Drakespawn. Hunted to extinction, their restless spirits now haunt the mist-choked chasms, craving the carnage they were long denied. The gorge’s treacherous paths and towering walls leave enemies with nowhere to flee, while those who charge through its depths swear they see ghostly drakes racing alongside them, driving them forward with unnatural swiftness toward the kill.",
     bonuses: [
       {
-        ability:"Once Per Battle, Any Charge Phase", 
+        ability: "Once Per Battle, Any Charge Phase",
         declare: "Pick a friendly unit to be the target.",
-        effect:"For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for the target, to a maximum of 3."
-      }
+        effect:
+          "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for the target, to a maximum of 3.",
+      },
     ],
     offset: {
       x: 1182,
       y: 648.5,
     },
-    properties: ["mountainous", "rocky ravines"]
+    properties: ["mountainous", "rocky ravines"],
   },
   {
+    id: 9,
     src: territory_9,
     name: "The Viridian Veil",
     path: "M65 72.5L60.5 58L66.9865 52L83 52.5L86.5 49L92.5 48.5L100 51.5L106.5 43L112.5 42.5L119 36.5L127.5 33.5L137 28.5L143.5 34L150 43L150.5 36.5L158.5 32.5L164.5 29L171 25.5H181.5L190.5 18L196.5 8.5L203 5L210 6L214 10L219 6L227.5 1.5L240.5 18L249 17L251.5 25H257.5L266.5 32.5L276.5 24.5L284 37.5L290 40.5L291.5 45.5L292 57.5L294.5 68.5L298.5 80.5L302 87.5L308 99L312 101L317.5 103L324 117.5L324.5 124.5L324 133.5L330.5 137.5L336.5 137L341.5 141.5L350 146L362 149L374.5 147.5L382.5 149L387.5 151L383.5 157.5H396L402 164.5L413 177.5L421.5 178.5L425.5 187L428 191L429.5 198L427.5 201.5L426.5 207L428.5 214L432.5 219L438 224L443.5 231L450 226.5L452 221.5L448.5 218H456L460 221L469 222.5L481.5 231.5V239L491 244L496 247.5L501 253L510 257.5V272L505.5 275L498.5 284.5L492.5 288.5L492 297L494.5 304.5L494 310V316L490.5 317L489 336.5L487.5 344L489.5 346L491.5 347.5L492.5 353.5L488 352.5L486.5 360L496 370.5L502 376L509 380L510.5 383.5L511.5 387L512 391L517.5 395L522 404.5V407.5H526L530 411H538.5L539.5 414.5L532 419L528.5 426L525 429.5L523.5 438.5L520 441L516 449.5L508.5 456.5L510 477.5L518.5 490.5L521 495H505.5L496 491.5L485.5 491L479.5 489.5L470.5 491.5L467 493.5L456 494.5L454 497H448.5L442.5 505.5L442 512.5L431 511.5L426.5 513L425 517.5L418 520.5L409 522L401.5 522.5L395.5 522L386 518L378 514L371 509.5H362L352.5 508.5H344L333 511L321.5 517.5L315 522.5L312.5 528.5L311 534L309 543.5L305.5 545.5L301 556L300.5 570L298 581.5L288 586.5L282.5 586L278 615L268 607.5L261.5 596L258.5 592H252L246 597.5L238 597V593V589L242.5 579.5L244.5 585L249 584L258.5 576V571L250.5 569.5L241 572L232 576.5L221.5 577.5H212L209.5 572.5L210 565L204 555.5L195 546L191 530V520L194.5 503L197.5 494H212L221 492.5L219.5 484L218.5 463.5L211.5 454.5L207.5 471L196 476L186 472L176 454.5L173 442.5V428.5L165.5 423L162.5 427L157.5 438.5L143 440L115 435L94.5 430H79V435L70 435.5L56.5 435L46.5 431.5L36.5 433L29 435L24.5 441L15 439.5L10 434.5L7.5 428L3.5 418L3 412L2 410.5L2.5 404.5L6.5 399.5L21 373.5L33.5 360L36.5 350.5L33.5 333.5L31.5 322.5L42 311L36.5 302.5L42 290L50.5 275L58.5 262L53.5 219.5L60.5 223.5L65 213L74 210.5L77 199L82 192L74 185L70.5 163.5L65 153H60.5L55.5 133.5H47L39.5 126.5L47 120H50.5L55.5 107.5V98.5L65 89.5V72.5Z",
-    owner: [GA.Order, GA.Order, GA.Order, GA.Order],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Hidden deep within the Lirendel forest, the Viridian Veil is a resplendent elven city untouched by time. Its mystical structures intertwined with the ancient trees, woven seamlessly into the emerald canopy. Though serene in appearance, the city is permeated by an unseen presence - an ancient enchantment that grants nearby warriors an almost preternatural grace. Those who fight within its borders find their strikes landing with uncanny precision, guided by whispers of a forgotten magic that lingers in the air like a quiet song on the wind.",
+    owner:[],
+    attacker:[],
+    videoLinks: [],
+    description:
+      "Hidden deep within the Lirendel forest, the Viridian Veil is a resplendent elven city untouched by time. Its mystical structures intertwined with the ancient trees, woven seamlessly into the emerald canopy. Though serene in appearance, the city is permeated by an unseen presence - an ancient enchantment that grants nearby warriors an almost preternatural grace. Those who fight within its borders find their strikes landing with uncanny precision, guided by whispers of a forgotten magic that lingers in the air like a quiet song on the wind.",
     bonuses: [
       {
-        ability:"Reaction: Once Per Battle, You declared an ATTACK ability", 
-        effect:"That unit’s melee weapons gain the Crit (Auto-Wound) Weapon Ability for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability."
-      }
+        ability: "Reaction: Once Per Battle, You declared an ATTACK ability",
+        effect:
+          "That unit’s melee weapons gain the Crit (Auto-Wound) Weapon Ability for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability.",
+      },
     ],
     offset: {
       x: 1117,
       y: 992.5,
     },
-    properties: ["forested", "elven"]
+    properties: ["forested", "elven"],
   },
   {
+    id: 10,
     src: territory_10,
     name: "The Luminous Grotto",
     path: "M256 107L263.5 102.5L273.5 102L281 96.5H283.5L295.5 94.5L299 90L311.5 89L322 87.5L327 92H335.5L344 90.5L352 79.5L356 75L361 67.5L371 64L375.5 62.5L386 59L394.5 60L405.5 58L413.5 54L423 49L426 41.5L436.5 43L445 37L448.5 38L459 37.5L460.5 31L463.5 28H468.5L471.5 25L474 17.5L479 13.5L476 2L483.5 3.5L491.5 12.5L498.5 13L499.5 22L502.5 29.5L499.5 36.5L502 44L510.5 57L512 64.5L505.5 69L498 77.5L497.5 84.5L492.5 94L488.5 101L485 112L481.5 122L477.5 123V126V130.5H482.5L491 132.5L498.5 132L501.5 134L507.5 138L516.5 144.5V145.5L509.5 146V151L511.5 153.5L509.5 155.5L502.5 155L494.5 154.5L485.5 152H482.5L477.5 149.5L477 153.5L473.5 159V162L476.5 172L478.5 179.5L481 183.5L481.5 186.5L480.5 191L476.5 195.5L467.5 197.5L459.5 193L455 186.5L451 179H443L440.5 187.5L435 194L439 200.5L437.5 204L444.5 211L451 216.5L455 217.5L458 221.5L460 225V228L463 234.5L462.5 239L458.5 240.5L452 237.5L447 234L437.5 230L427.5 229L423.5 237L420.5 237.5L415 237L411.5 240.5L411 250V256L413 260L412 266.5L417.5 272L421.5 274.5L425.5 276.5L429 282.5L426 284L421.5 285.5H418H413L404 288L400 291.5L398.5 299L398 302.5L391 307L384.5 305.5L383 306.5L379.5 310.5V317L377.5 322L374 326L369 328.5H362L356 324L350 321.5L345 315L343.5 312.5L340 313.5L338 315.5L332 321.5L328.5 324.5L323 328H317.5L310 327.5L305.5 322.5L300.5 315.5L297 309.5L296.5 303.5L295 297L294.5 290.5V282.5V275.5L291.5 270L285 267L280.5 269.5L273 272L262 278.5L257 284L249 286.5L241 287H232.5H225.5L216.5 286L211 281.5L205.5 282.5L201.5 283H197.5L195.5 281.5L193 279L189.5 277.5L184 278L179.5 280.5L173.5 281L168.5 283.5L164 285.5V288L160.5 292.5L158.5 294.5L157 295L155.5 294V291.5L156 288.5V282.5L154.5 278L152.5 276.5L148.5 276H145.5L141.5 279L137 284L132 291L124 295.5L122.5 299L119 302L116 303.5V306.5L120 308.5L121.5 311.5L118.5 312.5L115.5 315.5H113L107.5 314L105 311.5L99 316.5H96.5L92.5 315.5L91.5 311L90 308L85.5 307.5L77.5 305L72.5 301.5L69.5 298.5L66.5 293.5L64 288L58.5 285.5H53L48 287.5L44 289L42 291.5L40 292.5H38L33 297L31.5 302L27 304L22.5 306.5H20L17 306H13.5H12.5L8.5 307H4L2 303L6.5 274L12 274.5L22 269.5L24.5 258L25 244L29.5 233.5L33 231.5L35 222L36.5 216.5L39 210.5L45.5 205.5L57 199L68 196.5H76.5L86 197.5H95L102 202L110 206L119.5 210L125.5 210.5L133 210L142 208.5L149 205.5L150.5 201L155 199.5L166 200.5L166.5 193.5L172.5 185H178L180 182.5L191 181.5L194.5 179.5L203.5 177.5L209.5 179L220 179.5L229.5 183H245L242.5 178.5L234 165.5L232.5 144.5L240 137.5L244 129L247.5 126.5L249 117.5L252.5 114L256 107Z",
-    owner: [GA.Order, GA.Order, GA.Order, GA.Order],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Hidden within a mist-laden coastal expanse, the Luminous Grotto is a place of strange and miraculous renewal. Warm rains nourish the land, pooling into crystal-clear springs where bioluminescent mushrooms thrive in the humid air. Their radiant spores carry potent restorative properties, sealing wounds and even reviving those who have fallen. Warriors who partake in these rare fungi emerge rejuvenated, their strength renewed by the land’s mysterious gifts.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "Hidden within a mist-laden coastal expanse, the Luminous Grotto is a place of strange and miraculous renewal. Warm rains nourish the land, pooling into crystal-clear springs where bioluminescent mushrooms thrive in the humid air. Their radiant spores carry potent restorative properties, sealing wounds and even reviving those who have fallen. Warriors who partake in these rare fungi emerge rejuvenated, their strength renewed by the land’s mysterious gifts.",
     bonuses: [
       {
-        ability:"Once Per Battle, Any Hero Phase", 
-        declare: "Pick a friendly unit to use this ability (the unit can be in combat).",
-        effect:"Make 6 rally rolls of D6. For each 4+ you receive 1 rally point. Rally points can be spent to Heal (1), or return a slain model."
-      }
+        ability: "Once Per Battle, Any Hero Phase",
+        declare:
+          "Pick a friendly unit to use this ability (the unit can be in combat).",
+        effect:
+          "Make 6 rally rolls of D6. For each 4+ you receive 1 rally point. Rally points can be spent to Heal (1), or return a slain model.",
+      },
     ],
     offset: {
       x: 1393,
       y: 1305,
     },
-    properties: ["tropical"]
+    properties: ["tropical"],
   },
   {
+    id: 11,
     src: territory_11,
     name: "The Sunfire Expanse",
     path: "M49 113L45.5 96.5H56L66 93L73 87L86.5 80.5H94.5L97 73H103L110.5 80.5H121L127 68L140 65L149 55.5H179L189.5 50H202.5L218 41.5L226.5 34L232 40L248.5 45L269.5 47.5L278.5 45H288V36.5L311 34L319.5 30L339 24L346.5 15.5L362 24L372.5 28L379.5 30L388.5 34L396.5 26L400 28L406.5 12.5L416.5 15.5L424 22.5L437 20.5L451 12.5H461.5L475.5 1.5L484 15.5L492 22.5H506L522 28L531 45L548 53.5H557.5H569.5L584.5 51H601.5L616 53.5H633.5L638 45L644 39H649.5H661L666 33.5L676.5 41H690.5L710 45L718.5 53.5H729.5L739 59.5H750.5L760 73L766.5 82.5L779 80.5L792 90.5L800 95L792 97L784.5 105L757 116.5V126.5L769 133L775.5 146.5L766.5 151L750.5 153.5H736.5L727.5 164L718.5 169.5L704 171L695.5 176.5H684L668 187L653 184L629 192.5L623 206L609.5 212.5L594.5 209L584.5 212.5V223.5V230L581.5 233.5H572.5L567 242L562 244.5L546 247L549.5 239L542.5 233.5L534 237.5L526 233.5L501.5 235.5L503.5 242L485.5 249.5L489.5 265L487.5 277.5L491 291.5L470.5 294L455.5 291.5L444 287H425.5L408.5 289L395 304L393 312.5L384 319.5L373.5 322.5L371 327.5H363L353.5 331.5H343.5L328.5 316.5L316.5 319.5L309.5 316.5H297.5L293.5 304L284.5 301.5L263.5 304H254.5L251 298.5L239.5 291.5L232.5 280.5L226 273V261L232.5 247V238.5L241 236.5L246 232.5L237 221L232.5 208.5L201.5 186L178.5 180H161.5H137L125 178V166L117.5 158.5L105 160.5L89 182.5L86.5 195H75L59 206L33.5 208.5L14 204.5L6.5 195L1.5 174.5V161.5L15.5 151L18.5 145.5L21 137.5L28.5 132.5H33.5V121.5L49 113Z",
-    owner: [GA.None, GA.None, GA.Destruction, GA.Chaos],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "A vast desert of rolling dunes and sunbaked stone, the Sunfire Expanse is a land where the wind never rests. The relentless gales carve shifting paths through the sand, shaping the terrain from one day to the next. Travelers who learn to move with the currents find themselves carried forward with unnatural swiftness, their steps lightened by the ever-driving winds. Those who master the rhythms of the desert can cross vast distances in the blink of an eye, leaving their foes struggling in the dust.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "A vast desert of rolling dunes and sunbaked stone, the Sunfire Expanse is a land where the wind never rests. The relentless gales carve shifting paths through the sand, shaping the terrain from one day to the next. Travelers who learn to move with the currents find themselves carried forward with unnatural swiftness, their steps lightened by the ever-driving winds. Those who master the rhythms of the desert can cross vast distances in the blink of an eye, leaving their foes struggling in the dust.",
     bonuses: [
       {
-        ability:"Once Per Battle, Your Movement Phase", 
+        ability: "Once Per Battle, Your Movement Phase",
         declare: "Pick a friendly unit to be the target.",
-        effect:"For the rest of the turn, add 3” to the unit’s Move characteristic."
-      }
+        effect:
+          "For the rest of the turn, add 3” to the unit’s Move characteristic.",
+      },
     ],
     offset: {
       x: 1660.5,
       y: 262.5,
     },
-    properties: ["desert", "sand"]
+    properties: ["desert", "sand"],
   },
   {
+    id: 12,
     src: territory_12,
     name: "The Veilgate Ruins",
     path: "M93.5 34.5L103.5 17.5L108.5 38L116 47.5L135.5 51.5L161 49L177 38H188.5L191 25.5L207 3.5L219.5 1.5L227 9V21L239 23H263.5H280.5L303.5 29L334.5 51.5L339 64L348 75.5L343 79.5L334.5 81.5V90L328 104V116L334.5 123.5L341.5 134.5L353 141.5L356.5 147H365.5L386.5 144.5L395.5 147L399.5 159.5H411.5L418.5 162.5L430.5 159.5L427 170.5L420 180L413.5 186L407.5 195.5L404.5 199L401.5 203L404 210L402 216.5L399 222.5L393 223L386 224.5L382 222L377 217.5L372.5 221.5L364.5 226L355 228H348L348.5 237L345 243.5L346.5 248.5L349.5 256L344.5 264.5L340.5 274.5V283L348 299V310L350.5 316V326.5L355.5 340L356 346.5L357.5 353.5L354 359.5V367L360 372L357.5 375.5L359 381.5L357.5 385.5L360.5 392.5L362.5 404L375.5 416.5L380.5 418.5H388L394.5 416.5L402 421.5L413.5 428L429.5 444L421.5 451.5V460V470L419 482.5L415 477L403.5 467.5L394.5 470L388 467.5L386 470L380.5 466L377.5 473H370L368.5 477H360.5L357.5 482.5L344 494L340 499.5L332 505.5H322.5L318.5 517.5V527.5L321 537L322.5 546L307.5 548.5H292.5L281 543.5H274L263.5 553L256 556L247.5 546L240.5 527.5V515L246 508.5L247.5 502L249 494L247.5 485.5V475.5L240.5 466L239 460L234 458.5L225.5 449.5L216.5 443.5L210.5 442L205 448L196.5 449.5L186.5 448L169.5 436L158 428H149H140L135 420.5L134 413L135 407.5V400L125.5 393L122 380L125.5 373V363L122 357V345L120.5 326.5L122 318L116 311L109.5 301L104 288.5L98 282.5L95 274L92.5 264.5L95 247.5L81 234.5L72 233.5L64.5 234.5H52.5L48 233.5H36.5L35 239L30 237L24 239V242.5H19.5L9 241L1 230.5V218.5L3.5 200L7 179.5L13.5 169.5L24 166V157.5L28.5 147.5V140L39.5 122.5L49.5 105.5L61 91.5H75L84.5 98L95 94L101.5 75L91.5 67.5V47.5L93.5 44.5V34.5Z",
-    owner: [GA.Death, GA.Chaos, GA.Chaos, GA.Chaos],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Deep within the crumbling remnants of an ancient civilization, the Veilgate Ruins stand as a testament to a forgotten people who once wielded unimaginable power. At its heart lies a network of half-buried archways, etched with sigils that shimmer faintly in the moonlight. Though their original purpose is lost to time, those who uncover their secrets can travel great distances in an instant, vanishing from one area only to reappear where the enemy least expects.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "Deep within the crumbling remnants of an ancient civilization, the Veilgate Ruins stand as a testament to a forgotten people who once wielded unimaginable power. At its heart lies a network of half-buried archways, etched with sigils that shimmer faintly in the moonlight. Though their original purpose is lost to time, those who uncover their secrets can travel great distances in an instant, vanishing from one area only to reappear where the enemy least expects.",
     bonuses: [
       {
-        ability:"Once Per Battle, Your Movement Phase", 
+        ability: "Once Per Battle, Your Movement Phase",
         declare: "Pick a friendly unit that is not in combat to be the target.",
-        effect:"Remove the target from the battlefield and set it up again on the battlefield more than 9” from all enemy units."
-      }
+        effect:
+          "Remove the target from the battlefield and set it up again on the battlefield more than 9” from all enemy units.",
+      },
     ],
     offset: {
       x: 1558,
       y: 419.5,
     },
-    properties: ["desert", "ruins"]
+    properties: ["desert", "ruins"],
   },
   {
+    id: 13,
     src: territory_13,
     name: "The Gloamroot Necropolis",
     path: "M330.5 23L323.5 4.5L322.5 11L317 16L308 23L301.5 27L292.5 13.5L282 21L277 20L271 14L259 20L251 19L243.5 17L235 27L230.5 30.5L222.5 24.5L215 30L207 36L201 37L195 27.5H192L185.5 21L181.5 17.5L169.5 27.5L163.5 33.5L156 34.5L146 36L136.5 38.5L132 44L122.5 48V53L117.5 56.5V61L118 74L117 85.5L118.5 98L110 107.5L112 114L109 119.5L102.5 121L94.5 125.5L92.5 131L83.5 133.5L78 134L74 137.5L70 139L63.5 136L62 143.5L58 139L54.5 138L49.5 131L43.5 133.5L28 141.5L16.5 136.5L9 137L3.5 144L4 150L5.5 156H2L3 162L4 170L3.5 178.5L11.5 183.5L17 188L25.5 192L26 194.5L17.5 195L15.5 197.5L23.5 199L28.5 201L24.5 207.5H37L43 214.5L54 227.5L62.5 228.5L66.5 237L69 241L70.5 248L68.5 251.5L67.5 257L69.5 264L73.5 269L79 274L84.5 281L91 276.5L93 271.5L89.5 268H97L101 271L110 272.5L122.5 281.5V289L132 294L137 297.5L142 303L151 307.5V322L146.5 325L139.5 334.5L133.5 338.5L133 347L135.5 354.5L135 360V366L131.5 367L130 386.5L128.5 394L130.5 396L132.5 397.5L133.5 403.5L129 402.5L127.5 410L137 420.5L143 426L150 430L151.5 433.5L152.5 437L153 441L158.5 445L163 454.5V457.5H167L171 461H179.5L180.5 464.5L190.5 464L198 458.5H200.5L212.5 456.5L216 452L228.5 451L239 449.5L244 454H252.5L261 452.5L269 441.5L273 437L278 429.5L288 426L292.5 424.5L303 421L311.5 422L322.5 420L330.5 416L340 411L343 403.5L353.5 405L362 399L365.5 400L376 399.5L377.5 393L380.5 390H385.5L388.5 387L391 379.5L396 375.5L393 364L400.5 365.5L404.5 363V360L412.5 358L420.5 363H424.5L433.5 359L442.5 348.5L437.5 338.5L420.5 334L414.5 335.5L407.5 326.5L403.5 308L397 299.5L388.5 294.5L383.5 286L377 274L355.5 257V246L366 244.5L375.5 236L382.5 228L384 212.5L372 205.5L355 190.5L356 173L363.5 162L374.5 151L376.5 146L380.5 147.5L395.5 137L406 155.5L411.5 156L423 163L434 172.5H440.5L451 173L466 175L473 172L465 150L468.5 142.5L463.5 137L470 132.5L479 127V112.5L468.5 106.5L477.5 98L462 93.5L469 82.5L473 83.5V74.5L474 62L471 57L459 55.5L448.5 47L437 46.5L421 33L412.5 30L405.5 23L390.5 25.5H375.5L364 20.5H357L346.5 30L339 33L330.5 23Z",
-    owner: [GA.Death, GA.Order, GA.Order, GA.Death],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "Hidden deep within the heart of a shadowed forest, the Gloamroot Necropolis is a vast burial ground where the roots of ancient trees coil around crumbling mausoleums and weathered headstones. The air is thick with the whispers of the long-dead, and a cold, spectral presence lingers beneath the canopy. Blades swung in this haunted glade seem to cut deeper, as if the spirits of the forgotten seek to strike through flesh and steel alike, their hunger for vengeance never sated.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "Hidden deep within the heart of a shadowed forest, the Gloamroot Necropolis is a vast burial ground where the roots of ancient trees coil around crumbling mausoleums and weathered headstones. The air is thick with the whispers of the long-dead, and a cold, spectral presence lingers beneath the canopy. Blades swung in this haunted glade seem to cut deeper, as if the spirits of the forgotten seek to strike through flesh and steel alike, their hunger for vengeance never sated.",
     bonuses: [
       {
-        ability:"Reaction: Once Per Battle, You declared an ATTACK ability", 
-        effect:"Add 1 to the Rend characteristic for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability."
-      }
+        ability: "Reaction: Once Per Battle, You declared an ATTACK ability",
+        effect:
+          "Add 1 to the Rend characteristic for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability.",
+      },
     ],
     offset: {
       x: 1476,
       y: 945.5,
     },
-    properties: ["dark forest", "graveyards", "ruins"]
+    properties: ["dark forest", "graveyards", "ruins"],
   },
   {
+    id: 14,
     src: territory_14,
     name: "The Sanctum of Echoes",
     path: "M258.5 379.5L266.5 369L264 366.5V362L266 359L269.5 358.5L273 356.5L272.5 353.5L271.5 346L274.5 341.5L283 337L289.5 327.5L293 320.5L294 317.5V311.5L298 308.5L301 299L303 295.5L306.5 292.5L307.5 284L306.5 278.5L304.5 274L308.5 273V268L310.5 262L315 259L320 254.5L322.5 246.5L322 242L325 239.5L328 233.5L322 230.5L317.5 232.5L314 226L315 219.5L309.5 216L305 214L299 210H294.5L296 206L301.5 198L305 193.5L303 185.5L302.5 179.5L305.5 175V170L309 165.5L310 163.5L313.5 158.5L314.5 151.5L317 147.5L320.5 146.5L325.5 140L330.5 134L334.5 130L338.5 135L342 134.5L346 129.5H349.5L354 128.5L359 123.5L362 120L369 126L375 133H379.5L386.5 137L396.5 141L406.5 145L411 144.5L413.5 137L420 132L426 128L428.5 120.5L426.5 117.5L430.5 116L426.5 110L432 109L435 104L443.5 103.5L450 101L459 99.5L462 95L466 90.5L470.5 89L473 85L478.5 79.5L473.5 74.5L469 70.5L464.5 66.5L461.5 67.5L462.5 59.5L465 54.5L470 49.5L474 47L472 44.5L464.5 39L455 33L449 36.5L439.5 41L431 43L426.5 48L421 47L415.5 41L414 37L412.5 39.5L408 39L405.5 42.5L400.5 40.5L396.5 37L388.5 32.5L379 24L375.5 20.5V16L361.5 15L356.5 12.5L350.5 5.5L344.5 1.5H335.5L330 10L325 12.5L309 15L312.5 7L305.5 1.5L297 5.5L289 1.5L264.5 3.5L266.5 10L248.5 17.5L252.5 33L250.5 45.5L254 59.5L233.5 62L218.5 59.5L207 55H188.5L171.5 57L158 72L156 80.5L147 87.5L136.5 90.5L134 95.5H126L116.5 99.5H106.5L91.5 84.5L88 95.5L81 105L74.5 111L68.5 120.5L65.5 124L62.5 128L65 135L63 141.5L60 147.5L54 148L47 149.5L43 147L38 142.5L33.5 146.5L25.5 151L16 153H9L9.5 162L6 168.5L7.5 173.5L10.5 181L5.5 189.5L1.5 199.5V208L9 224V235L11.5 241V251.5L16.5 265L17 271.5L18.5 278.5L15 284.5V292L21 297L18.5 300.5L20 306.5L18.5 310.5L21.5 317.5L23.5 329L36.5 341.5L41.5 343.5H49L55.5 341.5L63 346.5L74.5 353L90.5 369L82.5 376.5V385V395L80 407.5L83 414.5L86.5 420.5L96 426.5L101.5 431L109 429.5L122.5 428.5L128 430.5L136 422L142.5 429.5L150 424L153 429L157 429.5L166.5 430.5L177.5 423L187.5 411.5L193.5 407.5L199 403L208 402L209.5 397.5L215 394.5L221 398.5L231.5 398L237 402H243L245.5 395.5L252.5 385.5L258.5 379.5Z",
-    owner: [GA.Death, GA.Destruction, GA.Destruction, GA.Destruction],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "In the vast lowlands that stretch out before the towering Godspire Peaks, the Sanctum of Echoes is a place where the land itself seems attuned to the divine. Winds sweep through weathered rock formations, carving channels that carry voices far and wide, lifting prayers of the faithful skyward with unnatural clarity. Those who call upon their gods in this sacred place find their voices carried beyond the mortal realm, as if the heavens themselves are compelled to listen.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "In the vast lowlands that stretch out before the towering Godspire Peaks, the Sanctum of Echoes is a place where the land itself seems attuned to the divine. Winds sweep through weathered rock formations, carving channels that carry voices far and wide, lifting prayers of the faithful skyward with unnatural clarity. Those who call upon their gods in this sacred place find their voices carried beyond the mortal realm, as if the heavens themselves are compelled to listen.",
     bonuses: [
       {
-        ability:"Reaction: Once Per Battle, You declared a PRAYER ability", 
-        effect:"Add 2 to the chanting roll for this prayer."
-      }
+        ability: "Reaction: Once Per Battle, You declared a PRAYER ability",
+        effect: "Add 2 to the chanting roll for this prayer.",
+      },
     ],
     offset: {
       x: 1897.5,
       y: 494.5,
     },
-    properties: ["badland plains", "rocky"]
+    properties: ["badland plains", "rocky"],
   },
   {
+    id: 15,
     src: territory_15,
     name: "The Titanforge Expanse",
     path: "M67.5 445H71.5L80.5 441L89.5 430.5L84.5 420.5L67.5 416L61.5 417.5L54.5 408.5L50.5 390L44 381.5L35.5 376.5L30.5 368L24 356L2.5 339V328L13 326.5L22.5 318L29.5 310L31 294.5L19 287.5L2 272.5L3 255L10.5 244L21.5 233L23.5 228L27.5 229.5L42.5 219L53 237.5L58.5 238L70 245L81 254.5H87.5L98 255L113 257L120 254L112 232L115.5 224.5L110.5 219L117 214.5L126 209V194.5L115.5 188.5L124.5 180L109 175.5L116 164.5L120 165.5V156.5L121 144L118 139L106 137.5L95.5 129L84 128.5L68 115L59.5 112L52.5 105L51 96L48.5 86.5V76.5L52.5 64.5H62L70 58.5L74 53L87.5 41.5L90.5 36H98.5L100 32H107.5L110.5 25L116 29L118 26.5L124.5 29L133.5 26.5L145 36L149 41.5L152 48.5L155.5 54.5L165 60.5L170.5 65L178 63.5L191.5 62.5L197 64.5L205 56L211.5 63.5L219 58L222 63L226 63.5L235.5 64.5L246.5 57L256.5 45.5L262.5 41.5L268 37L277 36L278.5 31.5L284 28.5L290 32.5L300.5 32L306 36H312L314.5 29.5L321.5 19.5L327.5 13.5L335.5 3L337.5 14.5H332.5L334.5 24L344 35L351 45L356 51L359 59L353.5 64.5L351.5 69.5L359 79.5L368.5 87L375.5 90L378.5 95.5L379.5 101L381 111.5L382 122.5L384.5 130L388 134.5L393.5 134H401.5L406.5 130L411.5 139L415.5 147L423.5 146L433.5 143L441 141L446 147.5L454.5 148.5L458.5 148L462.5 146L472 142L478 136.5H485L492 138L498.5 139.5L504 143.5L507.5 152H515L525 157.5L526.5 162L527 167.5L526 173.5L526.5 179V183.5L527 186.5L530 189.5L533 193L536 196.5L535 199V204.5V211.5L534.5 221.5L537.5 224L541 223.5L543.5 227V231L545.5 236.5L551 238L554 237L557.5 236L559 237.5L564 239.5H568L572.5 240L575.5 242V247L576 256V262L574.5 270L573 273.5L563 278.5L557.5 280.5L555.5 283.5L556 290V297.5L558 300L561.5 300.5H566L568.5 305L569 311L568 314L565.5 317L568.5 319L571.5 322.5L578.5 327L585 328.5L588.5 326.5L592.5 327.5L593.5 329V335.5L600 343L605.5 344.5L608.5 343L611.5 342L615 337L616 332.5L615.5 327.5V326.5L610.5 322H606.5L605.5 321.5L607.5 319.5L612.5 318.5V314.5L616.5 310.5L618.5 310L622.5 307L625.5 304L626.5 300.5L624.5 297.5L622.5 295.5L618 293L610.5 290.5L606 288L604 286L601 284V280V275L602.5 272.5L606.5 268.5L616 265.5H618L620.5 266V268.5H627.5L637.5 269H647L653.5 270.5L656.5 272.5L657.5 277.5L660.5 278L662.5 283L666.5 292V295.5L664 298.5L661.5 304.5L659.5 313.5V323L660.5 326.5L665 328L671 329H674.5L679.5 324L680.5 321L684 320H691L694.5 322L696.5 318.5L701.5 318L704.5 319.5V323.5L702.5 327L701.5 330.5V336L702 339.5L702.5 343.5V347L699.5 350L696.5 351L693 351.5L690.5 349.5H686L684 351.5L681.5 353L676 354L668.5 353.5L662.5 351L659 350.5L652.5 352.5L646 359L643.5 363V369.5L644.5 372.5L649.5 375V377.5L648.5 383.5L650 389L650.5 395L647 400.5V409.5V411.5L645.5 412.5L643 409L640.5 402L638.5 399.5L635 399L632 399.5L630 397L628 395L625 390V387.5L624 385.5L621 383.5L617 380.5L613 379.5L608.5 374.5L603 368.5L599 373H592L586.5 372L582.5 369.5L579 366.5L573 366L568 365L564.5 362.5L562 357L558 351.5L554 349.5L551.5 350.5V352V356.5L548 357.5L542.5 362L539.5 364H532.5H526.5L519.5 360L516.5 357L512.5 355L508 351L504.5 350L499 348L494.5 348.5L492 349.5L489 351.5L487.5 353L484.5 356L479.5 359L470.5 364.5L467 367.5H463H459.5H451.5L444.5 368.5L439.5 367.5L436 364V366.5V371.5L432 375.5L431 377H426.5H413.5H410L408 381.5V384.5V392V399L411 401.5H415H420L419.5 405.5L422.5 411.5L423.5 418L425 422V425.5L423 430.5H416.5L402.5 425.5L394.5 422L384.5 421.5H376.5L371 422L366.5 425.5L365.5 428V430.5L365 432L361.5 433L350 432.5L343.5 430L340 432.5L333.5 436L330.5 438.5L323.5 441L323 444.5V451.5L324.5 456.5V461L321 466L316.5 467L308.5 473L304.5 479.5V488L307.5 492L305 494.5L301.5 495.5L295.5 498.5L290 502.5L286.5 506.5L284 510.5L278 510L274.5 506V503L273.5 499H270L270.5 501.5L272.5 504.5L270.5 509L267.5 511.5L261 517.5L258 519.5H254L252 518L249 513L248.5 507.5V504L247 495L244 488L241 483.5L237 479.5L233 476.5L230.5 475.5L226 478.5L223.5 482L222.5 484.5L220 488L216 491.5L211 495L205.5 495.5L204 496.5L206 499.5L211.5 504L216.5 506.5L219 509.5L220 511.5L221.5 515V517L218.5 518.5L213 517.5L208 515L206 514.5V515.5H203.5L202 514.5L200 514L195 508.5L193 504L191.5 506L190.5 507.5L186 511.5L183.5 516.5L181.5 522L178 520.5L177 516.5L178.5 512.5L180.5 509L182.5 503L181 501.5L179.5 497V492.5L177.5 487H175L168.5 489H162L160.5 491.5V496.5L161.5 500.5L162.5 506.5V515V520.5L161.5 525L159 526.5H155.5L153.5 523.5L154 520.5L152 513L151.5 510.5L150 511L149.5 511.5L149 519.5V522.5H146.5L143.5 518.5L142 514V507L140.5 504L134.5 497L132.5 490.5V487.5L132 484.5L130.5 479L129 481L126 484L124.5 485.5L122.5 489L120 491L117 492L114.5 496V498V501.5L113.5 508V510V514.5V518.5L116.5 525L117.5 528L117 529.5L116 530.5H114.5L113.5 528L111 523L109.5 519.5L107.5 516L107 516.5L104.5 519.5H102.5L101 517.5V514.5L102 513V511.5V506L103.5 497L102 491.5L101.5 487L100.5 485.5L96.5 486L91 484.5L85 483L77 481L71.5 478.5L66.5 473.5L63.5 466L62.5 457L55.5 456.5L47.5 447.5L51.5 445V442L59.5 440L67.5 445Z M574.5 198.5L570.5 194.5L571.5 191L575 186.5L579 181L581.5 173.5L586.5 168H592.5L597.5 169.5L603 172.5L606 175L604 179H608.5L614 179.5L615.5 183V185.5H619.5L621.5 188L618.5 192L614.5 195.5L609.5 199.5L603 203.5L593.5 204L581 202L574.5 198.5Z",
-    owner: [GA.Death, GA.Death, GA.Death, GA.Death],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "A land of unyielding stone and towering plateaus, the Titanforge Expanse is said to have been shaped by ancient, forgotten gods. The very earth resists time’s erosion, its unbreakable bedrock forming natural bastions against the elements. Warriors who march across this land find their defenses harden, as if the stone’s resilience seeps into their very bones, turning aside all but the most relentless strikes.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "A land of unyielding stone and towering plateaus, the Titanforge Expanse is said to have been shaped by ancient, forgotten gods. The very earth resists time’s erosion, its unbreakable bedrock forming natural bastions against the elements. Warriors who march across this land find their defenses harden, as if the stone’s resilience seeps into their very bones, turning aside all but the most relentless strikes.",
     bonuses: [
       {
-        ability:"Reaction: Once Per Battle, Opponent declared an ATTACK ability", 
+        ability:
+          "Reaction: Once Per Battle, Opponent declared an ATTACK ability",
         declare: "Pick the unit targeted by that ATTACK ability.",
-        effect:"Add 1 to save rolls for that unit in this phase."
-      }
+        effect: "Add 1 to save rolls for that unit in this phase.",
+      },
     ],
     offset: {
       x: 1829,
       y: 862,
     },
-    properties: ["mountainous", "rocky"]
+    properties: ["mountainous", "rocky"],
   },
   {
+    id: 16,
     src: territory_16,
     name: "The Shroudvale",
     path: "M154 456.5L161 458L167.5 459.5L173 463.5L176.5 472H184L194 477.5L195.5 482L202 483L213 479.5L217.5 472.5L219 467.5L219.5 463L219 457.5L221.5 450V446V440.5L222 437L219.5 430.5V423.5L213 421H206.5L204 419V416.5L205.5 413L206.5 410L208.5 407L209.5 398.5L209 393L204 389L206.5 385.5L208 380.5L207 375.5L206.5 373.5V368.5L208 365L212.5 362L215.5 361.5L223 360L231.5 360.5L238 359.5L239 354.5L243.5 351.5L248 349L251.5 345L255 342L256.5 339.5L262 338.5L269.5 337.5H275.5H279.5H284.5H286L287.5 334.5L287 329.5L282 318.5L280.5 312.5V308.5V301L282.5 294L285 292H289L294 290.5L297 289L297.5 284L300.5 280H304.5H309L312 281.5L316.5 285L321 288H323L328 290L334.5 288L337.5 276.5V273L340 271H342L348 274L353 280V285.5L348 287.5H341L336.5 291.5L334.5 292.5V294L334 297L335 303L336 310.5L339 318.5L341.5 323L346.5 332.5L350.5 336.5H354H359.5L364.5 335.5L369.5 333L373 332.5L379 330L384 329.5L388 331.5L392.5 336.5L397.5 341L403.5 346.5L409.5 348L412 347L418 342L421.5 335L423 330.5L426 325L431 315.5H433L436.5 312.5L439.5 308.5L441.5 303L442 297L446 296.5L447.5 292L449.5 284L450.5 273.5V271L451.5 269.5L454 268H460L467 266L473.5 265.5L482 264L484 262.5L492.5 253L494.5 246.5L498.5 238.5V230.5L497 225.5L492 223L480 220L474.5 213.5L474 206.5L472.5 200L468.5 196L464 194.5L459.5 193.5L459 187.5L461.5 182.5L463 177.5L467 174.5L470 175L470.5 180L474.5 186L478 188.5L482 192.5L485 196L491.5 197.5L496.5 195L498.5 192L502 185.5L503 177V167L502 159.5L500.5 157.5L497 156.5H493L489.5 155L487 152L486 148L488 144.5L490.5 142H494.5V137L495 133L495.5 128.5L500.5 120L506 121L511 124L517 124.5L516.5 119.5L516 115V110.5L514 109.5L510.5 104.5L511 99L509.5 94.5L514 89.5V85.5L513 84L511 77L505.5 72.5L502 73L499.5 71V66L494 70.5H490L484.5 67.5L480.5 64.5H476.5L476 68H472.5L467 67.5L462.5 64.5L460.5 56.5V52.5L456.5 51.5H452H443L434.5 46.5L431.5 42.5L427 39L422 38L408 33.5L382 26H379.5L378 24.5L376.5 21H372L357 19H345.5L331.5 17.5L312 14.5L306 20L300 21L296.5 15.5L283 11.5H280.5L274.5 10.5L269.5 8L264 10.5L258 12L253 10L249 8.5L244.5 7L240 2L233 2.5L221.5 1H212L208 3.5L203 8.5L200.5 13.5L199.5 21.5L202.5 20.5L207 24.5L211.5 28.5L216.5 33.5L211 39L208.5 43L204 44.5L200 49L197 53.5L188 55L181.5 57.5L173 58L170 63L164.5 64L168.5 70L164.5 71.5L166.5 74.5L164 82L158 86L151.5 91L149 98.5L144.5 99L134.5 95L124.5 91L117.5 87H113L107 80L100 74L97 77.5L92 82.5L87.5 83.5H84L80 88.5L76.5 89L72.5 84L68.5 88L63.5 94L58.5 100.5L55 101.5L52.5 105.5L51.5 112.5L48 117.5L47 119.5L43.5 124V129L40.5 133.5L41 139.5L43 147.5L39.5 152L34 160L32.5 164H37L43 168L47.5 170L53 173.5L52 180L55.5 186.5L60 184.5L66 187.5L63 193.5L60 196L60.5 200.5L58 208.5L53 213L48.5 216L46.5 222V227L42.5 228L44.5 232.5L45.5 238L44.5 246.5L41 249.5L39 253L36 262.5L32 265.5V271.5L31 274.5L27.5 281.5L21 291L12.5 295.5L9.5 300L10.5 307.5L11 310.5L7.5 312.5L4 313L2 316V320.5L4.5 323L6.5 334.5H1.5L3.5 344L13 355L20 365L25 371L28 379L22.5 384.5L20.5 389.5L28 399.5L37.5 407L44.5 410L47.5 415.5L48.5 421L50 431.5L51 442.5L53.5 450L57 454.5L62.5 454H70.5L75.5 450L80.5 459L84.5 467L92.5 466L102.5 463L110 461L115 467.5L123.5 468.5L127.5 468L131.5 466L141 462L147 456.5H154Z",
-    owner: [GA.Destruction, GA.Destruction, GA.Destruction, GA.Destruction],
-    attacker: [GA.None, GA.None, GA.None, GA.None],
-    description: "A vast, lifeless forest tangled with roots and thick, creeping mist, the Shroudvale is the final resting place of many ancient, long-dead beasts. Their immense bones lie half-buried beneath the earth, their forms twisted and fossilized by time. An unnatural force lingers in the vale, quickening the steps of those locked in combat, as if the restless echoes of these fallen leviathans drive them forward.",
+    owner: [],
+    attacker: [],
+    videoLinks: [],
+    description:
+      "A vast, lifeless forest tangled with roots and thick, creeping mist, the Shroudvale is the final resting place of many ancient, long-dead beasts. Their immense bones lie half-buried beneath the earth, their forms twisted and fossilized by time. An unnatural force lingers in the vale, quickening the steps of those locked in combat, as if the restless echoes of these fallen leviathans drive them forward.",
     bonuses: [
       {
-        ability:"Once Per Battle, Any Combat Phase", 
-        effect:"This unit can move 2D6”. It can pass through the combat ranges of enemy units and can end that move in combat."
-      }
+        ability: "Once Per Battle, Any Combat Phase",
+        effect:
+          "This unit can move 2D6”. It can pass through the combat ranges of enemy units and can end that move in combat.",
+      },
     ],
     offset: {
       x: 2159.5,
       y: 540,
     },
-    properties: ["dead forest", "dragon graveyard"]
+    properties: ["dead forest", "dragon graveyard"],
   },
 ];

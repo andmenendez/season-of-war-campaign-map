@@ -6,7 +6,7 @@ import GASelector from './../lib/components/GASelector.svelte';
 import Timeline from '$lib/components/timeline.svelte';
 import ContextBanner from '$lib/components/ContextBanner.svelte';
 import MapOptions from '$lib/components/MapOptions.svelte';
-import { hideUI } from '$lib/store';
+import { hideUI, loadingData } from '$lib/store';
 import { fade } from 'svelte/transition';
 import "../app.css"
 import { sleep } from "$lib/utlils";
@@ -62,9 +62,14 @@ onMount(async () => {
       <div class="border-white rounded-full border-2 !border-b-0 animate-spin min-w-12 min-h-12 w-12 h-12 grid"></div>
       Loading
     </div>
-  {/if}
+    {/if}
+  {#if $loadingData}
+    <div out:fade class="text-white text-xs fixed top-1/2 left-0 justify-center w-full -translate-y-1/2 flex flex-col items-center gap-2">
+      <div class="translate-y-[50px]">Loading data</div>
+    </div>
+    {/if}
 </div>
-
+  
 {#if !$hideUI && !loading}
   <div in:fade out:fade class="z-10 fixed bottom-0 left-0 w-screen flex justify-between items-end px-2 pb-2">
     <ContextBanner />
