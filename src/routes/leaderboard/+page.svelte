@@ -5,10 +5,8 @@
   import youtube from "$lib/assets/socials/youtube.png";
   import discord from "$lib/assets/socials/discord.png";
   import { fade } from "svelte/transition";
-  import type { PageData } from "./$types";
+    import type { PageData } from "./$types";
   import { currentWeek } from "$lib/store";
-
-  
   let layoutProps = $props();
   const {response, data}: PageData = layoutProps.data;
   let selectedWeek = $state(data.week);
