@@ -23,6 +23,10 @@ export const load = async () => {
     week: 0,
     territories: []
   }
+  return { 
+    response : 200,
+    data: { ...structuredData },
+  };
   try {
     // Auth
     const auth = await google.auth.getClient({

@@ -27,6 +27,10 @@ export const load = async () => {
   let week = 0;
   let userVoteData: { [name: string]: {[week: string]: number } } = {}
   
+  return { 
+    response : 200,
+    data:  {week: week, scores: userVoteData},
+  };
   try {
     // Auth
     const auth = await google.auth.getClient({
