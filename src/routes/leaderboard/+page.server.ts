@@ -1,4 +1,9 @@
 import { google } from "googleapis";
+import type { Config } from '@sveltejs/adapter-vercel';
+
+export const config: Config = {
+    maxDuration: 100
+};
 
 const CONTEXT_DATA = [
   "Form Responses 1",

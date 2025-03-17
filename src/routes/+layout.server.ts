@@ -2,6 +2,11 @@ import { loadingData } from "$lib/store";
 import { google } from "googleapis";
 import type { GAType } from '../lib/territories';
 import { GA } from '../lib/territories';
+import type { Config } from '@sveltejs/adapter-vercel';
+
+export const config: Config = {
+    maxDuration: 100
+};
 
 type StructuredData = {
   week: number;
