@@ -15,8 +15,8 @@
   import { onMount } from "svelte";
   import { LeafletMap } from "svelte-leafletjs";
   import Territory from "./territory.svelte";
+  import { TERRITORIES } from "$lib/territories";
   import { MAX_H, MAX_W } from "$lib/constants";
-  import { territories } from "$lib/store";
   
   let screenWidth: number;
   let leafletMap: LeafletMap;
@@ -52,7 +52,7 @@
     if (leafletMap) {
       const map = leafletMap.getMap();
       if (map) {
-        // console.log(window.innerWidth)
+        console.log(window.innerWidth)
         if (window.innerWidth <= 640) {
           map.setMinZoom(-1)
           map.setMaxZoom(1)
@@ -67,7 +67,7 @@
   });
 
   $effect(()=> {
-    // console.log(screenWidth)
+    console.log(screenWidth)
   })
   // $effect(()=> {
   //   const map = leafletMap.getMap();
@@ -86,9 +86,8 @@
       bind:this={leafletMap}
       options={mapOptions}
     >
-      {#each $territories as territory, i}
-      {#if $territories.find(t => t.id === i)}
-        <Territory territory={$territories.find(t => t.id === i)!}></Territory>{/if}
+      {#each TERRITORIES as territory}
+        <Territory {territory}></Territory>
       {/each}
     </LeafletMap>
   </div>

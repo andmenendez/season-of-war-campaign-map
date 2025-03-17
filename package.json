@@ -26,7 +26,6 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.0.12",
-		"googleapis": "^146.0.0",
 		"leaflet": "^1.9.4",
 		"svelte-inview": "^4.0.4",
 		"svelte-leafletjs": "^2.0.0"
