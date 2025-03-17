@@ -4,40 +4,7 @@
   import '../app.css';
   import 'leaflet/dist/leaflet.css';
   import preview from "$lib/assets/preview.png"
-  import { onMount } from 'svelte';
-  
   let layoutProps = $props();
-  const {response, data}: PageData = layoutProps.data;
-  
-  $effect(()=> {
-    loadingData.set(false)
-
-    if (response === 200)
-    if (data.week) {
-      currentWeek.set(data.week);
-    }
-    try {
-      data.territories.forEach((territory)=> {
-        territories.update((ts)=> {
-          const targetTerritory = ts.find(t=> t.id === territory.id);
-          if (!targetTerritory) {
-            return ts;
-          }
-          return [
-            ...ts.filter(t => t.id !== territory.id),
-            {
-              ...targetTerritory,
-              owner: territory.owner,
-              attacker:territory.attacker,
-              videoLinks:territory.videoLinks,
-            }
-          ]
-        })
-      })
-    } catch (e) {
-      console.error(e);
-    }
-  })
 </script>
 <svelte:head>
   <link rel="canonical" href="https://seasonofwar.com/" />
