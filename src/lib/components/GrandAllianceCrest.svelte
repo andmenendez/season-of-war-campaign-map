@@ -8,7 +8,6 @@
   import type { GAType } from "$lib/territories";
 
   let { ga, className } : {ga: string; className?: string;} = $props();
-
   let wrapperStyle = $state("ga-image-wrapper");
 
   $effect(()=> {
@@ -47,8 +46,13 @@
       <img alt={ga} src={none} />
     {/if}
 
-    {#if $hideSpoilers}
-      secret
+
+    {#if $hideSpoilers || `${ga}`.length <= 4}
+      {#if $hideSpoilers}
+        secret
+      {:else}
+        -
+      {/if}
     {:else}
       {(ga as string).slice(0,6)}
     {/if}
