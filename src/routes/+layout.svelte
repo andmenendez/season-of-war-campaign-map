@@ -10,36 +10,6 @@
   import MapDataLoader from '$lib/components/MapDataLoader.svelte';
   
   let { children, data} = $props();
-  
-  // $effect(()=> {
-  //   loadingData.set(false)
-
-  //   if (data.week) {
-  //     currentWeek.set(data.week);
-  //     console.log("currentWeek set!")
-  //   }
-  //   try {
-  //     data.territories.forEach((territory: { id: number; owner: any; attacker: any; videoLinks: any; })=> {
-  //       territories.update((ts)=> {
-  //         const targetTerritory = ts.find(t=> t.id === territory.id);
-  //         if (!targetTerritory) {
-  //           return ts;
-  //         }
-  //         return [
-  //           ...ts.filter(t => t.id !== territory.id),
-  //           {
-  //             ...targetTerritory,
-  //             owner: territory.owner,
-  //             attacker:territory.attacker,
-  //             videoLinks:territory.videoLinks,
-  //           }
-  //         ]
-  //       })
-  //     })
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // })
 </script>
 <svelte:head>
   <link rel="canonical" href="https://seasonofwar.com/" />

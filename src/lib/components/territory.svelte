@@ -58,7 +58,7 @@
   weight={2} 
   opacity={1}
   fillOpacity={$hideUI ? 0 : $selectedFactions.includes(currentOwner) ? .3 : .2}
-  color={$hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "#121711"}`} 
+  color={$hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "rgba(18,23,17,0.25)"}`} 
   fillColor={`${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
   options={{noClip: true, className: "polygon-class-123" }}
   events={{

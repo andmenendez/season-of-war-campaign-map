@@ -33,7 +33,7 @@
       zoomControl: false,
       maxBoundsViscosity: 1,
       maxBounds: [
-        [-1*MAX_H, -1*MAX_W],
+        [-1.2*MAX_H, -1.2*MAX_W],
         [2*MAX_H, 2*MAX_W],
       ]
     };
