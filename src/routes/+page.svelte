@@ -7,8 +7,7 @@
   import MapDataLoader from '$lib/components/MapDataLoader.svelte';
   import MapWrapper from "$lib/components/MapWrapper.svelte";
 
-
-  let { data} = $props();
+  let { data } = $props();
 </script>
 
 {#await data.streamed.data}
@@ -19,9 +18,9 @@
 </div>
 {:then data}
   <MapDataLoader data={data} />
-  
   <MapWrapper />
 {:catch}
-  <div>error</div>
+<div>error</div>
 {/await}
 
+<div class="text-transparent">Season of War</div>

@@ -27,49 +27,37 @@ export const load = async () => {
             scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
           });
           const sheets = google.sheets({ version: "v4", auth });
-
-          // APP DATA
-          const appDataresponse: any = await sheets.spreadsheets.values.get({
-            spreadsheetId: "1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo",
-            range: "Sheet1!A1:B1",
-          });
-
+          
           // TERRITORY DATA
-          const territoryDataResponse: any =
+          const allData: any =
             await sheets.spreadsheets.values.get({
               spreadsheetId: "1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo",
-              range: "territories!B3:I18",
+              range: "territories!B1:I57",
             });
-          const attackersDataResponse: any =
-            await sheets.spreadsheets.values.get({
-              spreadsheetId: "1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo",
-              range: "territories!B22:I37",
-            });
+          
+          const territoryDataResponse = [...allData.data.values].slice(2+1,17+2);
+          const attackersDataResponse = [...allData.data.values].slice(21+1,36+2);
+          const linksDataResponse = [...allData.data.values].slice(40+1,55+2);
 
-          const linksDataResponse: any = await sheets.spreadsheets.values.get({
-            spreadsheetId: "1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo",
-            range: "territories!B41:I56",
-          });
-
+          console.log(linksDataResponse)
           structuredData = {
             ...structuredData,
-            week: parseInt(`${appDataresponse.data.values[0][1]}`) - 1,
+            week: parseInt(`${allData.data.values[0][0]}`),
             territories: Array.from(
-              Array(territoryDataResponse.data.values.length)
+              Array(territoryDataResponse.length)
             ).map((_, i) => {
               return {
                 id: i + 1,
-                owner: territoryDataResponse.data.values[i],
-                attacker: attackersDataResponse.data.values[i],
-                videoLinks: linksDataResponse.data.values[i],
+                owner: territoryDataResponse[i],
+                attacker: attackersDataResponse[i],
+                videoLinks: linksDataResponse[i],
               };
             }),
           };
         } catch (e) {
           console.log(e);
         }
-
-        await sleep(5000);
+        console.log(structuredData);
 
         resolve(structuredData);
       }),
