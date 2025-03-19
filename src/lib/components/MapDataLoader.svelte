@@ -4,13 +4,10 @@
 
   let { data } = $props();
   loadingData.set(false)
-  console.log("!!!")
-  console.log(data);
   
   onMount(()=> {
     if (data.week) {
       currentWeek.set(data.week);
-      console.log("currentWeek set!")
     }
     try {
       data.territories.forEach((territory: { id: number; owner: any; attacker: any; videoLinks: any; })=> {

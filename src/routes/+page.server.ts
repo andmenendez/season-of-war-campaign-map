@@ -37,8 +37,12 @@ export const load = async () => {
           
           const territoryDataResponse = [...allData.data.values].slice(2+1,17+2);
           const attackersDataResponse = [...allData.data.values].slice(21+1,36+2);
-          const linksDataResponse = [...allData.data.values].slice(40+1,55+2);
-
+          const linksDataResponse = [...allData.data.values].slice(41,55+2);
+          console.log(territoryDataResponse.length)
+          console.log(territoryDataResponse)
+          console.log(attackersDataResponse.length)
+          console.log(attackersDataResponse)
+          console.log(linksDataResponse.length)
           console.log(linksDataResponse)
           structuredData = {
             ...structuredData,
