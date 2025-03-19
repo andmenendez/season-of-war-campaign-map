@@ -15,12 +15,9 @@ type StructuredData = {
 export const load = async () => {
   return {
     streamed: {
-      data: new Promise<StructuredData>(async (resolve) => {
+      data: new Promise<any>(async (resolve) => {
         console.log("Start Loader");
-        let structuredData: StructuredData = {
-          week: 0,
-          territories: [],
-        };
+        let allData: any = []
         try {
           // Auth
           const auth = await google.auth.getClient({
@@ -30,35 +27,17 @@ export const load = async () => {
           const sheets = google.sheets({ version: "v4", auth });
           
           // TERRITORY DATA
-          const allData: any =
+          allData =
             await sheets.spreadsheets.values.get({
               spreadsheetId: "1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo",
               range: "territories!B1:I57",
             });
           
-          const territoryDataResponse = [...allData.data.values].slice(2+1,17+2);
-          const attackersDataResponse = [...allData.data.values].slice(21+1,36+2);
-          const linksDataResponse = [...allData.data.values].slice(41,55+2);
-
-          structuredData = {
-            ...structuredData,
-            week: parseInt(`${allData.data.values[0][0]}`),
-            territories: Array.from(
-              Array(territoryDataResponse.length)
-            ).map((_, i) => {
-              return {
-                id: i + 1,
-                owner: territoryDataResponse[i],
-                attacker: attackersDataResponse[i],
-                videoLinks: linksDataResponse[i],
-              };
-            }),
-          };
         } catch (e) {
           console.log(e);
         }
         console.log("Loader resolving")
-        resolve(structuredData);
+        resolve(allData.data.values);
       }),
     },
   };

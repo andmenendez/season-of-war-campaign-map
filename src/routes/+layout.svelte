@@ -4,6 +4,7 @@
   import 'leaflet/dist/leaflet.css';
   let { children} = $props();
   console.log("Layout loaded");
+  
   onMount(()=> {
     console.log("Layout mounted");
   })
