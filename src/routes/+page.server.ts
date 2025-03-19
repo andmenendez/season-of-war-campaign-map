@@ -12,12 +12,6 @@ type StructuredData = {
   }[];
 };
 
-
-const auth = await google.auth.getClient({
-  apiKey: "AIzaSyAFZ2vYiX0r_N4OjOsjSSncevnsc9ev6cM",
-  scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
-});
-
 export const load = async () => {
   return {
     streamed: {
@@ -27,6 +21,11 @@ export const load = async () => {
         try {
           console.log("Google Auth")
           // Auth
+          const auth = await google.auth.getClient({
+            apiKey: "AIzaSyAFZ2vYiX0r_N4OjOsjSSncevnsc9ev6cM",
+            scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+          });
+
           console.log("Google Sheets")
           const sheets = google.sheets({ version: "v4", auth });
           console.log("Google Presend");
