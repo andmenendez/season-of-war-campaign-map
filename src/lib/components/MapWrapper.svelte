@@ -17,7 +17,7 @@
   let Map: any = $state(null);
   
   onMount(async () => {
-    await sleep(1000);
+    await sleep(50);
     Map = (await import("$lib/components/map.svelte")).default;
     loading = false;
   });
