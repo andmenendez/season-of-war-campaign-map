@@ -1,7 +1,12 @@
 <script lang='ts'>
+  import { onMount } from 'svelte';
   import '../app.css';
   import 'leaflet/dist/leaflet.css';
   let { children} = $props();
+  console.log("Layout loaded");
+  onMount(()=> {
+    console.log("Layout mounted");
+  })
 </script>
 <svelte:head>
   <title>Season of War ~ 2025 Narrative Campaign</title>

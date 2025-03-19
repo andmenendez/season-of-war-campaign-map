@@ -16,6 +16,7 @@ export const load = async () => {
   return {
     streamed: {
       data: new Promise<StructuredData>(async (resolve) => {
+        console.log("Start Loader");
         let structuredData: StructuredData = {
           week: 0,
           territories: [],
@@ -38,12 +39,7 @@ export const load = async () => {
           const territoryDataResponse = [...allData.data.values].slice(2+1,17+2);
           const attackersDataResponse = [...allData.data.values].slice(21+1,36+2);
           const linksDataResponse = [...allData.data.values].slice(41,55+2);
-          console.log(territoryDataResponse.length)
-          console.log(territoryDataResponse)
-          console.log(attackersDataResponse.length)
-          console.log(attackersDataResponse)
-          console.log(linksDataResponse.length)
-          console.log(linksDataResponse)
+
           structuredData = {
             ...structuredData,
             week: parseInt(`${allData.data.values[0][0]}`),
@@ -61,8 +57,7 @@ export const load = async () => {
         } catch (e) {
           console.log(e);
         }
-        console.log(structuredData);
-
+        console.log("Loader resolving")
         resolve(structuredData);
       }),
     },
