@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "src/routes/**/*": {
-      "maxDuration": 30
-    }
-  }
-}
