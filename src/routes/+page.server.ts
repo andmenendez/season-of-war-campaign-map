@@ -12,13 +12,11 @@ type StructuredData = {
   }[];
 };
 
-// Auth
+
 const auth = await google.auth.getClient({
   apiKey: "AIzaSyAFZ2vYiX0r_N4OjOsjSSncevnsc9ev6cM",
   scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
-const sheets = google.sheets({ version: "v4", auth });
-
 
 export const load = async () => {
   return {
@@ -27,6 +25,10 @@ export const load = async () => {
         console.log("Start Loader");
         let allData: any = []
         try {
+          console.log("Google Auth")
+          // Auth
+          console.log("Google Sheets")
+          const sheets = google.sheets({ version: "v4", auth });
           console.log("Google Presend");
           // TERRITORY DATA
           allData =
