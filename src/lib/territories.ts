@@ -245,7 +245,7 @@ export const INIT_TERRITORIES: TerritoryType[] = [
     ],
     offset: {
       x: -3 + 1182,
-      y: -2 + 648.5,
+      y: -3 + 648.5,
     },
     properties: ["mountainous", "rocky ravines"],
   },
