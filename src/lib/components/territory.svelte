@@ -55,8 +55,8 @@
   latLngs={points} 
   weight={noSpoiler ? 2 : 2} 
   opacity={1}
-  fillOpacity={noSpoiler ? 0.05 : $hideUI ? 0 : $selectedFactions.includes(currentOwner) ? .3 : .2}
-  color={noSpoiler ? "rgba(0,0,0,0.9)" : hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "rgba(18,23,17,0.25)"}`} 
+  fillOpacity={noSpoiler ? $contextBanner.territory === territory.name ? .15 : 0.05 : $hideUI ? 0 : $contextBanner.territory === territory.name ? .4 : $selectedFactions.includes(currentOwner) ? .3 : .2}
+  color={noSpoiler ? "rgba(0,0,0,0.9)" : hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "rgba(18,23,17,0.9)"}`} 
   fillColor={noSpoiler ? "rgba(255,255,255,1)" : `${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
   options={{noClip: true, className: "polygon-class-123" }}
   events={{
