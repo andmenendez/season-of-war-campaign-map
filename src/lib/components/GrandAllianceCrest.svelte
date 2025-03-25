@@ -46,7 +46,6 @@
       <img alt={ga} src={none} />
     {/if}
 
-
     {#if $hideSpoilers || `${ga}`.length <= 4}
       {#if $hideSpoilers}
         secret
@@ -54,7 +53,9 @@
         -
       {/if}
     {:else}
-      {#if `${ga}`.length > 5}
+      {#if `${ga}` === "undefined"}
+        <span class="text-[6px] mt-1">Unclaimed</span>
+      {:else if `${ga}`.length > 5}
         {`${(ga as string)}`.slice(0,6)}
       {:else}
         {ga}
@@ -69,6 +70,7 @@
   }
   .ga-image-wrapper {
     width: 48px;
+    height: 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
