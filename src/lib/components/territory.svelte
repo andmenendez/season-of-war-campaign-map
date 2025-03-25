@@ -60,13 +60,15 @@
           } else {
             currentOwner = GA.None;
           }
+        } else {
+          currentOwner = GA.None
         }
       }
     }
   })
 
   selectedWeek.subscribe((week)=> {
-    if (week - 1  >= 0) {
+    if (week - 1 >= 0) {
       defender = territory.owner[week - 1];
       attacker = territory.attacker[week - 1];
 
@@ -76,16 +78,23 @@
         battleReportId = null;
       }
 
-      if ($selectedWeek > 1) {
-        if (territory.owner[$selectedWeek - 1] === territory.owner[$selectedWeek - 2]){
-          currentOwner = territory.owner[$selectedWeek - 1];
+      if (week > 1) {
+        if (territory.owner[week - 1] === territory.owner[week - 2]){
+          currentOwner = territory.owner[week - 1];
         }
-        else if (territory.owner[$selectedWeek - 1] === territory.attacker[$selectedWeek - 2]){
-          currentOwner = territory.owner[$selectedWeek - 1];
+        else if (territory.owner[week - 1] === territory.attacker[week - 2]){
+          currentOwner = territory.owner[week - 1];
         } else {
           currentOwner = GA.None;
         }
+      } else {
+        currentOwner = GA.None
       }
+    } else {
+      defender = GA.None;
+      attacker = GA.None;
+      currentOwner = GA.None;
+      battleReportId= null
     }
   })
 </script> 
