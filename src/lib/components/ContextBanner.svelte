@@ -1,11 +1,20 @@
 <script lang="ts">
   import { contextBanner, type ContextBannerType  } from "$lib/store";
   import GrandAllianceCrest from "./GrandAllianceCrest.svelte";
+  import combat from '$lib/assets/combat.svg';
 </script>
 
 <div class="flex flex-col gap-2 banner-hide-on-mobile">
   <div class="flex flex-row items-center gap-2">
     <GrandAllianceCrest ga={$contextBanner?.owner} className=""/>
+    {#if $contextBanner.attacker}
+      <img 
+      class="w-6 h-6 animate-pulse"
+      src={combat} 
+      alt="Conflict"
+      />
+      <GrandAllianceCrest ga={$contextBanner.attacker}/>
+    {/if}
     <div class="text-lg md:text-3xl">{$contextBanner?.territory}</div>
   </div>
   <div class="flex flex-row items-center gap-1">

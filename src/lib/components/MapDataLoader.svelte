@@ -4,7 +4,6 @@
   import { onMount } from "svelte";
 
   let { data } = $props();
-  loadingData.set(false)
   
   type StructuredData = {
     week: number;
@@ -18,6 +17,7 @@
 
 
   onMount(()=> {
+    loadingData.set(false)
     let structuredData: StructuredData = {
       week: 0,
       territories: [],

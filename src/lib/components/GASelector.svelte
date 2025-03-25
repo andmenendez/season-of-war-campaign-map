@@ -8,11 +8,16 @@
   import all from "$lib/assets/all.png";
   import { selectedFactions } from "$lib/store";
   import { GA } from "$lib/territories";
+  import { fade } from "svelte/transition";
 
   $selectedFactions
 
 </script>
-<div class="ga-selector-wrapper flex items-center gap-4 h-min md:py-1 px-1 py-2 m-2 rounded-full border-1 bg-white/10 border-black/30 backdrop-blur-sm">
+<div
+  in:fade
+  out:fade
+  class="ga-selector-wrapper flex items-center gap-4 h-min md:py-1 px-1 py-2 m-2 rounded-full border-1 bg-white/10 border-black/30 backdrop-blur-sm"
+>
   <button onclick={()=>selectedFactions.update(sf=> {
     if (sf.length ===4) {
       return [GA.Order]

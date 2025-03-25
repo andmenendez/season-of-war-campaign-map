@@ -3,62 +3,51 @@
     import "../../app.css";
     import chevron from "$lib/assets/triangle.svg"
     import chevronLeft from "$lib/assets/triangle-left.svg"
+  import TimelineCircle from "./TimelineCircle.svelte";
+  import TimelineLine from "./TimelineLine.svelte";
 
 </script>
 
-<div class="timeline-wrapper bg-white/15 mr-2 mt-2 w-full flex items-center justify-end px-2 py-2 rounded-full backdrop-blur-sm border-1 border-black/30">
+<div class="timeline-wrapper bg-white/15 mr-4 mt-4 w-full flex items-center justify-end px-2 py-2 rounded-full backdrop-blur-sm border-1 border-black/30">
     <button class="navigate-weeks-button shrink-0 opacity-50 hover:opacity-100 mr-2" onclick={()=> {
         selectedWeek.update(w => Math.max(0, w-1));
     }} >
         <img src={chevronLeft} alt="chevron-left" class="!rotate-180 w-5 h-5 shrink-0 brightness-200 hover:contrast-200"/>
     </button>
-    
-    <button disabled={1-1 > $currentWeek} aria-label="Select Week 1" onclick={()=>{
-        selectedWeek.set(1-1);
-    }} class={`select-this-week-button ${$selectedWeek === 1-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 1-1 ? "opacity-100": 1-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 2-1 ? "opacity-100": "opacity-60"}`}></div>
-    
-    <button disabled={2-1 > $currentWeek} aria-label="Select Week 2" onclick={()=>{
-        selectedWeek.set(2-1);
-    }} class={`select-this-week-button ${$selectedWeek === 2-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 2-1 ? "opacity-100": 2-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 3-1 ? "opacity-100" : 3-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></div>
+    <!--  -->
+    <TimelineCircle timepoint={0} />
+    <TimelineLine at={0} />
 
-    <button disabled={3-1 > $currentWeek} aria-label="Select Week 3" onclick={()=>{
-        selectedWeek.set(3-1);
-    }} class={`select-this-week-button ${$selectedWeek === 3-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 3-1 ? "opacity-100": 3-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 4-1 ? "opacity-100" : 4-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></div>
-
-    <button disabled={4-1 > $currentWeek} aria-label="Select Week 4" onclick={()=>{
-        selectedWeek.set(4-1);
-    }} class={`select-this-week-button ${$selectedWeek === 4-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 4-1 ? "opacity-100": 4-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 5-1 ? "opacity-100" : 5-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></div>
-
-    <button disabled={5-1 > $currentWeek} aria-label="Select Week 5" onclick={()=>{
-        selectedWeek.set(5-1);
-    }} class={`select-this-week-button ${$selectedWeek === 5-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 5-1 ? "opacity-100": 5-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 6-1 ? "opacity-100" : 6-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></div>
-
-    <button disabled={6-1 > $currentWeek} aria-label="Select Week 6" onclick={()=>{
-        selectedWeek.set(6-1);
-    }} class={`select-this-week-button ${$selectedWeek === 6-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 6-1 ? "opacity-100": 6-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 7-1 ? "opacity-100" : 7-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></div>
-
-    <button disabled={7-1 > $currentWeek} aria-label="Select Week 7" onclick={()=>{
-        selectedWeek.set(7-1);
-    }} class={`select-this-week-button ${$selectedWeek === 7-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 7-1 ? "opacity-100": 7-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></button>
-    
-    <div class={`grow transition-opacity h-1 w-full bg-white min-w-4 ${$selectedWeek >= 8-1 ? "opacity-100" : 8-1 > $currentWeek ? "opacity-10": "opacity-60"}`}></div>
-
-    <button disabled={8-1 > $currentWeek} aria-label="Select Week 8" onclick={()=>{
-        selectedWeek.set(8-1);
-    }} class={`select-this-week-button ${$selectedWeek === 8-1 && "selected-week"} transition-all rounded-full border-white border-2 w-6 h-6 md:w-7 md:h-7 shrink-0 ${$selectedWeek >= 8-1 ? "opacity-100": 8-1 > $currentWeek ? "opacity-10": "opacity-60" }`}></button>
-
+    <TimelineCircle timepoint={1} />
+    <!--  -->
+    <TimelineLine at={1} />
+    <!--  -->
+    <TimelineCircle timepoint={2} />
+    <!--  -->
+    <TimelineLine at={2} />
+    <!--  -->
+    <TimelineCircle timepoint={3} />
+    <!--  -->
+    <TimelineLine at={3} />
+    <!--  -->
+    <TimelineCircle timepoint={4} />
+    <!--  -->
+    <TimelineLine at={4} />
+    <!--  -->
+    <TimelineCircle timepoint={5} />
+    <!--  -->
+    <TimelineLine at={5} />
+    <!--  -->
+    <TimelineCircle timepoint={6} />
+    <!--  -->
+    <TimelineLine at={6} />
+    <!--  -->
+    <TimelineCircle timepoint={7} />
+    <!--  -->
+    <TimelineLine at={7} />
+    <!--  -->
+    <TimelineCircle timepoint={8} />
+    <!--  -->
     <button class="navigate-weeks-button shrink-0 opacity-50 hover:opacity-100" onclick={()=> {
         selectedWeek.update(w => Math.min($currentWeek, w+1));
     }} >

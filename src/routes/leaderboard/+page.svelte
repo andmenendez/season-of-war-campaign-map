@@ -18,7 +18,7 @@
 
   $effect(()=> {
     if (selectedWeek === 0) {
-      selectedWeek = $currentWeek + 1
+      selectedWeek = $currentWeek
     }
   })
   const podium: any[] = [];

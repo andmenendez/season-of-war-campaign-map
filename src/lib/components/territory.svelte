@@ -1,5 +1,5 @@
 <script lang="ts">;
-	import { contextBanner, hideConflict, hideSpoilers, hideUI, selectedFactions } from './../store';
+	import { contextBanner, hideConflict, hideSpoilers, hideUI, selectedFactions, territories } from './../store';
 	import { GAColor, GABorderColor, GA, type GAType } from './../territories';
   import { onMount } from 'svelte';
   import 'leaflet/dist/leaflet.css';
@@ -23,8 +23,11 @@
   const offset_y =  territory.offset.y;
   const defaultHideUIState = $hideUI;
 
-  let currentOwner : GAType = $state(territory.owner[territory.owner.length-1]);
-  let currentAttacker : GAType = $state(territory.attacker[territory.attacker.length-1]);
+  let showTerrain : boolean = $state(false);
+  let currentOwner : GAType = $state(GA.None);
+  let defender : GAType = $state(GA.None);
+  let attacker : GAType = $state(GA.None);
+  let battleReportId : string | null = $state(null);
 
   onMount(()=>{
     const path = territory.path;
@@ -36,121 +39,166 @@
     points = flattened[0].points.map(([x,y])=>[-y/2+MAX_H-offset_y/2,x/2+offset_x/2]);
   })
 
-  selectedWeek.subscribe((week)=> {
-    if (territory.owner.length > week) {
-      currentOwner = territory.owner[week];
-    } else {
-      currentOwner = territory.owner[territory.owner.length-1];
+  territories.subscribe(territories => {
+    const thisTerritory = territories.find(t => t.id === territory.id) 
+    if (thisTerritory) {
+      if ($selectedWeek - 1 >= 0) {
+        defender = territory.owner[$selectedWeek-1];
+        attacker = territory.attacker[$selectedWeek-1];
+
+        if ($selectedWeek-1 <= territory.videoLinks.length - 1 ){
+          battleReportId = territory.videoLinks[$selectedWeek-1];
+        } else {
+          battleReportId = null;
+        }
+        if ($selectedWeek > 1) {
+          if (territory.owner[$selectedWeek - 1] === territory.owner[$selectedWeek - 2]){
+            currentOwner = territory.owner[$selectedWeek - 1];
+          }
+          else if (territory.owner[$selectedWeek - 1] === territory.attacker[$selectedWeek - 2]){
+            currentOwner = territory.owner[$selectedWeek - 1];
+          } else {
+            currentOwner = GA.None;
+          }
+        }
+      }
     }
-    if (territory.attacker.length > week) {
-      currentAttacker = territory.attacker[week];
-    } else {
-      currentAttacker = GA.None;
+  })
+
+  selectedWeek.subscribe((week)=> {
+    if (week - 1  >= 0) {
+      defender = territory.owner[week - 1];
+      attacker = territory.attacker[week - 1];
+
+      if (week-1 <= territory.videoLinks.length - 1 ){
+          battleReportId = territory.videoLinks[week-1];
+      } else {
+        battleReportId = null;
+      }
+
+      if ($selectedWeek > 1) {
+        if (territory.owner[$selectedWeek - 1] === territory.owner[$selectedWeek - 2]){
+          currentOwner = territory.owner[$selectedWeek - 1];
+        }
+        else if (territory.owner[$selectedWeek - 1] === territory.attacker[$selectedWeek - 2]){
+          currentOwner = territory.owner[$selectedWeek - 1];
+        } else {
+          currentOwner = GA.None;
+        }
+      }
     }
   })
 </script> 
 
 {#if points.length > 0}
-<Polygon
-  latLngs={points} 
-  weight={2} 
-  opacity={1}
-  color={
-    noSpoiler ? "rgba(18,23,17,0.9)" : 
-      $hideUI ? "rgba(0,0,0,0)" :
-        $selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] 
-        : "rgba(18,23,17,0.9)"
-  }
-  fillOpacity={noSpoiler ? $contextBanner.territory === territory.name ? .15 : 0.05 : $hideUI ? 0 : $contextBanner.territory === territory.name ? .4 : $selectedFactions.includes(currentOwner) ? .3 : .2}
-  fillColor={noSpoiler ? "rgba(255,255,255,1)" : `${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
-  options={{noClip: true, className: "polygon-class-123" }}
-  events={{
-    mouseover: () => {
-      contextBanner.set({
-        territory: territory.name,
-        owner: currentOwner,
-        properties: territory.properties,
-      })
-    },
-    mouseout: () => {
-      contextBanner.set(
-        { territory: "",
-        owner: "-",
-        properties: []
-      })
-    },
-    popupopen: (e)=> {if (window.innerWidth < 640) hideUI.set(true)},
-    popupclose: (e)=> {if (window.innerWidth < 640) hideUI.set(defaultHideUIState)},
-  }}
->
-    
-  <Tooltip options={{permanent: true ? true : false, className: "attacker", offset: [-50, 0]}}>
-    <img 
-      src={combat} 
-      alt="Conflict"
-      class={`w-[72px] h-[72px] inline animate-pulse ${!$hideConflict && currentAttacker !== (GA.None as GAType) ? "" :"!hidden"}`} 
-    />
-  </Tooltip>
-
-
-  <Popup events={{
-
-  }} options={{keepInView: false, autoPanPadding: [0, 100], closeOnEscapeKey: true}}>
-    <div class="flex flex-col gap-2 max-w-[80vw] pb-8">
+  <Polygon
+    latLngs={points} 
+    weight={2} 
+    opacity={1}
+    color={
+      noSpoiler ? "rgba(18,23,17,0.9)" : 
+        $hideUI ? "rgba(0,0,0,0)" :
+          $selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] 
+          : "rgba(18,23,17,0.9)"
+    }
+    fillOpacity={$hideUI ? 0 : $contextBanner.territory === territory.name ? .3 : 
+          $selectedFactions.includes(currentOwner) ? .2 : 0.05}
+    fillColor={
+      $hideUI ? "rgba(255,255,255,0)" : 
+        $selectedWeek === 0 ? "rgba(255,255,255,1)" : 
+          $selectedFactions.includes(currentOwner) ?
+            GAColor[currentOwner] : "rgba(255,255,255,1)"
+        }
+    options={{noClip: true, className: "polygon-class-123" }}
+    events={{
+      mouseover: () => {
+        contextBanner.set({
+          territory: territory.name,
+          owner: defender,
+          attacker: attacker === GA.None ? null : attacker,
+          properties: territory.properties,
+        })
+      },
+      mouseout: () => {
+        contextBanner.set(
+          { 
+            territory: "",
+            owner: "-",
+            attacker: null,
+            properties: []
+        })
+      },
+      popupopen: (e)=> {if (window.innerWidth < 640) hideUI.set(true)},
+      popupclose: (e)=> {if (window.innerWidth < 640) hideUI.set(defaultHideUIState)},
+    }}
+  >
       
-        {#if !$hideConflict}
-          <div class={`flex w-full justify-between items-center ${currentAttacker !== GA.None ? "flex-col gap-2" : "flex-row"}`}>
-            <div class="text-2xl font-semibold">{territory.name}</div>
-            <div class="flex items-center gap-2">
-              <GrandAllianceCrest ga={currentOwner}/>
-              {#if currentAttacker !== GA.None}
-                <img 
-                class="w-6 h-6 animate-pulse"
-                src={combat} 
-                alt="Conflict"
-                />
-                <GrandAllianceCrest ga={currentAttacker}/>
+    <Tooltip options={{permanent: true ? true : false, className: "attacker", offset: [-50, 0]}}>
+      <img 
+        src={combat} 
+        alt="Conflict"
+        class={`w-[64px] h-[64px] inline animate-pulse ${!$hideUI && !$hideConflict && attacker !== (GA.None as GAType) ? "" :"!hidden"}`} 
+      />
+    </Tooltip>
+
+
+    <Popup options={{keepInView: false, autoPanPadding: [0, 100], closeOnEscapeKey: true}}>
+      <div class="flex flex-col gap-2 max-w-[80vw] pb-8">
+            {#if !$hideConflict && !$hideUI}
+              <div class={`flex w-full justify-between items-center ${attacker !== GA.None ? "flex-col gap-2" : "flex-row"}`}>
+                <div class="text-2xl font-semibold">{territory.name}</div>
+                <div class="flex items-center gap-2">
+                  <GrandAllianceCrest ga={defender}/>
+                  {#if attacker !== GA.None}
+                    <img 
+                    class="w-6 h-6 animate-pulse"
+                    src={combat} 
+                    alt="Conflict"
+                    />
+                    <GrandAllianceCrest ga={attacker}/>
+                  {/if}
+                </div>
+              </div>
+            {:else}
+              <div class={`flex w-full justify-between items-center flex-row`}>
+                <div class="text-2xl font-semibold">{territory.name}</div>
+                {#if !$hideUI}
+                  <div class="flex items-center gap-2">
+                    <GrandAllianceCrest ga={defender}/>
+                  </div>
+                {/if}
+              </div>
+          {/if}
+          <div class="px-1 text-xs">{territory.description}</div>
+            {#if !$hideUI && !$hideConflict && attacker !== GA.None}
+            <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${battleReportId}`}>
+              <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl":""}`} src={`https://img.youtube.com/vi/${battleReportId}/0.jpg`}>
+              <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
+            </a>
+          {/if}
+          <div class="flex flex-col">
+            <div class="py-1 px-2 bg-slate-500 rounded-sm">{territory.bonuses[0].ability}</div>
+            <div class="px-1">
+            <div class="flex flex-col gap-2 p-2 bg-slate-500/50 rounded-b-sm">
+              {#if territory.bonuses[0].declare}
+              <span><strong class="font-extrabold">Declare:</strong> {territory.bonuses[0].declare}</span>
               {/if}
+              <span><strong class="font-extrabold">Effect:</strong> {territory.bonuses[0].effect}</span>
+            </div>
             </div>
           </div>
-        {:else}
-          <div class={`flex w-full justify-between items-center flex-row`}>
-            <div class="text-2xl font-semibold">{territory.name}</div>
-            <div class="flex items-center gap-2">
-              <GrandAllianceCrest ga={currentOwner}/>
-            </div>
-          </div>
-        {/if}
-        <div class="px-1 text-base">{territory.description}</div>
-          {#if !$hideConflict && currentAttacker !== GA.None}
-          <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${"wvXhMHYSup0"}`}>
-            <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl":""}`} src={"https://img.youtube.com/vi/wvXhMHYSup0/0.jpg"}>
-            <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
-          </a>
-        {/if}
-        <div class="flex flex-col">
-          <div class="py-1 px-2 bg-slate-500 rounded-sm">{territory.bonuses[0].ability}</div>
-          <div class="px-1">
-          <div class="flex flex-col gap-2 p-2 bg-slate-500/50 rounded-b-sm">
-            {#if territory.bonuses[0].declare}
-            <span><strong class="font-extrabold">Declare:</strong> {territory.bonuses[0].declare}</span>
-            {/if}
-            <span><strong class="font-extrabold">Effect:</strong> {territory.bonuses[0].effect}</span>
-          </div>
-          </div>
-        </div>
-    </div>
-    <div class="absolute bottom-0 left-0 w-full py-1 flex items-center justify-center gap-2 bg-white/20 rounded-b-md">
-      {#each territory.properties as prop, i}
-      <div class="uppercase">{prop}
-
-        {#if i < territory.properties.length - 1}
-        ,
-        {/if}
       </div>
-      {/each}
+      <div class="absolute bottom-0 left-0 w-full py-1 flex items-center justify-center gap-2 bg-white/20 rounded-b-md">
+        {#each territory.properties as prop, i}
+        <div class="uppercase">{prop}
 
-    </div>
-</Popup>
-</Polygon>
-{/if  }
+          {#if i < territory.properties.length - 1}
+          ,
+          {/if}
+        </div>
+        {/each}
+
+      </div>
+    </Popup>
+  </Polygon>
+{/if}

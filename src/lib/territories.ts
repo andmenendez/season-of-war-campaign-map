@@ -31,9 +31,9 @@ export type GAType = (typeof GA)[keyof typeof GA];
 export const GAColor = {
   [GA.Order]: "#3038AA",
   [GA.Chaos]: "#A72E30",
-  [GA.Death]: "#3B1D3E",
+  [GA.Death]: "#C129D0",
   [GA.Destruction]: "#1E5533",
-  [GA.None]: "#4F4E4E",
+  [GA.None]: "rgba(255,255,255,.5)",
 };
 export const GABorderColor = {
   [GA.Order]: "#3660DE",
