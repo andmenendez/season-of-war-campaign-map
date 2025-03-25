@@ -15,7 +15,7 @@
   import { Youtube } from 'svelte-youtube-lite';
   import playButton from "$lib/assets/triangle.svg"
   
-	let { territory }: {territory: TerritoryType} = $props();
+	let { territory, noSpoiler }: {territory: TerritoryType; noSpoiler?: boolean } = $props();
   let points: LatLngExpression[] = $state([])
   const xmlns = "http://www.w3.org/2000/svg";
   
@@ -27,14 +27,12 @@
   let currentAttacker : GAType = $state(territory.attacker[territory.attacker.length-1]);
 
   onMount(()=>{
-    const path = territory.path
-    
+    const path = territory.path;
     var svgElem = document.createElementNS(xmlns, "svg");
     var pathComponent = document.createElementNS(xmlns, "path");
     pathComponent.setAttribute("d", path);
     svgElem.append(pathComponent);
     const flattened = flattenSVG(svgElem);
-
     points = flattened[0].points.map(([x,y])=>[-y/2+MAX_H-offset_y/2,x/2+offset_x/2]);
   })
 
@@ -47,7 +45,7 @@
     if (territory.attacker.length > week) {
       currentAttacker = territory.attacker[week];
     } else {
-      currentAttacker = GA.None
+      currentAttacker = GA.None;
     }
   })
 </script> 
@@ -55,11 +53,11 @@
 {#if points.length > 0}
 <Polygon
   latLngs={points} 
-  weight={2} 
+  weight={noSpoiler ? 2 : 2} 
   opacity={1}
-  fillOpacity={$hideUI ? 0 : $selectedFactions.includes(currentOwner) ? .3 : .2}
-  color={$hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "rgba(18,23,17,0.25)"}`} 
-  fillColor={`${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
+  fillOpacity={noSpoiler ? 0.05 : $hideUI ? 0 : $selectedFactions.includes(currentOwner) ? .3 : .2}
+  color={noSpoiler ? "rgba(0,0,0,0.9)" : hideUI ? "rgba(0,0,0,0)" : `${$selectedFactions.includes(currentOwner) ? GABorderColor[currentOwner] : "rgba(18,23,17,0.25)"}`} 
+  fillColor={noSpoiler ? "rgba(255,255,255,1)" : `${$selectedFactions.includes(currentOwner) ? GAColor[currentOwner] : GAColor[currentOwner]}`} 
   options={{noClip: true, className: "polygon-class-123" }}
   events={{
     mouseover: () => {

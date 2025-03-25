@@ -9,7 +9,7 @@
   import MapOptions from '$lib/components/MapOptions.svelte';
   import { hideUI,} from '$lib/store';
   import { fade, slide } from 'svelte/transition';
-  import "../../app.css"
+  import "../../app.css";
   import { sleep } from "$lib/utlils";
   import { onMount } from "svelte";
   
@@ -18,7 +18,7 @@
   
   onMount(async () => {
     await sleep(50);
-    Map = (await import("$lib/components/map.svelte")).default;
+    Map = (await import("$lib/components/CampaignMap.svelte")).default;
     loading = false;
   });
   

@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import type { GAType } from "../lib/territories";
+import type { GAType } from "../../lib/territories";
 import { sleep } from "$lib/utlils";
 import type { Config } from "@sveltejs/adapter-vercel";
 

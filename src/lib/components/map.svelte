@@ -76,8 +76,9 @@
       options={mapOptions}
     >
       {#each $territories as territory, i}
-      {#if $territories.find(t => t.id === i+1)}
-        <Territory territory={$territories.find(t => t.id === i+1)!}></Territory>{/if}
+
+        <Territory noSpoiler={true} territory={territory}></Territory>
+
       {/each}
     </LeafletMap>
   </div>
