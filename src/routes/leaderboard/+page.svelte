@@ -42,13 +42,15 @@
         <div in:fade out:fade class="z-10 flex items-center w-fit shrink-0 gap-4">
           <div class="flex brightness-110 contrast-125 flex-col rounded-md overflow-hidden title -ml-5">
             <a href="https://www.youtube.com/seasonofwar" class="shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm">
-              <img style="height: 102px" class="group-hover:opacity-90 opacity-80 transition-opacity" src={sowTitle} alt="Season of War" />
+              <img style="height: 102px" class="opacity-80 transition-opacity" src={sowTitle} alt="Season of War" />
             </a>
           </div>
         </div>
         <div class="subtitle">
-          <a class="opacity-100 hover:opacity-100 flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-5" alt="discord" src={discord}/>Community</a>
-          <a class="opacity-100 hover:opacity-100 flex gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-5" alt="youtube" src={youtube}/>More Battle Reports</a>
+        <div in:fade out:fade class="hide-on-mobile flex flex-row justify-center items-center py-[2px] gap-2">
+          <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="discord" src={discord}/>Community</a>
+          <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="youtube" src={youtube}/>More Battle Reports</a>
+        </div>
         </div>
       </div>
       <div class="flex w-full pt-2">
