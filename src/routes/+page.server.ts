@@ -20,27 +20,20 @@ type StructuredData = {
 export const load = async () => {
   return {
     streamed: { 
-      data: new Promise<any>(async (resolve) => {
-        let allData: any = []
-        try {
-          // Auth
-          const auth = await google.auth.getClient({
-            apiKey: "AIzaSyAFZ2vYiX0r_N4OjOsjSSncevnsc9ev6cM",
-            scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
-          });
-
-          const sheets = google.sheets({ version: "v4", auth });
-          // TERRITORY DATA
-          allData =
-          await sheets.spreadsheets.values.get({
-            spreadsheetId: "1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo",
-            range: "territories!B1:I57",
-          });
-        } catch (e) {
-          console.log(e);
-        }
-        resolve(allData.data.values);
-      }),
+      data: new Promise<any>(async (resolve, reject) => {
+        fetch("https://sheets.googleapis.com/v4/spreadsheets/1SLLxhj6kyXKlROEX9vPJEk4kNLvwTk_VJWk6apeBLlo/values/territories!B1:I57?key=AIzaSyAFZ2vYiX0r_N4OjOsjSSncevnsc9ev6cM", {
+          method: "GET"
+        }).then(re => {
+          console.log("------------------");
+          console.log(re);
+          return re.json()
+        }).then((data)=>{
+          console.log(data)
+          resolve(data.values)}
+        ).finally(()=>{
+          console.log("--------DONE MANUAL FETCH---------");
+        })
+      })
     },
   };
 };
