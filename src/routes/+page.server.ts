@@ -21,7 +21,6 @@ export const load = async () => {
   return {
     streamed: { 
       data: new Promise<any>(async (resolve) => {
-        await sleep(5000)
         let allData: any = []
         try {
           // Auth
