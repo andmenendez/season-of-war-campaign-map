@@ -8,12 +8,12 @@
     class="flex items-center gap-2 whitespace-nowrap w-fit" 
     onclick={ ()=> hideSpoilers.update(b => !b)}
   >
-    {#if $hideSpoilers}
+    {#if !$hideSpoilers}
     <div class="box border-1 rounded-sm border-white bg-white"></div>
     {:else}
     <div class="box border-1 rounded-sm border-white"></div>
     {/if}
-    <span class="whitespace-nowrap h-5">Hide Spoilers</span>
+    <span class="whitespace-nowrap h-5">Show Spoilers</span>
   </button>
   <button 
     class="flex items-center gap-2 whitespace-nowrap w-fit" 

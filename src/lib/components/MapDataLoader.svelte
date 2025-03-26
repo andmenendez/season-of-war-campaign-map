@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentWeek, loadingData, territories } from "$lib/store";
+  import { currentWeek, loadingData, selectedWeek, territories } from "$lib/store";
   import type { GAType } from "$lib/territories";
   import { onMount } from "svelte";
 
@@ -18,34 +18,17 @@
 
   onMount(()=> {
     loadingData.set(false)
-    let structuredData: StructuredData = {
-      week: 0,
-      territories: [],
-    };
+    console.log(data);
+    if (data.week) {
+      currentWeek.set(data.week);
 
-    const territoryDataResponse = [...data].slice(2+1, 17+2);
-    const attackersDataResponse = [...data].slice(21+1, 36+2);
-    const linksDataResponse = [...data].slice(41, 55+2);
-
-    structuredData = {
-      ...structuredData,
-      week: parseInt(`${data[0][0]}`),
-      territories: Array.from(
-        Array(territoryDataResponse.length)
-      ).map((_, i) => {
-        return {
-          id: i + 1,
-          owner: territoryDataResponse[i],
-          attacker: attackersDataResponse[i],
-          videoLinks: linksDataResponse[i],
-        };
-      }),
-    };
-    if (structuredData.week) {
-      currentWeek.set(structuredData.week);
+      if (window.localStorage.getItem("cached-week")) {
+        selectedWeek.set(parseInt(window.localStorage.getItem("cached-week")!))
+      }
     }
+
     try {
-      structuredData.territories.forEach((territory: { id: number; owner: any; attacker: any; videoLinks: any; })=> {
+      data.territories.forEach((territory: { id: number; owner: any; attacker: any; videoLinks: any; })=> {
         territories.update((ts)=> {
           const targetTerritory = ts.find(t=> t.id === territory.id);
           if (!targetTerritory) {

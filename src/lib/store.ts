@@ -15,5 +15,5 @@ export const contextBanner = writable<ContextBannerType>(
 export const territories = writable<TerritoryType[]>(INIT_TERRITORIES);
 export const hideUI = writable<boolean>(false);
 export const hideConflict = writable<boolean>(false);
-export const hideSpoilers = writable<boolean>(false);
+export const hideSpoilers = writable<boolean>(true);
 // export const data = writable<any>({});

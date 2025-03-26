@@ -2,12 +2,20 @@
   import { onMount } from 'svelte';
   import '../app.css';
   import 'leaflet/dist/leaflet.css';
+  import { selectedWeek } from '$lib/store';
   let { children} = $props();
   console.log("Layout loaded");
   
   onMount(()=> {
     console.log("Layout mounted");
   })
+
+  selectedWeek.subscribe(week => {
+    if (week !== 0) {
+      window.localStorage.setItem("cached-week", `${week}`)
+    }
+  });
+
 </script>
 <svelte:head>
   <title>Season of War ~ 2025 Narrative Campaign</title>

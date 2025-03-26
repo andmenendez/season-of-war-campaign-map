@@ -8,11 +8,6 @@
   import type { PageData } from "./$types";
   import { currentWeek } from "$lib/store";
 
-  
-  // let data: {
-  //   week: number;
-  //   scores: {[name:string]: {[week: string]: number}}
-  // } = $state({week: 0, scores:{}})
   let {data} = $props();
   let selectedWeek = $state(0);
 
@@ -29,77 +24,83 @@
     <div class="border-white rounded-full border-2 !border-b-0 animate-spin min-w-12 min-h-12 w-12 h-12 grid"></div>
     <div class="h-20 mt-7">Loading Leaderboard</div>
 </div>
-{:then data } 
-  <a href="/" class="z-50 flex gap-2 items-center top-0 left-8 p-1 text-xs mx-2 mt-2 uppercase hover:brightness-125">
+{:then data }
+  <a href="/" class="z-50 flex w-full bg-black/10 hover:bg-black/25 rounded-sm p-2 gap-2 items-center top-0 left-8 text-xs uppercase hover:brightness-200">
     <img src={chevronLeft} class="w-3 h-3 pb-[2px]" alt="Chevron Left"/>
     Return to Map
   </a>
-  <div in:fade={{delay:250}} class="z-0 flexcol-to-grid hide-overflow-on-desktop grid grid-cols-12 gap-4 px-4 pb-4 h-full min-h-[700px] place-items-stretch max-h-screen">
-    <div class="inset-0 flex flex-col col-span-8 gap-4">
-    <div class="flex flex-col gap-2">
-
-      <div class="flexcol-to-row flex flex-row w-full justify-between items-center py-2">
-        <div in:fade out:fade class="z-10 flex items-center w-fit shrink-0 gap-4">
-          <div class="flex brightness-110 contrast-125 flex-col rounded-md overflow-hidden title -ml-5">
-            <a href="https://www.youtube.com/seasonofwar" class="shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm">
-              <img style="height: 102px" class="opacity-80 transition-opacity" src={sowTitle} alt="Season of War" />
-            </a>
+  <div class="flex flex-row items-center gap-4 w-full">
+    <div class="flex flex-col gap-4 border-y-1 mb-3 border-white/30 py-4 w-full">
+      <div class="flexcol-to-row items-center gap-4 w-full">
+        <div class="flex flex-col gap-4 w-full">
+          <div class="px-4 w-full">
+            <h3>Hello & Welcome to Season of War!</h3>
+            This 8-week Age of Sigmar campaign launches, featuring Mortal Realms factions battling across 16 territories for regional power. Each battle grants a Grand Alliance a unique Boon, culminating in a final playoff where alliances clash with consolidated forces and resources.
+          </div>
+          <div class="subtitle px-4 w-full">
+            <div in:fade out:fade class="flex flex-row justify-start items-center py-[2px] gap-2">
+              <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="discord" src={discord}/>Community</a>
+              <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="youtube" src={youtube}/>More Battle Reports</a>
+            </div>
           </div>
         </div>
-        <div class="subtitle">
-        <div in:fade out:fade class="hide-on-mobile flex flex-row justify-center items-center py-[2px] gap-2">
-          <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="discord" src={discord}/>Community</a>
-          <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="youtube" src={youtube}/>More Battle Reports</a>
-        </div>
-        </div>
+        <a target="_blank" class="-my-2 group relative h-full overflow-hidden rounded-lg border-white/30 border-1 shadow-sm" href={`https://www.youtube.com/watch?v=47T3rCwyGuY`}>
+          <img alt="Battle Report Thumbnail" class="h-full w-full ml-2 -mt-12 -mb-8 scale-105 rounded-md" src={`https://img.youtube.com/vi/47T3rCwyGuY/0.jpg`}>
+        </a>
       </div>
-      <div class="flex w-full pt-2">
+    </div>
+  </div>
+
+  <div in:fade={{delay:50}} class="z-0 flexcol-to-grid hide-overflow-on-desktop grid grid-cols-12 gap-4 px-0 pb-4 h-full place-items-stretch">
+    <div class="inset-0 flex flex-col col-span-8 gap-0">
+    <div class="flex flex-col gap-2">
+      <div class="hidden flex items-stretch w-full h-full week-selector">
         <div class="pr-4">Week:</div>
         <button onclick={()=>selectedWeek = 1} 
           disabled={1 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 1 ? "bg-white/30" : ""} ${1 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`rounded-l-lg w-full border-1 border-white/30 ${selectedWeek === 1 ? "bg-white/30 bg-yellow-500" : ""} ${1 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           1
         </button>
         <button onclick={()=>selectedWeek = 2} 
           disabled={2 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 2 ? "bg-white/30" : ""} ${2 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`w-full border-1 border-white/30 ${selectedWeek === 2 ? "bg-white/30 bg-yellow-500" : ""} ${2 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           2
         </button>
         <button onclick={()=>selectedWeek = 3} 
           disabled={3 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 3 ? "bg-white/30" : ""} ${3 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`w-full border-1 border-white/30 ${selectedWeek === 3 ? "bg-white/30 bg-yellow-500" : ""} ${3 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           3
         </button>
         <button onclick={()=>selectedWeek = 4} 
           disabled={4 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 4 ? "bg-white/30" : ""} ${4 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`w-full border-1 border-white/30 ${selectedWeek === 4 ? "bg-white/30 bg-yellow-500" : ""} ${4 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           4
         </button>
         <button onclick={()=>selectedWeek = 5} 
           disabled={5 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 5 ? "bg-white/30" : ""} ${5 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`w-full border-1 border-white/30 ${selectedWeek === 5 ? "bg-white/30 bg-yellow-500" : ""} ${5 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           5
         </button>
         <button onclick={()=>selectedWeek = 6} 
           disabled={6 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 6 ? "bg-white/30" : ""} ${6 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`w-full border-1 border-white/30 ${selectedWeek === 6 ? "bg-white/30 bg-yellow-500" : ""} ${6 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           6
         </button>
         <button onclick={()=>selectedWeek = 7} 
           disabled={7 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 7 ? "bg-white/30" : ""} ${7 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`w-full border-1 border-white/30 ${selectedWeek === 7 ? "bg-white/30 bg-yellow-500" : ""} ${7 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           7
         </button>
         <button onclick={()=>selectedWeek = 8} 
           disabled={8 > $currentWeek + 1}
-          class={`w-full border-1 border-white/30 ${selectedWeek === 8 ? "bg-white/30" : ""} ${8 > $currentWeek + 1 ? "opacity-50": ""}`}
+          class={`rounded-r-lg w-full border-1 border-white/30 ${selectedWeek === 8 ? "bg-white/30 bg-yellow-500" : ""} ${8 > $currentWeek + 1 ? "opacity-50": ""}`}
         >
           8
         </button>
@@ -107,103 +108,57 @@
       </div>
 
       <div class="section w-full grow">
-        <h3>Rules</h3>
-          <div class="grid-cols-2 gap-4">
-            <div class="flex flex-col gap-4">
-              
-              <div>1. Every week bet on your favored Faction and Grand Alliance</div>
-              <div>2. At the end of every week each faction's territory will grow or shrink</div>
-            </div>
-            <div class="flex flex-col gap-4">
-              <div>3. After 8 weeks</div>
-              <div>4. Top performing winners get the prizes! </div>
+        <h3 class="w-full border-b-1 border-white/10 !mb-2">Rules</h3>
+          <div class="grid grid-cols-1 gap-2">
+            <div class="flex flex-col gap-2">
+              <div>1. Each weekly battle will be a standalone match play game.</div>
+              <div>2. Each battle takes place in a different region, with a special Boon for the winner.</div>
+              <div>3. The campaign ends with a seated playoff between the four Grand Alliances.</div>
+              <div>4. In the playoff, alliances will utilize accumulated resources and abilities.</div>
+              <div>5. Forces can plunder resources from defeated opponents.</div>
             </div>
           </div>
-
-      </div>
-      <div class="section w-full h-fit shrink-0">
-        <h3>Weekly Podium</h3>
-          <div class="grid podium-wrapper py-2 min-h-12">
-            {#each Object.keys(data.scores).sort(
-              (p1,p2)=>{
-                const p1Score = data.scores[p1][selectedWeek];
-                const p2Score = data.scores[p2][selectedWeek];
-              return p1Score > p2Score ? -1 : 1;
-              }
-            ) as user, i}
-              {#if i === 1}
-                <div in:fade class="podium first">
-                  <div class="score-plate grid grid-cols-1 place-items-center bg-orange-300">1</div>
-                  {user}
-                </div>
-              {/if}
-              {#if i === 2}
-                <div in:fade class="podium second">
-                  <div class="score-plate grid grid-cols-1 place-items-center bg-slate-300">2</div>
-                  {user}
-                </div>
-              {/if}
-              {#if i === 3}
-                <div in:fade class="podium third">
-                  <div class="score-plate grid grid-cols-1 place-items-center bg-yellow-700">3</div>
-                  {user}
-                </div>
-              {/if}
-            {/each}
+        <br/>
+        <h3 class="w-full border-b-1 border-white/10 !mb-2">General Information</h3>
+        <div class="grid grid-cols-1 gap-2">
+          <div class="flex flex-col gap-2">
+            <div>1. The campaign will last for 8 weeks.</div>
+            <div>2. 16 territories are contested in the war-torn land.</div>
+            <div>3. Each victory contributes to the goals of a Grand Alliance.</div>
+            <div>4. Many battles will be available for all viewers.</div>
+            <div>5. Channel members can participate in competitions and access exclusive content.</div>
+            <div>6. Channel membership supports the creation of the campaigns.</div>
+            <div>1. Each weekly battle will be a standalone match play game.</div>
+            <div>2. Each battle takes place in a different region, with a special Boon for the winner.</div>
+            <div>3. The campaign ends with a seated playoff between the four Grand Alliances.</div>
           </div>
+        </div>
       </div>
     </div>
 
 
 
     <div class="col-span-4 flex column-2 gap-4">
-      <div class="section flex flex-col h-full grow w-full overflow-hidden">
-        <h3>Leaderboard</h3>
-        <div class="relative h-full flex flex-col max-h-full overflow-scroll">
-          <div class="absolute-on-desktop h-full w-full overflow-scroll">
-            {#each Object.keys(data.scores).sort(
-              (p1,p2)=>{
-                const p1Score = Object.keys(data.scores[p1]).reduce((agg, weekToScore)=> {
-                  if (parseInt(weekToScore) <= selectedWeek) {
-                    return agg + data.scores[p1][weekToScore];
-                  } 
-                  return agg;
-                }, 0)
-                const p2Score = Object.keys(data.scores[p2]).reduce((agg, weekToScore)=> {
-                  if (parseInt(weekToScore) <= selectedWeek) {
-                    return agg + data.scores[p2][weekToScore];
-                  } 
-                  return agg;
-                }, 0)
-              return p1Score > p2Score ? -1 : 1;
-              }
-            ) as user}
-              <div class="grid grid-cols-3">
-                <div class="col-span-2">
-                  {user}
-                </div>
-                <div class="col-span-1 text-end text-3xl -my-1">
-                  {Object.keys(data.scores[user]).reduce((agg, weekToScore)=> {
-                    if (parseInt(weekToScore) <= selectedWeek) {
-                      return agg + parseInt(`${data.scores[user][`${weekToScore}`]}`);
-                    } 
-                    return agg;
-                  }, 0)}
-                </div>
-              </div>
-            {/each}
-          </div>
-      </div>
-      </div>
       <div class="section flex flex-col gap-1">
-        <h3>Prizes</h3>
-          <ol class="flex flex-col gap-1 border-t-1 pt-3 border-white/10">
-            <li>1. A piece of Ridge's Lilac shirt</li>
-            <li>2. Jordan will not lose a priority role for you</li>
-            <li>3. All inclusive cruise 30 day vaction across the world</li>
-            <li>4. Private Jet worth $500,000</li>
-            <li>5. Limited Edition Hot wheels basball cap</li>
+        <h3>Prizes (members only)</h3>
+          <ol class="flex flex-col gap-2 border-t-1 pt-3 border-white/10">
+            <li>1. Weekly prediction winners will be recognized on the channel.</li>
+            <li>2. Dedicated generals will earn tickets for a final draw, with two Spearhead boxes as prizes.</li>
+            <li>3. The general with the most accurate predictions will win a third Spearhead box.</li>
           </ol>
+      </div>
+      <div class="section col-span-2 flex flex-col gap-1">
+        <h3 class="w-full border-b-1 border-white/10 !mb-2">Channel Member Exclusive</h3>
+        <div class="grid grid-cols-1 gap-2">
+          <div class="flex flex-col gap-2">
+            <div>• Participation in exclusive competitions.</div>
+            <div>• Exclusive access to prediction related content.</div>
+            <div>• Exclusive community interaction.</div>
+          </div>
+          <a href="https://www.youtube.com/channel/UC3eXLQju5Oz4GL8rxOGlK6w/membership" class="text-3xl text-center w-full py-4 hover:opacity-75 animate-pulse">
+            SIGN UP!
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -211,8 +166,12 @@
 
 <style>
   h3 {
-    font-size: 32px;
-    margin: 0 !important;
+    font-size: 28px;
+    margin: 0;
+  }
+  h4 {
+    font-size: 18px;
+    margin: 0;
   }
   .podium-wrapper {
       grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -257,44 +216,47 @@
   }
   .subtitle {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
     gap: 0.5 rem;
   }
   @media only screen and (min-width: 640px) {
-  .title {
-    margin-top: -1.5rem;
-    margin-bottom: -1.5rem;
+    .title {
+      margin-top: -1.5rem;
+      margin-bottom: -1.5rem;
+    }
+    .subtitle {
+      align-items: center;
+    }
+    .column-2 {
+      flex-direction: column;
+    }
+    .absolute-on-desktop {
+      position: absolute;
+    }
+    .flexcol-to-grid {
+      display: grid !important;
+    }
+    .flexcol-to-row {
+      display: flex;
+      flex-direction: row;
+    }
+    .hide-overflow-on-desktop {
+      /* overflow: hidden; */
+    }
+    .podium-wrapper {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
-  .subtitle {
-    align-items: end;
-  }
-  .column-2 {
-    flex-direction: column;
-  }
-  .absolute-on-desktop {
-    position: absolute;
-  }
-  .flexcol-to-grid {
-    display: grid !important;
-  }
-  .flexcol-to-row {
-    display: flex;
-    flex-direction: row;
-  }
-  .hide-overflow-on-desktop {
-    overflow: hidden;
-  }
-  .podium-wrapper {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
   .section {
     z-index: 5;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(50,50,52,.2);
     border-radius: 8px;
-    padding: 24px 32px;
+    padding: 18px 24px;
     border: 1px solid rgba(255,255,255,0.3);
+  }
+  div.week-selector > button {
+    min-height: 100%;
   }
 </style>

@@ -28,7 +28,7 @@
   </script>
   <MapWrapper />
   {#await data.streamed.data}
-    <div>Loading</div>
+    <div></div>
   {:then data}
       <MapDataLoader data={data} />
   {:catch}
@@ -38,22 +38,4 @@
   
   
   <style>
-    .flex-col-to-row {
-      display: flex;
-      flex-direction: column;
-    }
-    @media only screen and (min-width: 640px) {
-      .flex-col-to-row {
-        display: flex;
-        flex-direction: row;
-      }
-    }
-    .hide-on-mobile {
-      display: none;
-    }
-    @media only screen and (min-width: 640px) {
-      .hide-on-mobile {
-        display: flex;
-      }
-    }
   </style>

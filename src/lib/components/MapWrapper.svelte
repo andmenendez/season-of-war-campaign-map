@@ -30,6 +30,9 @@
       <div class="flex flex-col">
         <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         {#if !loading.valueOf()}
+  <a href="/leaderboard" class="uppercase text-sm hover:opacity-75 backdrop-blur-sm rounded-sm text-center w-fit mx-auto">
+            Rules And Prizes
+          </a>
           <div in:fade out:fade class="hide-on-mobile flex flex-row justify-center items-center py-[2px] gap-2">
             <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="discord" src={discord}/>Community</a>
             <a class="opacity-100 bg-black/30 rounded-sm px-1 hover:opacity-100 hover:bg-black/50 text-[.75rem] flex items-center gap-1 transition-opacity" href="https://www.youtube.com/seasonofwar"><img class="h-3" alt="youtube" src={youtube}/>More Battle Reports</a>
