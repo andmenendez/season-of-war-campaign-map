@@ -181,7 +181,7 @@
           <div class="px-1 text-xs">{territory.description}</div>
             {#if !$hideUI && !$hideConflict && attacker !== GA.None}
             <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${battleReportId}`}>
-              <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl":""}`} src={`https://img.youtube.com/vi/${battleReportId}/0.jpg`}>
+              <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl" : ""}`} src={`https://img.youtube.com/vi/${battleReportId}/0.jpg`}>
               <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
             </a>
           {/if}
