@@ -122,15 +122,13 @@
         <h3 class="w-full border-b-1 border-white/10 !mb-2">General Information</h3>
         <div class="grid grid-cols-1 gap-2">
           <div class="flex flex-col gap-2">
-            <div>1. The campaign will last for 8 weeks.</div>
+            <div>1. The campaign will last for 8 weeks, 2 battles per week.</div>
             <div>2. 16 territories are contested in the war-torn land.</div>
             <div>3. Each victory contributes to the goals of a Grand Alliance.</div>
-            <div>4. Many battles will be available for all viewers.</div>
-            <div>5. Channel members can participate in competitions and access exclusive content.</div>
-            <div>6. Channel membership supports the creation of the campaigns.</div>
-            <div>1. Each weekly battle will be a standalone match play game.</div>
-            <div>2. Each battle takes place in a different region, with a special Boon for the winner.</div>
-            <div>3. The campaign ends with a seated playoff between the four Grand Alliances.</div>
+            <div>4. Each Grand Alliance will see the same number of battles.</div>
+            <div>5. Each battle will be preceded by a prediction vote that includes the armies, battleplan and region.</div>
+            <div>6. Channel members can participate in competitions and access exclusive content.</div>
+            <div>7. Channel membership supports the creation of the campaigns.</div>
           </div>
         </div>
       </div>
@@ -142,9 +140,11 @@
       <div class="section flex flex-col gap-1">
         <h3>Prizes (members only)</h3>
           <ol class="flex flex-col gap-2 border-t-1 pt-3 border-white/10">
-            <li>1. Weekly prediction winners will be recognized on the channel.</li>
-            <li>2. Dedicated generals will earn tickets for a final draw, with two Spearhead boxes as prizes.</li>
-            <li>3. The general with the most accurate predictions will win a third Spearhead box.</li>
+            <li>• Weekly prediction winners will be recognized on the channel.</li>
+            <li>• Weekly prediction winners will be able to name a model in any chosen army/unit.</li>
+            <li>• Weekly prediction will earn a raffle ticket.</li>
+            <li>• All participants will have a chance at a final draw, with two Spearhead boxes as prizes.</li>
+            <li>• The participant with the most accurate predictions will win a third Spearhead box.</li>
           </ol>
       </div>
       <div class="section col-span-2 flex flex-col gap-1">

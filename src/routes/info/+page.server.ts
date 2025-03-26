@@ -32,7 +32,8 @@ export const load = async () => {
       }>(async (resolve) => {
         let week = 0;
         let userVoteData: { [name: string]: { [week: string]: number } } = {};
-
+        resolve({ week: week + 1, scores: userVoteData });
+        return
         let continueParsing = true;
         let i = 1;
         while (i <= 8 && continueParsing) {
