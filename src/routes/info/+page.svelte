@@ -44,8 +44,8 @@
             </div>
           </div>
         </div>
-        <a target="_blank" class="-my-2 group relative h-full overflow-hidden rounded-lg border-white/30 border-1 shadow-sm" href={`https://www.youtube.com/watch?v=47T3rCwyGuY`}>
-          <img alt="Battle Report Thumbnail" class="h-full w-full ml-2 -mt-12 -mb-8 scale-105 rounded-md" src={`https://img.youtube.com/vi/47T3rCwyGuY/0.jpg`}>
+        <a target="_blank" class="-my-2 group relative h-full overflow-hidden rounded-lg border-white/30 border-1 shadow-sm" href={`https://www.youtube.com/watch?v=jT5f0TYHQSU`}>
+          <img alt="Battle Report Thumbnail" class="h-full w-full ml-2 -mt-12 -mb-8 scale-105 rounded-md" src={`https://img.youtube.com/vi/jT5f0TYHQSU/0.jpg`}>
         </a>
       </div>
     </div>
