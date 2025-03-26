@@ -30,7 +30,7 @@
       <div class="flex flex-col">
         <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
         {#if !loading.valueOf()}
-        <a href="/leaderboard" class="mt-1 uppercase text-sm hover:opacity-75 backdrop-blur-sm rounded-sm text-center w-fit mx-auto">
+        <a href="/info" class="mt-1 uppercase text-sm hover:opacity-75 backdrop-blur-sm rounded-sm text-center w-fit mx-auto">
             Rules And Prizes
           </a>
           <div in:fade out:fade class="hide-on-mobile flex flex-row justify-center items-center py-[2px] gap-2">
