@@ -4,54 +4,43 @@
   import death from "$lib/assets/death.png";
   import destruction from "$lib/assets/destruction.png";
   import none from "$lib/assets/none.png";
-  import { hideSpoilers } from "$lib/store";
-  import type { GAType } from "$lib/territories";
+  import { GA, type GAType } from "$lib/territories";
 
   let { ga, className } : {ga: string; className?: string;} = $props();
   let wrapperStyle = $state("ga-image-wrapper");
 
   $effect(()=> {
-    if ($hideSpoilers){
-      wrapperStyle = "ga-image-wrapper bg-none-color";
+    if (ga === "order") {
+      wrapperStyle = "ga-image-wrapper bg-order-color";
+    } else if (ga === "chaos") {
+      wrapperStyle = "ga-image-wrapper bg-chaos-color";
+    } else if (ga === "death") {
+      wrapperStyle = "ga-image-wrapper bg-death-color";
+    } else if (ga === "destruction") {
+      wrapperStyle = "ga-image-wrapper bg-destruction-color";
     } else {
-      if (ga === "order") {
-        wrapperStyle = "ga-image-wrapper bg-order-color";
-      } else if (ga === "chaos") {
-        wrapperStyle = "ga-image-wrapper bg-chaos-color";
-      } else if (ga === "death") {
-        wrapperStyle = "ga-image-wrapper bg-death-color";
-      } else if (ga === "destruction") {
-        wrapperStyle = "ga-image-wrapper bg-destruction-color";
-      } else {
-        wrapperStyle = "ga-image-wrapper bg-none-color";
-      }
+      wrapperStyle = "ga-image-wrapper bg-none-color";
     }
   })
 
 
 </script>
-<div class={`${className} ${$hideSpoilers ? "blur-this" : ""}`}>
+<div class={`${className}`}>
   <div class={wrapperStyle}>
-    {#if $hideSpoilers}
-      <img alt={ga} src={none} />
-    {:else if ga === "order"}
+    {#if ga === GA.Order}
       <img alt={ga} src={order} />
-    {:else if ga === "chaos"}
+    {:else if ga === GA.Chaos}
       <img alt={ga} src={chaos} />
-    {:else if ga === "death"}
+    {:else if ga === GA.Death}
       <img alt={ga} src={death} />
-    {:else if ga === "destruction"}
+    {:else if ga === GA.Destruction}
       <img alt={ga} src={destruction} />
     {:else}
       <img alt={ga} src={none} />
     {/if}
 
-    {#if $hideSpoilers || `${ga}`.length <= 4}
-      {#if $hideSpoilers}
-        secret
-      {:else}
-        -
-      {/if}
+    {#if `${ga}` === "undefined" || ga === GA.None}
+      -
     {:else}
       {#if `${ga}` === "undefined"}
         <span class="text-[6px] mt-1">Unclaimed</span>
@@ -74,6 +63,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1px;
     padding: 2px 10px 2px 10px !important;
     border-radius: 4px;

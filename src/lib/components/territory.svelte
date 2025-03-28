@@ -12,7 +12,6 @@
   import type { LatLngExpression } from 'leaflet';
   import { selectedWeek } from '$lib/store';
   import GrandAllianceCrest from './GrandAllianceCrest.svelte';
-  import { Youtube } from 'svelte-youtube-lite';
   import playButton from "$lib/assets/triangle.svg"
   
 	let { territory, noSpoiler }: {territory: TerritoryType; noSpoiler?: boolean } = $props();
@@ -23,7 +22,6 @@
   const offset_y =  territory.offset.y;
   const defaultHideUIState = $hideUI;
 
-  let showTerrain : boolean = $state(false);
   let currentOwner : GAType = $state(GA.None);
   let defender : GAType = $state(GA.None);
   let attacker : GAType = $state(GA.None);
@@ -173,7 +171,7 @@
                 <div class="text-2xl font-semibold">{territory.name}</div>
                 {#if !$hideUI}
                   <div class="flex items-center gap-2">
-                    <GrandAllianceCrest ga={defender}/>
+                    <GrandAllianceCrest ga={$hideSpoilers ? GA.None : defender}/>
                   </div>
                 {/if}
               </div>
@@ -181,7 +179,7 @@
           <div class="px-1 text-xs">{territory.description}</div>
             {#if !$hideUI && !$hideConflict && attacker !== GA.None}
             <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${battleReportId}`}>
-              <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4 ${$hideSpoilers ? "relative blur-2xl" : ""}`} src={`https://img.youtube.com/vi/${battleReportId}/0.jpg`}>
+              <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4`} src={`https://img.youtube.com/vi/${battleReportId}/0.jpg`}>
               <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
             </a>
           {/if}
