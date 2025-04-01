@@ -177,11 +177,15 @@
               </div>
           {/if}
           <div class="px-1 text-xs">{territory.description}</div>
-            {#if !$hideUI && !$hideConflict && attacker !== GA.None}
+            {#if battleReportId && !$hideUI && !$hideConflict && attacker !== GA.None}
+            {#if !battleReportId.includes("http")}
             <a target="_blank" class="group relative w-full h-40 overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${battleReportId}`}>
               <img alt="Battle Report Thumbnail" class={`absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4`} src={`https://img.youtube.com/vi/${battleReportId}/0.jpg`}>
               <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
             </a>
+            {:else}
+            <a target="_blank" class="w-full bg-white/90 rounded-sm text-center hover:bg-white/80 py-1 !text-black/80 uppercase animate-pulse" href={battleReportId}>Submt your Prediction Now!</a>
+            {/if}
           {/if}
           <div class="flex flex-col">
             <div class="py-1 px-2 bg-slate-500 rounded-sm">{territory.bonuses[0].ability}</div>
