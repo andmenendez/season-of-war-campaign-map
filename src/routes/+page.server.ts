@@ -41,11 +41,16 @@ export const load = async () => {
             territories: Array.from(
               Array(territoryDataResponse.length)
             ).map((_, i) => {
+              var links = linksDataResponse[i]
+              if (!Array.isArray(linksDataResponse[i])) {
+                links = []
+              }
+
               return {
                 id: i + 1,
                 owner: (territoryDataResponse[i] as GAType[]).slice(0,week),
                 attacker: (attackersDataResponse[i] as GAType[]).slice(0,week),
-                videoLinks: (linksDataResponse[i] as GAType[]).slice(0,week),
+                videoLinks: links.slice(0,week),
               };
             }),
           };
