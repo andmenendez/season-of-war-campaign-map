@@ -184,7 +184,7 @@
               <img src={playButton} alt="Play Video" class="absolute hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
             </a>
             {:else}
-            <a target="_blank" class="w-full bg-white/90 rounded-sm text-center hover:bg-white/80 py-1 !text-black/80 uppercase animate-pulse" href={battleReportId}>Submt your Prediction Now!</a>
+            <a target="_blank" class="w-full bg-white/90 rounded-sm text-center hover:bg-white/80 py-1 !text-black/80 uppercase animate-pulse" href={battleReportId}>View Army Lists and Vote</a>
             {/if}
           {/if}
           <div class="flex flex-col">
