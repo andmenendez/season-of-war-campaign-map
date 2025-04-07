@@ -9,13 +9,13 @@
     onclick={ ()=> hideSpoilers.update(b => !b)}
   >
     {#if !$hideSpoilers}
-    <div class="box border-1 rounded-sm border-white bg-white"></div>
+      <div class="box border-1 rounded-sm border-white bg-white"></div>
     {:else}
-    <div class="box border-1 rounded-sm border-white"></div>
+      <div class="box border-1 rounded-sm border-white"></div>
     {/if}
     <span class="whitespace-nowrap h-5">Show Spoilers</span>
   </button>
-  <button 
+  <!-- <button 
     class="flex items-center gap-2 whitespace-nowrap w-fit" 
     onclick={ ()=> hideConflict.update(b => !b)}
   >
@@ -25,7 +25,7 @@
     <div class="box border-1 rounded-sm border-white"></div>
     {/if}
     <span class="whitespace-nowrap h-5">Hide Conflicts</span>
-  </button>
+  </button> -->
   <button 
     class="flex items-center gap-2 whitespace-nowrap w-fit" 
     onclick={ ()=> hideUI.update(b => !b)}
