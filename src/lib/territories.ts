@@ -29,17 +29,17 @@ export const GA = {
 export type GAType = (typeof GA)[keyof typeof GA];
 
 export const GAColor = {
-  [GA.Order]: "#3038AA",
-  [GA.Chaos]: "#A72E30",
-  [GA.Death]: "#C129D0",
-  [GA.Destruction]: "#1E5533",
+  [GA.Order]: "#006CFF",
+  [GA.Chaos]: "#FE0100",
+  [GA.Death]: "#7200FF",
+  [GA.Destruction]: "#71FF03",
   [GA.None]: "rgba(255,255,255,.5)",
 };
 export const GABorderColor = {
-  [GA.Order]: "#3660DE",
-  [GA.Chaos]: "#DA0000",
-  [GA.Death]: "#C129D0",
-  [GA.Destruction]: "#0B9C43",
+  [GA.Order]: "#006CFF",
+  [GA.Chaos]: "#FE0100",
+  [GA.Death]: "#7200FF",
+  [GA.Destruction]: "#71FF03",
   [GA.None]: "#221F1F",
 };
 
