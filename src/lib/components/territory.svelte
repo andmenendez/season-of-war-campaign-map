@@ -143,7 +143,7 @@
       <img 
         src={combat} 
         alt="Conflict"
-        class={`w-[64px] h-[64px] inline animate-pulse ${currentOwner !== GA.None || (!$hideUI && !$hideConflict && attacker !== (GA.None as GAType)) ? "" :"!hidden"}`} 
+        class={`w-[64px] h-[64px] inline animate-pulse ${currentOwner === GA.None && !$hideUI && !$hideConflict && attacker !== (GA.None as GAType) ? "" :"!hidden"}`} 
       />
     </Tooltip>
 
