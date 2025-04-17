@@ -107,10 +107,10 @@
         $hideUI ? "rgba(0,0,0,0)" :
           "rgba(18,23,17,0.9)"
     }
-    fillOpacity={$hideUI ? 0 : $contextBanner.territory === territory.name ? .3 : 
-          $selectedFactions.includes(currentOwner) ? .4 : currentOwner!== GA.None ? .3 : 0.05}
+    fillOpacity={$hideUI ? 0 : $contextBanner.territory === territory.name ? .4 : 
+          $selectedFactions.includes(currentOwner) ? .3 : currentOwner!== GA.None ? .2 : 0.05}
     fillColor={
-      $hideUI ? "rgba(255,255,255,0)" : $hideSpoilers ? $contextBanner.territory === territory.name ? "rgba(255,255,255,1)" : "rgba(255,255,255,.7)" : 
+      $hideUI ? "rgba(255,255,255,0)" : $hideSpoilers ? $contextBanner.territory === territory.name ? "rgba(255,255,255,1)" : "rgba(255,255,255,.8)" : 
         $selectedWeek === 0 ? "rgba(255,255,255,1)" : 
           $selectedFactions.includes(currentOwner) ?
             GAColor[currentOwner] : GAColor[currentOwner]
