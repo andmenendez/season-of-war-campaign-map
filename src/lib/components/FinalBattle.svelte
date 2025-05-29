@@ -19,7 +19,8 @@
 {#if $selectedWeek === 8 && !$hideUI}
 <div
   in:fade out:fade
-  class="z-0 p-20 bg-black/10 backdrop-blur-sm rounded-md fixed left-0 top-0 w-screen h-screen flex flex-col justify-center items-center">
+  class="z-0 p-20 bg-black/10 backdrop-blur-sm rounded-md fixed left-0 top-0 w-screen h-screen flex flex-col gap-2 justify-center items-center">
+  
   <span class="text-4xl">FINALE</span>
 
   <div class="flex h-24 gap-2 justify-center items-center">
