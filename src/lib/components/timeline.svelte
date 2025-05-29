@@ -15,8 +15,8 @@
         <img src={chevronLeft} alt="chevron-left" class="!rotate-180 w-5 h-5 shrink-0 brightness-200 hover:contrast-200"/>
     </button>
     <!--  -->
-    <TimelineCircle timepoint={0} />
-    <TimelineLine at={0} />
+    <!-- <TimelineCircle timepoint={0} /> -->
+    <!-- <TimelineLine at={0} /> -->
 
     <TimelineCircle timepoint={1} />
     <!--  -->

@@ -12,6 +12,7 @@
   import "../../app.css";
   import { sleep } from "$lib/utlils";
   import { onMount } from "svelte";
+  import FinalBattle from "./FinalBattle.svelte";
   
   let loading : boolean = $state(true);
   let Map: any = $state(null);
@@ -23,9 +24,7 @@
   });
   
   </script>
-  
   <div class="z-10 fixed top-0 left-0 w-full flex-col-to-row flex-col justify-between items-start">
-
     <div in:fade class="z-10 flex items-start w-fit shrink-0 gap-4 mx-4">
       <div class="flex flex-col">
         <a href="https://www.youtube.com/seasonofwar" class=" shrink-0 group bg-gradient-to-b from-black to-black/0 shadow-sm"><img style="height: 64px" class="opacity-80 transition-opacity" src={sowTitle} alt="Season of War" /></a>
@@ -88,6 +87,7 @@
     </div>
   {/if}
   
+  <FinalBattle></FinalBattle>
   <style>
     .flex-col-to-row {
       display: flex;
