@@ -67,10 +67,17 @@
   </div>
   
   <div in:fade class={`${revealLeft && revealRight ? "" : "!opacity-40 blur-[14px]"} opacity-100 duration-500 transition-opacity rounded-xl shadow-lg overflow-hidden relative h-[220px] w-[380px] bg-red-400 border-1 border-white shadow`}>
+    {#if revealLeft && revealRight}
     <a target="_blank" class="group h-[220px] w-[380px] overflow-hidden rounded-md" href={`https://www.youtube.com/watch?v=${"CJInNEa_HJA"}`}>
       <img alt="Battle Report Thumbnail" class={`absfolute left-1/2 top-1/2 -translfate-x-1/4 -translate-y-[16px]`} src={`https://img.youtube.com/vi/${"CJInNEa_HJA"}/0.jpg`}>
       <img src={playButton} alt="Play Video" class="absolute animate-pulse hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
     </a>
+    {:else}
+    <div class="group h-[220px] w-[380px] overflow-hidden rounded-md">
+      <img alt="Battle Report Thumbnail" class={`absfolute left-1/2 top-1/2 -translfate-x-1/4 -translate-y-[16px]`} src={`https://img.youtube.com/vi/${"CJInNEa_HJA"}/0.jpg`}>
+      <img src={playButton} alt="Play Video" class="absolute animate-pulse hover:opacity-80 contrast-200 brightness-200 left-1/2 top-1/2 -translate-x-1/4 -translate-y-1/4" />
+    </div>
+    {/if}
   </div>
 </div>
 {/if}
